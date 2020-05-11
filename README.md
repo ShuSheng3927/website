@@ -1,2 +1,2 @@
-# ry.blog
-Blog
+# Blog by RY
+A Blog 
