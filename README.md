@@ -1,2 +1,1 @@
-# Blog by RY
-A Blog 
+Link of the page: shusheng3927@github.io
