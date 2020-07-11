@@ -1,1 +1,1 @@
-Link of the page: shusheng3927@github.io
+Link of the page: shusheng3927.github.io
