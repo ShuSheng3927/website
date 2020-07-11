@@ -26,7 +26,7 @@
   display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
   text-decoration: none;
   font-size: 17px;
 }
@@ -60,7 +60,7 @@
 /* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 700px) {
   .topnav a:not(:first-child) {display: none;}
-  .topnav-right {display: none;}
+  .topnav-right a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
@@ -79,9 +79,6 @@
     float: none;
     display: block;
     text-align: left;
-  }
-  .container.row.col-md-4 {
-    display: block;
   }
 }
 
@@ -107,7 +104,7 @@ function myFunction() {
 
 
 <div class="topnav" id="myTopnav">
-  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/">Home</a>
     <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
     <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
     <a href="#">CV</a>
@@ -123,31 +120,30 @@ function myFunction() {
 
         <div class="row">
 
-            <div class="col-md-8" style="height: 100vh; margin-top: 1%">
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyangzhang1210@gmail.com">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+              
+            
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%">
                 <img src="banner.jpeg" style="width: 100%; height: auto">
 
                 <div style="margin-top:3%; text-align:justify; font-family: 'Times'; font-size: 16px">                
-                Currently, I am doing BSc Mathamtics and Statisitcal Science at University College London. I was born in Shanghai, China, and I studied IBDP programme in Singapore for 6 years before joing UCL. <br><br>
+                <p>Currently, I am doing BSc Mathamtics and Statisitcal Science at University College London. I was born in Shanghai, China, and I studied IBDP programme in Singapore for 6 years before joing UCL. </p>
 
-                I write texts from time to time trying to explain more complicated mathematical concepts in plain language. This is inspired by the Physicist and great explainer Richard P. Feynmann. They will be placed under <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>. I may occasionally write about other things that I find interesting there.<br><br>
+                <p>I write texts from time to time trying to explain more complicated mathematical concepts in plain language. This is inspired by the Physicist and great explainer Richard P. Feynmann. They will be placed under <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>. I may occasionally write about other things that I find interesting there.</p>
 
-                In addition, I write <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a> and summaries for the Maths I have studied. <br><br>
+                <p>In addition, I write <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a> and summaries for the Maths I have studied. </p>
 
-                CV has not been uploaded yet.
+                <p>CV has not been uploaded yet. </p>
                 </div>
             </div> 
-
-
-            <div class="col-md-4" style="margin-top:0.5%">
-                <div style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div><br>
-                Email: <a href="mailto:ruiyangzhang1210@gmail.com">ruiyangzhang1210@gmail.com</a><br>
-            </div>
-            
-            
-            <div class="col-md-4" style="margin-top:2%">
-              <dd><a href="https://github.com/ShuSheng3927">Github</a></dd> 
-              <dd><a href="www.linkedin.com/in/ruiyang-zhang-248761129">LinkedIn</a></dd>
-            </div>
 
             
         </div>
