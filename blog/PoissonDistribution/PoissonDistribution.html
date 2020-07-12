@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Poisson Distribution: A Derivation From Binomial Distribution</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="BinomialDistribution.css"> 
+  <meta name="src" content="BinomialDistribution.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyangzhang1210@gmail.com">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%">
+
+                <div style="margin-top:3%;text-align: justify;">  
+                <h2 class="titleHead" style="text-align: center">Poisson Distribution</h2>
+                <h4 class="titleHead" style="text-align: center">A Derivation From Binomial Distribution</h4>  
+                <div class="author" style="text-align: center"><span 
+class="cmr-12">Zhang Ruiyang</span></div><br />         
+                <!--l. 25--><p class="noindent" >Poisson Distribution is one of the more complicated types of distribution. There are many ways for one to derive the
+formula for this distribution and here we will be presenting a simple one - derivation from the Binomial Distribution
+under certain conditions.
+</p><!--l. 29--><p class="noindent" >Let us recall the formula of the <span 
+class="cmti-10">pmf  </span>of Binomial Distribution,
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution0x.png" alt="                    (  )
+Bk(n,p) = P (X = k) = n  pk(1− p)n−k
+                      k
+" class="math-display"  /></center>
+<!--l. 32--><p class="nopar" > where 0 <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">n</span>.
+</p><!--l. 37--><p class="noindent" >Before moving on, let’s imagine we have a period of time and we are ﬁnding the probability for an event to occur for
+some number of times. We do not know when or how frequent the event will happen. However, if we divide that entire
+period of time into <span 
+class="cmmi-10">n </span>suﬃciently small and identical time periods, we will be able to let the event to either occur once
+or not occure at all. So we no longer need to know the probability of the event from occuring but just the mean
+number over the time period. The problem is therefore transformed into a Binomial Distribution question
+with <span 
+class="cmmi-10">n </span>being the total number of trials and we let <span 
+class="cmmi-10">α </span>to be the mean of it. That gives us <span 
+class="cmmi-10">p</span><sub><span 
+class="cmmi-7">n</span></sub> = <img 
+src="PoissonDistribution1x.png" alt="α
+n"  class="frac" align="middle" /> for
+the probability for the event to occur at <span 
+class="cmmi-10">n</span>th time. The Binomial Distribution formula will be changed
+                                                                                           
+                                                                                           
+into
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution2x.png" alt="      α    (n) α       α
+Bk (n,-) =     (-)k(1 − -)n−k
+      n     k   n      n
+" class="math-display"  /></center>
+<!--l. 40--><p class="nopar" > where 0 <span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">k </span><span 
+class="cmsy-10">≤ </span><span 
+class="cmmi-10">n</span>. For simplicity, the above equation will be denoted as <span 
+class="cmmi-10">b</span><sub><span 
+class="cmmi-7">k</span></sub>(<span 
+class="cmmi-10">n</span>).
+</p><!--l. 45--><p class="noindent" >In addition, we let <span 
+class="cmmi-10">n </span>be a very big number that tends to inﬁnity. At the same time, we will look at the case when
+<span 
+class="cmmi-10">k </span>= 0 ﬁrst.
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution3x.png" alt="                   α n
+lnim→∞ b0(n ) = nli→m∞ (1− n-).
+" class="math-display"  /></center>
+<!--l. 48--><p class="nopar" >
+</p><!--l. 52--><p class="noindent" >Using Taylor Series ln(1 <span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">x</span>) = <span 
+class="cmsy-10">−</span><span 
+class="cmex-10">∑</span>
+  <sub><span 
+class="cmmi-7">n</span><span 
+class="cmr-7">=1</span></sub><sup><span 
+class="cmsy-7">∞</span></sup><span 
+class="cmmi-10">x</span><sup><span 
+class="cmmi-7">n</span></sup><span 
+class="cmmi-10">∕n</span>, we will get
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution4x.png" alt="      α- n          α-       ∞∑  xn-        α2-
+ln((1−  n) ) = nln(1− n ) = n(−   n ) = − α − 2n − ⋅⋅⋅.
+                             n=1
+" class="math-display"  /></center>
+<!--l. 55--><p class="nopar" >
+</p><!--l. 59--><p class="noindent" >When <span 
+class="cmmi-10">n </span><span 
+class="cmsy-10">→∞</span>, the terms on the right, starting from the second one, will be equal to 0. By making both sides of the
+equation the power to <span 
+class="cmmi-10">e</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution5x.png" alt="                   α n    −α
+nli→m∞ b0(n) = nli→m∞ (1− n-) = e .
+" class="math-display"  /></center>
+                                                                                           
+                                                                                           
+<!--l. 62--><p class="nopar" >
+</p><!--l. 66--><p class="noindent" >Moving on, we will compute the ratio of two <span 
+class="cmmi-10">b</span><sub><span 
+class="cmmi-7">k</span></sub>(<span 
+class="cmmi-10">n</span>) as the value of <span 
+class="cmmi-10">k </span>diﬀers by one, as <span 
+class="cmmi-10">n </span>tends to inﬁnity. We
+have
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution6x.png" alt=" lim  bk+1(n)-= lim  n-−-k(α)(1− α-)−1 =--α--.
+n→ ∞  bk(n)    n→∞ k + 1 n     n      k + 1
+" class="math-display"  /></center>
+<!--l. 69--><p class="nopar" >
+</p><!--l. 73--><p class="noindent" >We now have all the necessary ‘ingredients’ to construct the Poisson Distribution. By using the ratio of two
+consecutive distribution and the value for <span 
+class="cmmi-10">b</span><sub><span 
+class="cmr-7">0</span></sub>(<span 
+class="cmmi-10">n</span>), we have
+</p>
+   <center class="math-display" >
+<img 
+src="PoissonDistribution7x.png" alt="                      k                  k      − α
+ lim bk(n) = lim  b0(n)⋅∏  (-α--) = e−α ⋅--α----=  e--αk = πk(α )
+n→ ∞       n→ ∞      j=0 j + 1       1 ⋅2⋅⋅⋅k   k!
+" class="math-display"  /></center>
+<!--l. 76--><p class="nopar" > where <span 
+class="cmmi-10">π</span><sub><span 
+class="cmmi-7">k</span></sub>(<span 
+class="cmmi-10">α</span>) represents the probability of the event to happen for <span 
+class="cmmi-10">k </span>number of times with the average number of
+event occurance as <span 
+class="cmmi-10">α </span>for a Poisson Distribution.
+</p><!--l. 81--><p class="noindent" >Thus, the Poisson Distribution is derived by setting the Binomial Distribution with the number of games as inﬁnity
+and the let the probability of the outcome changes as the game plays on. Poisson Distribution, even though look
+unrealistic in the ﬁrst sight, can be used to model a series of real life events, such as crime rate and rate of death for
+children. Also, this distribution will be involved for the construction of an interesting Stochastic Process, which we will
+be discussing in the future.
+</p>
+
+<br><br><br><br>
+
+
+
+
+                </div>
+            </div> 
+
+
+         
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+                                                                                 
+
+

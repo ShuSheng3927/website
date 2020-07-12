@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, enumitem, multicol, color, soul, geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{Poisson Distribution\\
+	\large A Derivation From Binomial Distribution}
+\author{Zhang Ruiyang}
+\date{}
+
+\geometry{a4paper,scale=0.8}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{remark}{Remark}
+
+\setlist[itemize]{leftmargin=*}
+\setlist{nosep}
+\renewcommand{\baselinestretch}{1.7}
+
+\begin{document}
+
+\maketitle
+
+\noindent Poisson Distribution is one of the more complicated types of distribution. There are many ways for one to derive the formula for this distribution and here we will be presenting a simple one - derivation from the Binomial Distribution under certain conditions.
+
+\bigskip
+
+\noindent Let us recall the formula of the \emph{pmf} of Binomial Distribution, 
+\[
+B_k(n,p) = P(X= k) = {n \choose k}p^k (1-p)^{n-k}
+\]
+where $0 \le k \le n$.
+
+\bigskip
+
+\noindent Before moving on, let's imagine we have a period of time and we are finding the probability for an event to occur for some number of times. We do not know when or how frequent the event will happen. However, if we divide that entire period of time into $n$ sufficiently small and identical time periods, we will be able to let the event to either occur once or not occure at all. So we no longer need to know the probability of the event from occuring but just the mean number over the time period. The problem is therefore transformed into a Binomial Distribution question with $n$ being the total number of trials and we let $\alpha$ to be the mean of it. That gives us $p_n = \frac{\alpha}{n}$ for the probability for the event to occur at $n$th time. The Binomial Distribution formula will be changed into
+\[
+B_k(n,\frac{\alpha}{n}) = {n \choose k}(\frac{\alpha}{n})^k (1-\frac{\alpha}{n})^{n-k}
+\]
+where $0 \le k \le n$. For simplicity, the above equation will be denoted as $b_k(n)$.
+
+\bigskip
+
+\noindent In addition, we let $n$ be a very big number that tends to infinity. At the same time, we will look at the case when $k = 0$ first.
+\[
+\lim_{n \to \infty} b_0(n) = \lim_{n \to \infty} (1-\frac{\alpha}{n})^{n}.
+\]
+
+\bigskip
+
+\noindent Using Taylor Series $\ln (1-x) = - \sum^{\infty}_{n=1} x^n / n$, we will get
+\[
+\ln ((1-\frac{\alpha}{n})^{n}) = n \ln (1-\frac{\alpha}{n}) = n(- \sum^{\infty}_{n=1} \frac{x^n}{n}) = -\alpha - \frac{\alpha^2}{2n} - \cdots.
+\]
+
+\bigskip
+
+\noindent When $n \to \infty$, the terms on the right, starting from the second one, will be equal to 0. By making both sides of the equation the power to $e$, we have
+\[
+\lim_{n \to \infty} b_0(n) = \lim_{n \to \infty} (1-\frac{\alpha}{n})^{n} = e^{-\alpha}.
+\]
+
+\bigskip
+
+\noindent Moving on, we will compute the ratio of two $b_k(n)$ as the value of $k$ differs by one, as $n$ tends to infinity. We have 
+\[
+\lim_{n \to \infty} \frac{b_{k+1}(n)}{b_{k}(n)} = \lim_{n \to \infty} \frac {n-k}{k+1} (\frac{\alpha}{n})(1-\frac{\alpha}{n})^{-1} = \frac{\alpha}{k+1}.
+\]
+
+\bigskip
+
+\noindent We now have all the necessary `ingredients' to construct the Poisson Distribution. By using the ratio of two consecutive distribution and the value for $b_0(n)$, we have
+\[
+\lim_{n \to \infty} b_k(n) = \lim_{n \to \infty} b_0(n) \cdot \prod_{j=0}^{k}(\frac{\alpha}{j+1})=e^{-\alpha} \cdot \frac{\alpha^k}{1 \cdot 2 \cdots k} = \frac{e^{-\alpha}}{k!}\alpha^k = \pi_k(\alpha)
+\]
+where $\pi_k(\alpha)$ represents the probability of the event to happen for $k$ number of times with the average number of event occurance as $\alpha$ for a Poisson Distribution.
+
+\bigskip
+
+\noindent Thus, the Poisson Distribution is derived by setting the Binomial Distribution with the number of games as infinity and the let the probability of the outcome changes as the game plays on. Poisson Distribution, even though look unrealistic in the first sight, can be used to model a series of real life events, such as crime rate and rate of death for children. Also, this distribution will be involved for the construction of an interesting Stochastic Process, which we will be discussing in the future.
+
+\end{document}
