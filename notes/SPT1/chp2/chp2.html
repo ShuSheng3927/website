@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Probability Theory and Statistics Notebook I</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />  
+  <link rel="stylesheet" type="text/css" href="chp2.css" /> 
+  <meta name="src" content="chp2.tex" /> 
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%; font-family: 'Times'">
+                                                                                
+<!--l. 74--><p class="indent" >
+</p>
+
+<!--l. 81--><p class="indent" >
+</p>
+                                                                                
+                                                                      
+   <h2 style="text-align: center"><span>Chapter 2 Random Variables</span><br /></h2>
+
+<br />    <span>2.1 <a 
+href="#x1-60002.1" id="QQ2-1-7">Overview</a></span>
+<br />    <span class="sectionToc" >2.2 <a 
+href="#x1-70002.2" id="QQ2-1-8">Functions for Probabilities</a></span>
+<br />    <span class="sectionToc" >2.3 <a 
+href="#x1-100002.3" id="QQ2-1-11">Expectation, Variance, and Moments</a></span>
+
+
+<h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-60002.1"></a>Overview</h3>
+<!--l. 91--><p class="noindent" >Let us start this Chapter with a scenario. Assuming we are working for the town
+government and we have collected all the medical data of people in town. That
+will be a lot of information. Among them, some are similar and can be categorised
+together. Blood types, for example, can be grouped together. However, sorting the
+data is not enough and it will be great if we can learn something new from it. If we
+want to ﬁnd the average blood type, although it may sound like a silly task, we
+cannot do that since the blood types are not numerical values. This issue can be
+solved if we convert these blood types into numbers and compute the average that
+way.
+</p><!--l. 93--><p class="noindent" >This scenario demonstrates why we need <span 
+class="cmbx-10x-x-109">random variables</span><a 
+ id="dx1-6001"></a>. The information we have
+collected is the sample space. The process of assigning a real number to each possible
+outcomes is the deﬁning of a random variable - blood type in the case of this scenario.
+Random variable, mathematically, is a real-valued <span class="underline">function</span> that maps the sample space to real
+numbers.
+</p><!--l. 95--><p class="noindent" >There are other associated properties of a random variable. First, random variables are either
+<span 
+class="cmbx-10x-x-109">discrete</span><a 
+ id="dx1-6002"></a> or <span 
+class="cmbx-10x-x-109">continuous</span><a 
+ id="dx1-6003"></a>. Also, we can ﬁnd functions that represent the distribution of random
+variables - <span 
+class="cmbx-10x-x-109">density functions</span>, <span 
+class="cmbx-10x-x-109">mass functions</span>, and <span 
+class="cmbx-10x-x-109">probability functions</span>. Some more, we
+can get a rough idea of the random variables by computing things like <span 
+class="cmbx-10x-x-109">expectation</span>,
+<span 
+class="cmbx-10x-x-109">variance</span>, and <span 
+class="cmbx-10x-x-109">moment</span>. Moreover, condition and independence mentioned in the previous
+Chapter can be applied to random variables too.
+</p><!--l. 97--><p class="noindent" >Some textbooks like to separate the discussion of discrete random variables and continuous
+random variable into two Chapters. I, on the other hand, prefer to put them side by side since
+the underlying idea is the same.
+</p><!--l. 99--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-70002.2"></a>Functions for Probabilities</h3>
+<!--l. 101--><p class="noindent" >As we have mentioned before, a random variable is a mapping. A mapping has domain and
+range. The range of a random variable determines whether it is discrete or continuous. If the
+range is ﬁnite or at most countably inﬁnite, for example numbers 1 to 6 for the value of a dice
+roll, it is a <span 
+class="cmbx-10x-x-109">discrete random variable </span>(DRV). If the range takes uncountably many values,
+for example an interval from -1 to 1, then it is a <span 
+class="cmbx-10x-x-109">continuous random variable</span>
+(CRV).
+                                                                                
+
+                                                                                
+</p><!--l. 103--><p class="noindent" >A random variable has many possible values and each has a diﬀerent chance of occurring. To
+describe the chances for each possible value of the random variable to be taken, we have
+<span 
+class="cmbx-10x-x-109">probability mass function</span><a 
+ id="dx1-7001"></a> (PMF), and <span 
+class="cmbx-10x-x-109">probability density function</span><a 
+ id="dx1-7002"></a> (PDF), for discrete
+case and continuous case respectively. They describe the probability of occurrence of each
+possible values. We also have <span 
+class="cmbx-10x-x-109">cumulative distribution function</span><a 
+ id="dx1-7003"></a> (CDF). It describes the
+probability of occurrence within an interval of values. Sometimes, we will call it as the
+<span 
+class="cmbx-10x-x-109">probability function</span><a 
+ id="dx1-7004"></a>.
+</p><!--l. 105--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.2.1   </span> <a 
+ id="x1-80002.2.1"></a>PMF and PDF</h4>
+<!--l. 107--><p class="noindent" >For a discrete random variable <a 
+ id="dx1-8001"></a><span 
+class="cmmi-10x-x-109">X</span>, its probability mass function is denoted by the function <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>.
+In particular, if <span 
+class="cmmi-10x-x-109">x </span>is any possible value of <span 
+class="cmmi-10x-x-109">X</span>, the probability mass of <span 
+class="cmmi-10x-x-109">x</span>, denoted by <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>), is
+the probability of the event <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x</span><span 
+class="cmsy-10x-x-109">}</span>. So we have <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x</span><span 
+class="cmsy-10x-x-109">}</span>). Normally, we will use
+a capital letter to represent a random variable and the corresponding lower case letter to
+represent a possible value of the random variable. A property of PMF is that <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">x</span></sub><span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>) = 1,
+which follows from the normalisation axiom of probability.
+</p><!--l. 109--><p class="noindent" >For a continuous random variable<a 
+ id="dx1-8002"></a>, its probability density function is also denoted by <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>.
+Everything is the same as PMF except for the normalisation property. For a CRV, we use
+integration instead of summation as there are uncountably many possible values of <span 
+class="cmmi-10x-x-109">X</span>. So, we
+have <span 
+class="cmex-10x-x-109">∫</span>
+ <sub><span 
+class="cmsy-8">−∞</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>)<span 
+class="cmmi-10x-x-109">dx </span>= 1.
+</p><!--l. 111--><p class="noindent" >If we have a linear function of random variable <span 
+class="cmmi-10x-x-109">X </span>instead of plainly the variable, the
+PMF/PDF of it can be computed as well. If we have a linear function <span 
+class="cmmi-10x-x-109">aX </span>+ <span 
+class="cmmi-10x-x-109">b </span>of random
+variable <span 
+class="cmmi-10x-x-109">X </span>as a new variable <span 
+class="cmmi-10x-x-109">Y </span>, each possible outcome of this new random variable will
+have the sample probability mass/density as the corresponding outcome of <span 
+class="cmmi-10x-x-109">X</span>. For
+example, outcome <span 
+class="cmmi-10x-x-109">ax </span>+ <span 
+class="cmmi-10x-x-109">b </span>of <span 
+class="cmmi-10x-x-109">Y </span>will have the same probability as the outcome <span 
+class="cmmi-10x-x-109">x </span>of
+<span 
+class="cmmi-10x-x-109">X</span>.
+</p><!--l. 113--><p class="noindent" >So far, we have been working with one random variable, but there can be more. If we have two
+variables, the PMF / PDF will become <span 
+class="cmbx-10x-x-109">joint PMF</span><a 
+ id="dx1-8003"></a>. For random variables <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>, the joint
+PMF is deﬁned by
+</p>
+   <center class="math-display" >
+<img 
+src="chp20x.png" alt="fX,Y(x,y) = P(X  = x,Y = y )
+" class="math-display"  /></center>
+<!--l. 115--><p class="nopar" > for all pairs of numerical values (<span 
+class="cmmi-10x-x-109">x,y</span>) that <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>can take. Joint PMF can be understood
+as the probability of the <span class="underline">intersection</span> of two events <span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x </span>and <span 
+class="cmmi-10x-x-109">Y </span>= <span 
+class="cmmi-10x-x-109">y</span>.
+                                                                                
+
+                                                                                
+</p><!--l. 118--><p class="noindent" >Associated with the joint PMF, we have the <span 
+class="cmbx-10x-x-109">marginal PMF</span>s for each of the random
+variables. We have
+</p>
+   <center class="math-display" >
+<img 
+src="chp21x.png" alt="         ∑
+fX (x) =    fX,Y(x,y)
+          y
+" class="math-display"  /></center>
+<!--l. 120--><p class="nopar" > and
+</p>
+   <center class="math-display" >
+<img 
+src="chp22x.png" alt="        ∑
+fY (y ) =   fX,Y (x,y).
+         x
+" class="math-display"  /></center>
+<!--l. 123--><p class="nopar" > Basically, the marginal PMF is trying to look at the probability of only one of the two
+random variables.
+</p><!--l. 127--><p class="noindent" >In Chapter 1, we have talked about conditional probability and how that is a law of
+probability too. So, it is only natural for us to see how we can incorporate conditional
+probability into PMFs.
+</p><!--l. 129--><p class="noindent" >The conditional PMF<a 
+ id="dx1-8004"></a> of <span 
+class="cmmi-10x-x-109">X </span>given an event <span 
+class="cmmi-10x-x-109">A </span>with positive probability is deﬁned
+by
+</p>
+   <center class="math-display" >
+<img 
+src="chp23x.png" alt="f   (x) = P (X  = x|A)
+ X |A
+" class="math-display"  /></center>
+<!--l. 131--><p class="nopar" > since <span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x </span>is an event and <span 
+class="cmmi-10x-x-109">A </span>is its condition in this case. This can be understood easily if we
+are familiar with conditional probabilities. A property of conditional PMF is that is satisﬁes
+normalisation, meaning
+</p>
+   <center class="math-display" >
+<img 
+src="chp24x.png" alt="∑
+    f   (x) = 1.
+ x   X|A
+" class="math-display"  /></center>
+<!--l. 134--><p class="nopar" >
+                                                                                
+
+                                                                                
+</p><!--l. 136--><p class="noindent" >Multiplication rule for conditional probability can be encompassed using conditional PMF.
+The conditional PMF of <span 
+class="cmmi-10x-x-109">X </span>given <span 
+class="cmmi-10x-x-109">Y </span>= <span 
+class="cmmi-10x-x-109">y </span>is related to the joint PMF by
+</p>
+   <center class="math-display" >
+<img 
+src="chp25x.png" alt="fX,Y (x,y) = fY (y)fX |Y (x|y).
+" class="math-display"  /></center>
+<!--l. 138--><p class="nopar" > This will become obvious once we see the original statement of multiplication rule
+<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">A </span><span 
+class="cmsy-10x-x-109">∩ </span><span 
+class="cmmi-10x-x-109">B</span>) = <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">B</span>)<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">A</span><span 
+class="cmsy-10x-x-109">|</span><span 
+class="cmmi-10x-x-109">B</span>).
+</p><!--l. 141--><p class="noindent" >If we combine the deﬁnition of marginal PMF<a 
+ id="dx1-8005"></a> and that of multiplication rule for PMFs, we
+will have the following statement
+</p>
+   <center class="math-display" >
+<img 
+src="chp26x.png" alt="        ∑
+fX(x ) =   fY (y)fX|Y(x|y )
+         y
+" class="math-display"  /></center>
+<!--l. 143--><p class="nopar" > which tells us that we can calculate the marginal PMF using conditional PMF of <span 
+class="cmmi-10x-x-109">X </span>given
+<span 
+class="cmmi-10x-x-109">Y </span>.
+</p><!--l. 146--><p class="noindent" >As before, conditional probability tells us about the partial information an event contributes
+to another. If there is no partial information, then these two events are independent events.
+The same logic can be used here for conditional PMFs.
+</p><!--l. 148--><p class="noindent" >When we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp27x.png" alt="f   (x) = fX(x)
+ X |A
+" class="math-display"  /></center>
+<!--l. 150--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">x</span>, we will say <span 
+class="cmmi-10x-x-109">X </span>is independent of the event <span 
+class="cmmi-10x-x-109">A</span>. This means <span 
+class="cmmi-10x-x-109">A </span>is independent to all
+events <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x</span><span 
+class="cmsy-10x-x-109">}</span>.
+</p><!--l. 153--><p class="noindent" >For two random variables <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>, they will be independent <a 
+ id="dx1-8006"></a>for for all possible
+pairs (<span 
+class="cmmi-10x-x-109">x,y</span>), the events <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">X </span>= <span 
+class="cmmi-10x-x-109">x</span><span 
+class="cmsy-10x-x-109">} </span>and <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">Y </span>= <span 
+class="cmmi-10x-x-109">y</span><span 
+class="cmsy-10x-x-109">} </span>are independent, or we can have the
+equality
+</p>
+   <center class="math-display" >
+<img 
+src="chp28x.png" alt="f    (x,y) = f (x)f (y)
+  X,Y         X     Y
+" class="math-display"  /></center>
+<!--l. 155--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">x,y</span>.
+</p><!--l. 158--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.2.2   </span> <a 
+ id="x1-90002.2.2"></a>CDF</h4>
+<!--l. 160--><p class="noindent" >So far in this Chapter, our concepts are all divided into two categories - discrete and
+continuous. Mathematicians like generalisation and simplicity. So it is natural for us to ﬁnd
+ways to combine these two, which is by <span 
+class="cmbx-10x-x-109">cumulative distribution function</span>, or
+CDF.
+</p><!--l. 162--><p class="noindent" >The CDF of a random variable <span 
+class="cmmi-10x-x-109">X </span>is denoted by <span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub> and provides the probability <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X </span><span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">x</span>).
+In particular, for every <span 
+class="cmmi-10x-x-109">x </span>we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp29x.png" alt="                     {∑
+                        k≤x fX(k) in the discrete case
+FX (x) = P(X  ≤ x) =  ∫ x  fX(t)dt in the continuous case
+                       −∞
+" class="math-display"  /></center>
+<!--l. 168--><p class="nopar" >
+</p><!--l. 170--><p class="noindent" >We can reverse the above process to get PMF/PDF from CDF. In the discrete case, if <span 
+class="cmmi-10x-x-109">X </span>takes
+integer values, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp210x.png" alt="fX(k) = FX (k)− FX (k − 1)
+" class="math-display"  /></center>
+<!--l. 172--><p class="nopar" > for all integers <span 
+class="cmmi-10x-x-109">k</span>. For the continuous case, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp211x.png" alt="        dFX-(x)
+fX (k ) =   dx
+" class="math-display"  /></center>
+                                                                                
+
+                                                                                
+<!--l. 175--><p class="nopar" > when the CDF is a diﬀerentiable function.
+</p><!--l. 178--><p class="noindent" >There are several properties of a CDF that we should take note of. The CDF <span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub> of a random
+variable <span 
+class="cmmi-10x-x-109">X </span>is deﬁned by
+</p>
+   <center class="math-display" >
+<img 
+src="chp212x.png" alt="FX (x) = P (X ≤ x )
+" class="math-display"  /></center>
+<!--l. 180--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">x</span>, and it has the following properties: </p>
+     <ul class="itemize1">
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub> is monotonically nondecreasing:
+     <center class="math-display" >
+     <img 
+src="chp213x.png" alt="if x ≤ y, then FX(x) ≤ FX (y)
+     " class="math-display"  /></center>
+     <!--l. 185--><p class="nopar" >
+     </p></li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>) tends to 0 as <span 
+class="cmmi-10x-x-109">x </span><span 
+class="cmsy-10x-x-109">→−∞</span>, and to 1 as <span 
+class="cmmi-10x-x-109">x </span><span 
+class="cmsy-10x-x-109">→∞</span>.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub> has a piecewise constant and staircase-like form when <span 
+class="cmmi-10x-x-109">X </span>is discrete.
+     </li>
+     <li class="itemize"><span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub> has a continuously varying form when <span 
+class="cmmi-10x-x-109">X </span>is continuous.</li></ul>
+<!--l. 191--><p class="noindent" >Sometimes, it is useful to study the opposite question and ask how often the random variable
+is above a particular level. This is called the <span 
+class="cmbx-10x-x-109">complementary cumulative distribution</span>
+<span 
+class="cmbx-10x-x-109">function</span><a 
+ id="dx1-9001"></a> or simply the <span 
+class="cmbx-10x-x-109">tail distribution</span><a 
+ id="dx1-9002"></a>. It is deﬁned as
+</p>
+   <center class="math-display" >
+<img 
+src="chp214x.png" alt="¯FX(x) = P (X  &#x003E; x) = 1−  FX(x).
+" class="math-display"  /></center>
+<!--l. 193--><p class="nopar" >
+                                                                                
+
+                                                                                
+</p><!--l. 195--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-100002.3"></a>Expectation, Variance, and Moments</h3>
+<!--l. 197--><p class="noindent" >When we want to study random variables, we would like to know some big-picture properties
+of it. For example, we want to know what is the most common value this random variable
+will take, or what might be the average value. Some of these properties - mainly
+expectation, variance, standard deviation and moments - will be studied in this
+section.
+</p><!--l. 199--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.3.1   </span> <a 
+ id="x1-110002.3.1"></a>Expectation</h4>
+<!--l. 201--><p class="noindent" >We will start with expectation. To study a concept, it is always beneﬁcial to
+learn about its history. This allows us to understand the motivation behind the
+discovery or the creation of a concept, which either brings us clarity or helps us
+understand the concept. I would like to call this approach as “Motivation-Driven
+Learning”<span class="footnote-mark"><a 
+href="chp22.html#fn1x3"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-11001f1"></a> 
+although I doubt I am the ﬁrst one to raise such a concept. However, since this is my
+notebook, I get the freedom to write whatever I like.
+</p><!--l. 203--><p class="noindent" >The origin of expectation originated in the middle of the 17th century from the study of the
+so-called problem of points, which seeks to divide the stakes in a fair way between two players
+who have to end their game before it’s properly ﬁnished. This problem had been debated for
+centuries, and many conﬂicting proposals and solutions had been suggested over the
+years.
+</p><!--l. 205--><p class="noindent" >When the problem was posed in 1654 to Blaise Pascal by French writer and amateur
+Mathematician Chevalier de Méré, Méré claimed that this problem couldn’t be solved
+and that it showed just how ﬂawed mathematics was when it came to its application to the
+real world. Pascal, being a Mathematician, was provoked and determined to solve the problem
+once and for all.
+</p><!--l. 207--><p class="noindent" >He began to discuss the problem in a now famous series of letters to Pierre de Fermat. Soon
+enough they both independently came up with a solution. They solved the problem in diﬀerent
+computational ways but their results were identical because their computations were based on
+the same fundamental principle. The principle is that the value of a future gain
+should be directly proportional to the chance of getting it. This principle seemed
+                                                                                
+
+                                                                                
+to have come naturally to both of them. They were very pleased by the fact that
+they had found essentially the same solution and this in turn made them absolutely
+convinced they had solved the problem conclusively; however, they did not publish their
+ﬁndings. They only informed a small circle of mutual scientiﬁc friends in Paris about
+it.
+</p><!--l. 209--><p class="noindent" >Three years later, in 1657, a Dutch mathematician Christiaan Huygens, who had just visited
+Paris, published a treatise <span 
+class="cmti-10x-x-109">De ratiociniis in ludo aleæ </span>on probability theory. In this book he
+considered the problem of points and presented a solution based on the same principle as the
+solutions of Pascal and Fermat. Huygens also extended the concept of expectation by adding
+rules for how to calculate expectations in more complicated situations than the
+original problem (e.g., for three or more players). In this sense this book can be
+seen as the ﬁrst successful attempt at laying down the foundations of the theory of
+probability.<span class="footnote-mark"><a 
+href="chp23.html#fn2x3"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-11002f2"></a> 
+</p><!--l. 211--><p class="noindent" >Story time is over. We should head back to the Maths.
+</p><!--l. 213--><p class="noindent" >The <span 
+class="cmbx-10x-x-109">expected value</span> <a 
+ id="dx1-11003"></a>, or <span 
+class="cmbx-10x-x-109">mean</span>, <a 
+ id="dx1-11004"></a>of a random variable is the <span class="underline">weighted sum</span> of its value
+using its PMF or PDF. It represents what the average value the random variable
+is.
+</p><!--l. 215--><p class="noindent" >When we have a discrete random variable <span 
+class="cmmi-10x-x-109">X </span>with a ﬁnite number of outcomes <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,x</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,x</span><sub><span 
+class="cmmi-8">k</span></sub>
+with probabilities <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,f</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,f</span><sub><span 
+class="cmmi-8">k</span></sub> respectively, its expectation E[<span 
+class="cmmi-10x-x-109">X</span>] will be
+</p>
+   <center class="math-display" >
+<img 
+src="chp215x.png" alt="        ∑k
+E [X ] =    xifi.
+        i=1
+" class="math-display"  /></center>
+<!--l. 217--><p class="nopar" > The countably inﬁnite version of this statement will be similar, thus it is omitted
+here.
+</p><!--l. 220--><p class="noindent" >When we have a continuous random variable <span 
+class="cmmi-10x-x-109">X </span>with PDF <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>), its expectation will
+be
+</p>
+   <center class="math-display" >
+<img 
+src="chp216x.png" alt="       ∫
+         ∞
+E [X ] =     xfX (x )dx.
+        − ∞
+" class="math-display"  /></center>
+<!--l. 222--><p class="nopar" >
+</p><!--l. 224--><p class="noindent" >We should note that expected value is often denoted by <span 
+class="cmmi-10x-x-109">μ</span>.
+</p><!--l. 226--><p class="noindent" >To make explanation more convenient here, we will talk about the continuous case by default.
+The readers can ﬁll in the gaps of the discrete case pretty easily as these two are essentially
+the same.
+</p><!--l. 228--><p class="noindent" >Sometimes, instead of plainly the random variable, we have a function of it. If we have a
+random variable <span 
+class="cmmi-10x-x-109">X </span>with given PDF <span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>, a real-valued function <span 
+class="cmmi-10x-x-109">Y </span>= <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) is also a random
+variable. The expectation of <span 
+class="cmmi-10x-x-109">Y </span>, or the function <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>), is
+</p>
+   <center class="math-display" >
+<img 
+src="chp217x.png" alt="         ∫ ∞
+E[g(x)] =    g (x )f  (x)dx.
+          −∞      X
+" class="math-display"  /></center>
+<!--l. 230--><p class="nopar" > This is because the probability of <span 
+class="cmmi-10x-x-109">x </span>in <span 
+class="cmmi-10x-x-109">X </span>is identical to the probability of <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) in
+<span 
+class="cmmi-10x-x-109">Y </span>.
+</p><!--l. 233--><p class="noindent" >A special case is when <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmmi-10x-x-109">ax </span>+ <span 
+class="cmmi-10x-x-109">b </span>where <span 
+class="cmmi-10x-x-109">a </span>and <span 
+class="cmmi-10x-x-109">b </span>are two real constant. This gives us the
+statement
+</p>
+   <center class="math-display" >
+<img 
+src="chp218x.png" alt="E [Y ] = E [aX + b] = aE [X ]+ b.
+" class="math-display"  /></center>
+<!--l. 235--><p class="nopar" > We know this is true since a multiplication of the integrand will cause the same multiplication
+to the whole value, also <span 
+class="cmex-10x-x-109">∫</span>
+ <sub><span 
+class="cmsy-8">−∞</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">f</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>)<span 
+class="cmmi-10x-x-109">dx </span>= 1.
+</p><!--l. 238--><p class="noindent" >Before we ﬁnish with expectation, it is important to know that a probability can be
+represented by an expectation. If we want to ﬁnd the probability of event <span 
+class="cmmi-10x-x-109">A</span>, we can construct
+an indicator function <span 
+class="cmmi-10x-x-109">I</span><sub><span 
+class="cmmi-8">A</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>) that satisﬁes
+</p>                                                                            
+   <center class="math-display" >
+<img 
+src="chp219x.png" alt="     {
+IA =   1 if x ∈ A
+       0 otherwise
+" class="math-display"  /></center>
+<!--l. 244--><p class="nopar" >
+and we get
+</p>
+   <center class="math-display" >
+<img 
+src="chp220x.png" alt="P (A) = E[IA].
+" class="math-display"  /></center>
+<!--l. 247--><p class="nopar" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.3.2   </span> <a 
+ id="x1-120002.3.2"></a>Variance and Standard Deviation</h4>
+<!--l. 251--><p class="noindent" >Expectation tells us the average value, but it is not enough. We may also want to know how
+values deviate from the mean. This is helpful and tells us more about the nature of the data.
+For example, a set of data that is scattered may have the same mean with another set of data
+that clustered over two extremes. They are diﬀerent yet the diﬀerence cannot be
+learned from mean. To help with that problem, we introduce variance and standard
+deviation.
+</p><!--l. 253--><p class="noindent" >Variance and standard deviation are two closely related concepts. Historically speaking,
+standard deviation is introduced before variance. Although that is the case, it is more natural
+to learn variance before standard deviation.
+</p><!--l. 255--><p class="noindent" ><span 
+class="cmbx-10x-x-109">Variance</span><a 
+ id="dx1-12001"></a> measures how far a set of numbers are spread out from their average value.
+Mathematically speaking, it is the expectation of the distance between a random variable from
+its mean. We will use the square of the diﬀerence between a possible value of random variable
+and the mean s the distance. The formula of random variable <span 
+class="cmmi-10x-x-109">X</span>, denoted by Var(<span 
+class="cmmi-10x-x-109">X</span>), with
+mean <span 
+class="cmmi-10x-x-109">μ </span>will be
+</p>                                                                           
+   <center class="math-display" >
+<img 
+src="chp221x.png" alt="Var(X ) = E[(X  − μ)2]
+
+       =  E[X2 − 2XE [X ]+ E[X ]2]
+       =  E[X2]− 2E [X ]E[X ]+ E[X ]2
+             2        2
+       =  E[X ]− E [X ]
+" class="math-display"  /></center>
+<!--l. 263--><p class="nopar" >
+</p><!--l. 265--><p class="noindent" >We can represent the variance using an integration, which is
+</p>
+   <center class="math-display" >
+<img 
+src="chp222x.png" alt="          ∫ ∞       2 2
+Var (X) =     (x − μ ) fX(x)dx.
+           −∞
+" class="math-display"  /></center>
+<!--l. 267--><p class="nopar" >
+</p><!--l. 269--><p class="noindent" >We can replace the random variable with a linear function of it. For <span 
+class="cmmi-10x-x-109">Y </span>= <span 
+class="cmmi-10x-x-109">aX </span>+ <span 
+class="cmmi-10x-x-109">b</span>, its variance
+is
+</p>
+   <center class="math-display" >
+<img 
+src="chp223x.png" alt="               2
+Var(aX  + b) = a Var (X )
+" class="math-display"  /></center>
+<!--l. 271--><p class="nopar" > since multiplication gets squared for variance and the constant term are cancelled out by the
+subtraction. Another way to look at it is that variance measures the deviation of data and it
+will not change if we shift all the data with the same degree.
+</p><!--l. 274--><p class="noindent" >When we have, not one, but two random variables, we would like to ﬁnd out their relationship
+using <span 
+class="cmbx-10x-x-109">covariance</span><a 
+ id="dx1-12002"></a>. Covariance is a measure of the joint variability of two random variables and
+it is positive when they tend to show similar behaviour.
+</p><!--l. 276--><p class="noindent" >To properly deﬁne it, given two random variables <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>, the covariance of the two, denoted
+by Cov(<span 
+class="cmmi-10x-x-109">X,Y </span>), is
+</p>                                                                        
+   <center class="math-display" >
+<img 
+src="chp224x.png" alt="Cov (X, Y ) = E [(X − E[X ])(Y − E[Y ])]
+
+          = E [XY  −  YE [X ]− XE  [Y ]+ E[X ]E [Y ]]
+          = E [XY  ]− E [X ]E[Y].
+" class="math-display"  /></center>
+<!--l. 282--><p class="nopar" >
+</p><!--l. 284--><p class="noindent" >Notice that if <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>are independent, Cov(<span 
+class="cmmi-10x-x-109">X,Y </span>) = 0 as E[<span 
+class="cmmi-10x-x-109">XY </span>] = E[<span 
+class="cmmi-10x-x-109">X</span>]E[<span 
+class="cmmi-10x-x-109">Y </span>].
+</p><!--l. 286--><p class="noindent" >Some properties of covariance will be stated below. The proofs will be omitted as they are
+quite straight forward.
+</p>
+   <center class="math-display" >
+<img 
+src="chp225x.png" alt="    Cov(X, X ) = Var(X )
+
+    Cov(X, Y ) = Cov (Y, X )
+   Cov(cX, Y ) = cCov (X, Y )
+Cov(X, Y + Z ) = Cov (X, Y )+ Cov (X,Z )
+" class="math-display"  /></center>
+<!--l. 295--><p class="nopar" >
+</p><!--l. 297--><p class="noindent" ><span 
+class="cmbx-10x-x-109">Standard deviation</span><a 
+ id="dx1-12003"></a> is a measure to tell us how far away a data point is from the mean. It is
+calculated by square rooting the variance, and it is often denoted by <span 
+class="cmmi-10x-x-109">σ</span>. For random variable
+<span 
+class="cmmi-10x-x-109">X</span>, we have <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>(<span 
+class="cmmi-10x-x-109">X</span>) = Var(<span 
+class="cmmi-10x-x-109">X</span>).
+                                                                                
+
+                                                                                
+</p><!--l. 299--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.3.3   </span> <a 
+ id="x1-130002.3.3"></a>Moment</h4>
+<!--l. 301--><p class="noindent" >Moments of a function are quantitative measures related to the shape of the function’s graph.
+Here, we will be studying the moments of a probability distribution.
+</p><!--l. 303--><p class="noindent" >The deﬁnition of <span 
+class="cmmi-10x-x-109">n</span>-th <span 
+class="cmbx-10x-x-109">moment</span><a 
+ id="dx1-13001"></a> of a real-valued continuous function <span 
+class="cmmi-10x-x-109">f</span>(<span 
+class="cmmi-10x-x-109">x</span>) of a real variable
+about a value <span 
+class="cmmi-10x-x-109">c </span>is
+</p>
+   <center class="math-display" >
+<img 
+src="chp226x.png" alt="     ∫ ∞       n
+μn =     (x − c) f(x)dx.
+      −∞
+" class="math-display"  /></center>
+<!--l. 305--><p class="nopar" >
+</p><!--l. 307--><p class="noindent" >When we take certain special values of <span 
+class="cmmi-10x-x-109">n </span>and <span 
+class="cmmi-10x-x-109">c</span>, we can get some very useful properties. There
+are three main kinds of moments - raw, central and standardised.
+</p><!--l. 309--><p class="noindent" ><span 
+class="cmbx-10x-x-109">Raw moment</span><a 
+ id="dx1-13002"></a> is a moment of a probability distribution of a random variable about 0,
+meaning the <span 
+class="cmmi-10x-x-109">c </span>in the equation will be 0. So the <span 
+class="cmmi-10x-x-109">n</span>-th raw moment of random variable <span 
+class="cmmi-10x-x-109">X</span>
+is
+</p>
+   <center class="math-display" >
+<img 
+src="chp227x.png" alt="              ∫ ∞
+μn =  E[Xn ] =    (x)nf(x)dx.
+               −∞
+" class="math-display"  /></center>
+<!--l. 311--><p class="nopar" > The ﬁrst raw moment is the expected value <span 
+class="cmmi-10x-x-109">μ</span>, since the statement is identical to that of
+expectation.
+</p><!--l. 314--><p class="noindent" ><span 
+class="cmbx-10x-x-109">Central moment</span><a 
+ id="dx1-13003"></a> is a moment of a probability distribution of a random variable about the
+random variable’s mean, meaning the <span 
+class="cmmi-10x-x-109">c </span>in the equation will be set to <span 
+class="cmmi-10x-x-109">μ</span>. So the <span 
+class="cmmi-10x-x-109">n</span>-th central
+moment of random variable <span 
+class="cmmi-10x-x-109">X </span>is
+</p>
+   <center class="math-display" >
+<img 
+src="chp228x.png" alt="     ∫ ∞
+μn =     (x−  μ)nf(x)dx.
+      −∞
+" class="math-display"  /></center>
+<!--l. 316--><p class="nopar" > The zeroth central moment <span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmr-8">0</span></sub> is 1, due to normalisation axiom of probability. The ﬁrst
+                                                                                
+
+                                                                                
+central moment is 0. The second central moment is variance.
+</p><!--l. 319--><p class="noindent" ><span 
+class="cmbx-10x-x-109">Standardised moment</span><a 
+ id="dx1-13004"></a> of a probability distribution is a moment that is normalised,
+typically a central moment divided by an expression of the standard deviation. So the <span 
+class="cmmi-10x-x-109">n</span>-th
+standardised moment of random variable <span 
+class="cmmi-10x-x-109">X </span>is
+</p>
+   <center class="math-display" >
+<img 
+src="chp229x.png" alt="           ∫
+     μn     ∞−∞ (x − μ)nf (x )dx
+˜μn = σn-=  --∘----------2-n--.
+            (  E[(X − μ) ])
+" class="math-display"  /></center>
+<!--l. 321--><p class="nopar" > The ﬁrst standardised moment is 0. The second standardised moment is 1. The third
+standardised moment is <span 
+class="cmbx-10x-x-109">skewness</span>. The fourth standardised moment is <span 
+class="cmbx-10x-x-109">kurtosis</span>.
+</p><!--l. 324--><p class="noindent" >Skewness<a 
+ id="dx1-13005"></a> is a measure of asymmetry of the probability distribution. A positive skew means the
+right tail is longer. A negative skew means the left tail is longer.
+</p><!--l. 326--><p class="noindent" >Kurtosis<span class="footnote-mark"><a 
+href="chp24.html#fn3x3"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-13006f3"></a> <a 
+ id="dx1-13007"></a>, originated
+by Karl Pearson<span class="footnote-mark"><a 
+href="chp25.html#fn4x3"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-13008f4"></a> 
+from Pearson distribution, is a measure of the “tailedness” of the probability distribution of a real-valued
+random variable<span class="footnote-mark"><a 
+href="chp26.html#fn5x3"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-13009f5"></a> .
+</p><!--l. 328--><p class="noindent" >It will be a cool idea to combine all the possible kinds of moments, and Taylor series of <span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">tX</span></sup>
+comes into rescue. We have
+</p>
+   <center class="math-display" >
+<img 
+src="chp230x.png" alt=" tX            t2X2    t3X3
+e   = 1 + tX  + --2!-+  -3!--+ ⋅⋅⋅.
+" class="math-display"  /></center>
+<!--l. 330--><p class="nopar" > If we take the expectation to both sides of the above equation, we will call this
+equation as the <span 
+class="cmbx-10x-x-109">moment generating function</span><a 
+ id="dx1-13010"></a>, or MGF, of random variable <span 
+class="cmmi-10x-x-109">X </span>and
+get
+</p>
+   <center class="math-display" >
+<img 
+src="chp231x.png" alt="                              2   2     3   3
+M   (t) = E[etX ] = 1 + tE[X ]+ t-E[X-]-+ t-E[X-]-+ ⋅⋅⋅
+  X                             2!        3!
+" class="math-display"  /></center>
+<!--l. 333--><p class="nopar" > for <span 
+class="cmmi-10x-x-109">t </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="msbm-10x-x-109">ℝ</span>, which contains all the <span 
+class="cmmi-10x-x-109">n</span>-th moments.
+</p>
+<div class="center" 
+>
+<!--l. 185--><p class="noindent" >
+</p><!--l. 185--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 338--><p class="noindent" >A useful properties of MGF is that we can take a certain derivative of it to get a certain
+moment, which is
+</p>
+   <center class="math-display" >
+<img 
+src="chp232x.png" alt="   n    dnMX--(t)-        (n)
+E[X  ] =   dtn  |t=0 = M X (0)
+" class="math-display"  /></center>
+<!--l. 340--><p class="nopar" > where <span 
+class="cmmi-10x-x-109">M</span><sub><span 
+class="cmmi-8">X</span></sub><sup><span 
+class="cmr-8">(</span><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">)</span></sup> is the <span 
+class="cmmi-10x-x-109">n</span>-th derivative of the MGF.
+</p>
+<div class="center" 
+>
+<!--l. 185--><p class="noindent" >
+</p><!--l. 185--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 345--><p class="noindent" >Another thing to take note of regarding MGF is that two random variables with the same
+MGF will have the same distribution function. This means, for random variable <span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">Y </span>,
+if
+                                                                                
+
+                                                                                
+</p>
+   <center class="math-display" >
+<img 
+src="chp233x.png" alt="MX  (t) = MY (t)
+" class="math-display"  /></center>
+<!--l. 347--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">t </span>on some interval for MGF to exist, we must have
+</p>
+   <center class="math-display" >
+<img 
+src="chp234x.png" alt="FX (a ) = FY (a)
+" class="math-display"  /></center>
+<!--l. 350--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">a </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="msbm-10x-x-109">ℝ</span>.
+</p><!--l. 353--><p class="noindent" >This is due to the fact that the probability distribution of a random variable is uniquely
+determined by its generating function, as we could have probably guessed from the
+construction of MGF using moments.
+</p><!--l. 355--><p class="noindent" >We can expand this. Suppose that <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">k</span></sub> are independent random variables,
+then
+</p>
+   <center class="math-display" >
+<img 
+src="chp235x.png" alt="                   (X1+ ⋅⋅⋅+Xk )t
+MX1+  ⋅⋅⋅+Xk (t) = E[e          ]
+              = E[eX1t⋅⋅⋅eXkt]
+                   X1t      Xkt
+              = E[e   ]⋅⋅⋅E [e   ]
+              = MX1 (t)⋅⋅⋅MXk (t).
+" class="math-display"  /></center>
+<!--l. 363--><p class="nopar" >
+</p>
+
+<br><br>
+
+<a href="../SPT1.html" style="text-align: left; font-family: 'Times';font-size: large;">Back</a>  
+<a href="../chp3/chp3.html" style="float: right; font-family: 'Times';font-size: large;">Next Chapter</a>
+
+<br><br>
+
+
+
+
+
+                </div>
+            </div> 
+
+
+
+            
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+                                                                           
+                                                                                
+
+

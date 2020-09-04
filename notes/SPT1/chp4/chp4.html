@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Probability Theory and Statistics Notebook I</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />  
+  <link rel="stylesheet" type="text/css" href="chp4.css" /> 
+  <meta name="src" content="chp4.tex" /> 
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%; font-family: 'Times'">
+                                                                                
+<!--l. 74--><p class="indent" >
+</p>
+
+<!--l. 81--><p class="indent" >
+</p>
+                                                                                
+                                                                      
+   <h2 style="text-align: center"><span>Chapter 4 Limit Theorem</span><br /></h2>
+
+<br />    <span class="sectionToc" >4.1 <a 
+href="#x1-80004.1" id="QQ2-1-9">Common Inequalities and Convergence</a></span>
+<br />    <span class="sectionToc" >4.2 <a 
+href="#x1-90004.2" id="QQ2-1-10">Law of Large Number</a></span>
+<br />    <span class="sectionToc" >4.3 <a 
+href="#x1-100004.3" id="QQ2-1-11">Central Limit Theorem</a></span>
+
+   <h3 class="sectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-80004.1"></a>Common Inequalities and Convergence</h3>
+<!--l. 94--><p class="noindent" >Inequalities and types of convergence are essential for the development of law of large
+numbers, central limit theorem and many other identities in the study of Probability Theory
+and Statistics.
+</p><!--l. 96--><p class="noindent" >The importance of inequalities is that they enable us to derive bounds on probabilities when
+only the mean or both the mean and the variance of the probability distribution are known. Of
+course, if the actual distribution were known, then the desired probabilities could be computed
+exactly and we would not need to resort to bounds. However, this kind of case is,
+in reality, quite rare. Statistical theory is literally brimming with inequalities and
+identities.
+</p><!--l. 98--><p class="noindent" >Convergence is more commonly used in the study of theory of probability. It formalises the
+idea that a sequence of essentially random or unpredictable events can sometimes be expected
+to settle down into a behaviour that is essentially unchanging when items far enough into the
+sequence are studied.
+</p>
+<div class="center" 
+>
+<!--l. 100--><p class="noindent" >
+</p><!--l. 100--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 102--><p class="noindent" >We will be talking about Markov inequality as well as Chebyshev inequality in this notebook.
+There are other kinds of useful inequalities, but for the purpose of this notebook, we will
+mostly use these two. Other kinds of inequalities will be brought up separately when there is
+such need.
+</p><!--l. 104--><p class="noindent" >We will start with <span 
+class="cmbx-10x-x-109">Markov inequality</span><a 
+ id="dx1-8001"></a>, which is named after Russian Mathematician Andrey
+Markov. Markov’s name will appear again in Chapter 6 when we talk about Markov
+chains.
+</p><!--l. 106--><p class="noindent" >First, we have a nonnegative random variable <span 
+class="cmmi-10x-x-109">X</span>. Let us deﬁne an indicator function <span 
+class="cmmi-10x-x-109">I</span>. For
+<span 
+class="cmmi-10x-x-109">a &#x003E; </span>0, let
+</p>
+   <center class="math-display" >
+<img 
+src="chp40x.png" alt="   {
+     1 if X ≥ a
+I =
+     0 otherwise
+" class="math-display"  /></center>
+<!--l. 112--><p class="nopar" > and note that, since <span 
+class="cmmi-10x-x-109">X &#x003E; </span>0,
+</p>
+   <center class="math-display" >
+<img 
+src="chp41x.png" alt="    X-
+I ≤  a .
+" class="math-display"  /></center>
+<!--l. 115--><p class="nopar" >
+</p><!--l. 117--><p class="noindent" >Taking the expectations of the preceding inequality yields
+</p>
+   <center class="math-display" >
+<img 
+src="chp42x.png" alt="E[I] = P (X ≥ a) ≥ E-[X-].
+                    a
+" class="math-display"  /></center>
+<!--l. 119--><p class="nopar" >
+</p><!--l. 121--><p class="noindent" >This is the Markov inequality. If <span 
+class="cmmi-10x-x-109">X </span>is a random variable that takes only nonnegative values,
+then for any value <span 
+class="cmmi-10x-x-109">a &#x003E; </span>0,
+</p>
+   <center class="math-display" >
+<img 
+src="chp43x.png" alt="P (X  ≥ a) ≤ E[X-].
+              a
+" class="math-display"  /></center>
+<!--l. 123--><p class="nopar" >
+</p><!--l. 125--><p class="noindent" >We can extend it from solely the random variable to monotonically increasing functions. If <span 
+class="cmmi-10x-x-109">φ </span>is
+a monotonically increasing nonnegative function for the nonnegative real numbers, <span 
+class="cmmi-10x-x-109">X </span>is a
+random variable, <span 
+class="cmmi-10x-x-109">a </span><span 
+class="cmsy-10x-x-109">≥ </span>0 and <span 
+class="cmmi-10x-x-109">φ</span>(<span 
+class="cmmi-10x-x-109">a</span>) <span 
+class="cmmi-10x-x-109">&#x003E; </span>0, then
+</p>
+   <center class="math-display" >
+<img 
+src="chp44x.png" alt="              E[φ(|X-|)]
+P (|X | ≥ a) ≤   φ(a)  .
+                                                                                
+
+                                                                                
+" class="math-display"  /></center>
+<!--l. 127--><p class="nopar" >
+</p><!--l. 129--><p class="noindent" >This gives us the extended Markov inequality<a 
+ id="dx1-8002"></a>.
+</p><!--l. 131--><p class="noindent" >We can also use higher moments of <span 
+class="cmmi-10x-x-109">X </span>as the monotonically increasing nonnegative function.
+This gives us
+</p>
+   <center class="math-display" >
+<img 
+src="chp45x.png" alt="             |X-|n-
+P(|X | ≥ a) ≤ an .
+" class="math-display"  /></center>
+<!--l. 133--><p class="nopar" >
+</p><!--l. 135--><p class="noindent" >Another useful corollary of the Markov inequality is the <span 
+class="cmbx-10x-x-109">Chernoﬀ bound</span><a 
+ id="dx1-8003"></a> named after
+Herman Chernoﬀ. The statement of Markov inequality involves <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X </span><span 
+class="cmsy-10x-x-109">≥ </span><span 
+class="cmmi-10x-x-109">a</span>), and if we raise both
+<span 
+class="cmmi-10x-x-109">X </span>and <span 
+class="cmmi-10x-x-109">a </span>to <span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">t</span></sup>, we get <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">tX</span></sup> <span 
+class="cmsy-10x-x-109">≥ </span><span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">ta</span></sup>) and the inequality becomes
+</p>
+   <center class="math-display" >
+<img 
+src="chp46x.png" alt="    tX     ta    E[etX ]    −ta   tX
+P (e  ≥  e ) ≤ --eta--=  e  E [e  ]
+" class="math-display"  /></center>
+<!--l. 137--><p class="nopar" > which is the statement of Chernoﬀ bound for positive <span 
+class="cmmi-10x-x-109">t</span>.
+</p>
+<div class="center" 
+>
+<!--l. 140--><p class="noindent" >
+</p><!--l. 140--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 142--><p class="noindent" >Markov inequality has a special case, and that is known as the
+<span 
+class="cmbx-10x-x-109">Chebyshev inequality</span><a 
+ id="dx1-8004"></a>, named after Russian Mathematician Pafnuty
+Chebyshev.<span class="footnote-mark"><a 
+href="chp42.html#fn1x5"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-8005f1"></a> 
+This is the most famous, and perhaps most useful, probability inequality. Its usefulness comes
+                                                                                
+
+                                                                                
+from its wide applicability.
+</p><!--l. 144--><p class="noindent" >To construct it, let us ﬁrst have a random variable <span 
+class="cmmi-10x-x-109">X </span>with ﬁnite mean <span 
+class="cmmi-10x-x-109">μ </span>and variance <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>. We
+notice that (<span 
+class="cmmi-10x-x-109">X </span><span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">μ</span>)<sup><span 
+class="cmr-8">2</span></sup> is a nonnegative random variable. By applying Markov Inequality with
+<span 
+class="cmmi-10x-x-109">a </span>= <span 
+class="cmmi-10x-x-109">k</span><sup><span 
+class="cmr-8">2</span></sup>, we obtain
+</p>
+   <center class="math-display" >
+<img 
+src="chp47x.png" alt="          2    2    E[(X--−-μ)2]
+P ((X  − μ) ≥  k ) ≤     k2     .
+" class="math-display"  /></center>
+<!--l. 146--><p class="nopar" >
+</p><!--l. 148--><p class="noindent" >It is not hard to see that (<span 
+class="cmmi-10x-x-109">X </span><span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">μ</span>)<sup><span 
+class="cmr-8">2</span></sup> <span 
+class="cmsy-10x-x-109">≥ </span><span 
+class="cmmi-10x-x-109">k</span><sup><span 
+class="cmr-8">2</span></sup> and <span 
+class="cmsy-10x-x-109">|</span><span 
+class="cmmi-10x-x-109">X </span><span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">μ</span><span 
+class="cmsy-10x-x-109">| </span><span 
+class="cmmi-10x-x-109">&#x003E; k </span>are two equivalent statements. So the
+above equation can be rewritten as
+</p>
+   <center class="math-display" >
+<img 
+src="chp48x.png" alt="                 E[(X--−-μ)2]   σ2-
+P(|X − μ| &#x003E; k) ≤     k2     =  k2.
+" class="math-display"  /></center>
+<!--l. 150--><p class="nopar" >
+</p><!--l. 152--><p class="noindent" >So, if <span 
+class="cmmi-10x-x-109">X </span>is a random variable with ﬁnite mean <span 
+class="cmmi-10x-x-109">μ </span>and variance <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>, then for any value <span 
+class="cmmi-10x-x-109">k &#x003E; </span>0, we
+get the Chebyshev inequality
+</p>
+   <center class="math-display" >
+<img 
+src="chp49x.png" alt="                 σ2-
+P(|X − μ| ≥ k) ≤ k2.
+" class="math-display"  /></center>
+<!--l. 154--><p class="nopar" >
+</p><!--l. 156--><p class="noindent" >Chebyshev inequality does not give very good bounds, but this is based on the fact that
+minimum conditions are required. We can get tighter bounds if we add in more conditions
+for diﬀerent circumstances. Also, many other inequalities are similar in spirit to
+Chebychev’s.
+</p>
+<div class="center" 
+>
+<!--l. 158--><p class="noindent" >
+                                                                                
+
+                                                                                
+</p><!--l. 158--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 160--><p class="noindent" >We will be talking about three kinds of convergence here. They are convergence in
+distribution, convergence in probability, and almost surely convergence.
+</p><!--l. 162--><p class="noindent" >The weakest form of convergence is <span 
+class="cmbx-10x-x-109">convergence in distribution</span><a 
+ id="dx1-8006"></a>. Other names of it include
+convergence in law and converge weakly. This is the weakest since all the other types of
+convergence can imply this statement. This form of convergence essentially means we
+increasingly expect to see the next outcome in a sequence of random experiments becoming
+better and better modelled by a given probability distribution. With that, it is not hard to
+notice the statement.
+</p><!--l. 164--><p class="noindent" >A sequence <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span> of real valued random variables is said to converge in distribution to a
+random variable <span 
+class="cmmi-10x-x-109">X </span>if
+</p>
+   <center class="math-display" >
+<img 
+src="chp410x.png" alt=" lim Fn (x) = F (x),
+n→∞
+" class="math-display"  /></center>
+<!--l. 166--><p class="nopar" > for every number <span 
+class="cmmi-10x-x-109">x </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="msbm-10x-x-109">ℝ </span>at which <span 
+class="cmmi-10x-x-109">F </span>is continuous. Here, <span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">n</span></sub> and <span 
+class="cmmi-10x-x-109">F </span>are CDFs of random
+variable <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> and <span 
+class="cmmi-10x-x-109">X </span>respectively.
+</p><!--l. 169--><p class="noindent" >The next form of convergence is <span 
+class="cmbx-10x-x-109">convergence in probability</span><a 
+ id="dx1-8007"></a>. This basically means the
+probability of an “unusual” outcome becomes smaller and smaller as the sequence progresses.
+The formal statement is below.
+</p><!--l. 171--><p class="noindent" >A sequence <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span> of real valued random variables is said to converge in probability to a
+random variable <span 
+class="cmmi-10x-x-109">X </span>if for all <span 
+class="cmmi-10x-x-109">𝜀 &#x003E; </span>0,
+</p>
+   <center class="math-display" >
+<img 
+src="chp411x.png" alt="nl→im∞ P (|Xn − X | &#x003E; 𝜀) = 0.
+" class="math-display"  /></center>
+<!--l. 173--><p class="nopar" >
+</p><!--l. 175--><p class="noindent" >The last type of convergence we will be talking about here is that of <span 
+class="cmbx-10x-x-109">convergence almost</span>
+<span 
+class="cmbx-10x-x-109">surely</span><a 
+ id="dx1-8008"></a>. It is sometimes denoted as convergence a.s. in short. This is similar to pointwise
+convergence in analysis, where the convergence happens for every pair of points. The formal
+statement of convergence almost surely is the following.
+</p><!--l. 177--><p class="noindent" >A sequence <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span> of real valued random variables is said to converge almost surely to a
+random variable <span 
+class="cmmi-10x-x-109">X </span>if
+</p>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp412x.png" alt="P(nli→m∞ Xn = X ) = 1.
+" class="math-display"  /></center>
+<!--l. 179--><p class="nopar" >
+</p><!--l. 181--><p class="noindent" >We should note that convergence almost surely implies convergence in probability, and
+convergence in probability implies convergence in distribution.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-90004.2"></a>Law of Large Number</h3>
+<!--l. 185--><p class="noindent" >In a more intuitive manner, the law of large number (LLN) describes that when an experiment
+is repeated for many times, the average of these results will converge to the expectation value
+of the experiment.
+</p><!--l. 187--><p class="noindent" >Consider a sequence of independent and identically distributed (i.i.d.) random variables
+<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,</span>, each with mean <span 
+class="cmmi-10x-x-109">μ </span>and variance <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>. The sample mean is <img 
+src="chp413x.png" alt="X1+-⋅⋅n⋅+Xn-"  class="frac" align="middle" />, which gives
+us
+</p>
+   <center class="math-display" >
+<img 
+src="chp414x.png" alt="E[X1-+-⋅⋅⋅+-Xn-] = nμ-= μ
+        n          n
+" class="math-display"  /></center>
+<!--l. 189--><p class="nopar" > and
+</p>
+   <center class="math-display" >
+<img 
+src="chp415x.png" alt="     X1-+-⋅⋅⋅+-Xn-    σ2n-  σ2-
+Var (      n      ) = n2  =  n
+" class="math-display"  /></center>
+<!--l. 192--><p class="nopar" > since they are independent.
+</p><!--l. 195--><p class="noindent" >We apply Chebyshev inequality and get
+</p>
+   <center class="math-display" >
+<img 
+src="chp416x.png" alt="    X1 + ⋅⋅⋅+ Xn              σ2
+P {|------n------− μ | ≥ 𝜀} ≤ n𝜀2.
+" class="math-display"  /></center>
+<!--l. 197--><p class="nopar" >
+</p><!--l. 199--><p class="noindent" >This gives us the <span 
+class="cmbx-10x-x-109">weak law of large number</span><a 
+ id="dx1-9001"></a>. Let <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">, </span>be a sequence of
+independent and identically distributed random variables with mean <span 
+class="cmmi-10x-x-109">μ</span>. For any <span 
+class="cmmi-10x-x-109">𝜀 &#x003E; </span>0, we
+have
+</p>
+   <center class="math-display" >
+<img 
+src="chp417x.png" alt="        X1 + ⋅⋅⋅+ Xn
+lnim→∞ P {|-----n-------− μ | ≥ 𝜀} = 0
+" class="math-display"  /></center>
+<!--l. 201--><p class="nopar" > or equivalently,
+</p>
+   <center class="math-display" >
+<img 
+src="chp418x.png" alt="        X  + ⋅⋅⋅+ X
+ lim  P{|--1---------n − μ| &#x003C; 𝜀} = 1.
+n→ ∞          n
+" class="math-display"  /></center>
+<!--l. 204--><p class="nopar" >
+</p><!--l. 206--><p class="noindent" >The weak law of large numbers was originally proven by Jakob Bernoulli for the special
+case where the <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">i</span></sub> are Bernoulli random variables. His statement and proof of this
+theorem were presented in his book <span 
+class="cmti-10x-x-109">Ars Conjectandi</span>. Note that because Chebyshev’s
+inequality was not known in Bernoulli’s time, Bernoulli had to resort to a quite
+ingenious proof to establish the result. The general form of the weak law of large
+numbers presented just now was proved by the Soviet Mathematician Aleksandr
+Khinchin.
+</p><!--l. 208--><p class="noindent" >We have been dealing with identical and independent random variables earlier on. It is
+possible to remove the identical assumption while having a similar large number
+law.
+</p><!--l. 210--><p class="noindent" >Suppose we have a sequence of independent random variables <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span>, each <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub> has mean <span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmmi-8">j</span></sub>
+and variance <span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup>. Moreover, let us suppose there exists a constant <span 
+class="cmmi-10x-x-109">M &#x003C; </span><span 
+class="cmsy-10x-x-109">∞ </span>such that for all <span 
+class="cmmi-10x-x-109">j</span>,
+<span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup> <span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">M</span>.
+</p><!--l. 212--><p class="noindent" >Let us centralise all the random variables to get <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">0</span></sup> = <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmmi-8">j</span></sub> and <span 
+class="cmmi-10x-x-109">S</span><sub><span 
+class="cmmi-8">n</span></sub><sup><span 
+class="cmr-8">0</span></sup> = <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmmi-8">j</span></sub>. It
+is not hard to see that E[<span 
+class="cmmi-10x-x-109">S</span><sub><span 
+class="cmmi-8">n</span></sub><sup><span 
+class="cmr-8">0</span></sup>] = 0 as expectation equals to mean. In addition, due to
+independence, we have
+</p>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp419x.png" alt="                    ∑n            ∑n
+E[(S0n)2] = Var(S0n) =   Var (Xj ) =    σ2j.
+                    j=1           j=1
+" class="math-display"  /></center>
+<!--l. 214--><p class="nopar" >
+</p><!--l. 216--><p class="noindent" >From the assumptions, we have <span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup> <span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">M</span>. This, along with the above equation, implies
+E[(<span 
+class="cmmi-10x-x-109">S</span><sub><span 
+class="cmmi-8">n</span></sub><sup><span 
+class="cmr-8">0</span></sup>)<sup><span 
+class="cmr-8">2</span></sup>] <span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">nM </span>and then E[(<img 
+src="chp420x.png" alt="S0n
+n"  class="frac" align="middle" />)<sup><span 
+class="cmr-8">2</span></sup>] <span 
+class="cmsy-10x-x-109">≤</span><img 
+src="chp421x.png" alt="M-
+n"  class="frac" align="middle" />.
+</p><!--l. 218--><p class="noindent" >Recall from last section the extended Markov inequality for higher moment. We will apply the
+inequality for second moment and get
+</p>
+   <center class="math-display" >
+<img 
+src="chp422x.png" alt="         0             E[(S0n)2]
+lim  P (|S-n| ≥ c) ≤ lim  ---n----≤  lim  M---= 0.
+n→∞     n         n→∞     c2      n→ ∞ nc2
+" class="math-display"  /></center>
+<!--l. 220--><p class="nopar" >
+</p><!--l. 222--><p class="noindent" >By changing <span 
+class="cmmi-10x-x-109">S</span><sub><span 
+class="cmmi-8">n</span></sub><sup><span 
+class="cmr-8">0</span></sup> to <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub> and taking the complement on both sides, we get
+</p>
+   <center class="math-display" >
+<img 
+src="chp423x.png" alt="        X1 + ⋅⋅⋅+ Xn    μ1 + ⋅⋅⋅+ μn
+nli→m∞P (|-------------−  ------------| &#x003C; c) = 1,
+              n              n
+" class="math-display"  /></center>
+<!--l. 224--><p class="nopar" > which is the <span 
+class="cmbx-10x-x-109">extended weak law of large number</span>.<a 
+ id="dx1-9002"></a>
+</p><!--l. 227--><p class="noindent" >There is a stronger version of the weak law, called the <span 
+class="cmbx-10x-x-109">strong law of large number</span><a 
+ id="dx1-9003"></a>. The
+proof of this law will be omitted in this notebook, and it will be placed in <span 
+class="cmti-10x-x-109">Probability Theory</span>
+<span 
+class="cmti-10x-x-109">and Statistics Notebook II</span>. The statement of the law is the following.
+</p><!--l. 229--><p class="noindent" >Let <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">, </span>be a sequence of i.i.d. random variables with mean <span 
+class="cmmi-10x-x-109">μ</span>. We have
+</p>
+   <center class="math-display" >
+<img 
+src="chp424x.png" alt="       X1-+-⋅⋅⋅+-Xn-
+P(nl→im∞       n       = μ) = 1.
+" class="math-display"  /></center>
+<!--l. 231--><p class="nopar" >
+                                                                                
+
+                                                                                
+</p><!--l. 233--><p class="noindent" >If we recall from the previous section the diﬀerent types of convergence, we can notice that the
+strong law converges almost surely while the weak law converges in probability. The diﬀerence
+is quite subtle, and it cannot be fully explained without the usage of measure theory. Brieﬂy
+speaking, converge in probability means that the chance for the random variable to not behave
+like <span 
+class="cmmi-10x-x-109">X </span>decreases to limit 0 as <span 
+class="cmmi-10x-x-109">n </span>increases to limit <span 
+class="cmsy-10x-x-109">∞</span>; converge almost surely means
+that the chance for the random variable to not behave like <span 
+class="cmmi-10x-x-109">X </span>is 0 after a certain
+value of <span 
+class="cmmi-10x-x-109">n</span>. Of course, this is only a rough explanation that does not involve measure
+0 and other important things. The readers are encouraged to keep this question
+in mind and come back to it when they are doing measure-theoretic Probability
+Theory.
+</p><!--l. 235--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">4.3   </span> <a 
+ id="x1-100004.3"></a>Central Limit Theorem</h3>
+<!--l. 237--><p class="noindent" >In some situations, when independent random variables are added, their properly normalised
+sum tends toward a normal distribution even if the original variables themselves are not
+normally distributed. This is due to <span 
+class="cmbx-10x-x-109">central limit theorem</span>.<a 
+ id="dx1-10001"></a> Readers should already have a
+brief sense of the power of this theorem from the derivation of normal distribution we included
+in the previous Chapter.
+</p><!--l. 239--><p class="noindent" >Central limit theorem was ﬁrst established as a way to approximate normal distribution from
+binomial distribution by de Moivre and Laplace, in the form of the de Moivre-Laplace central
+limit theorem we mentioned earlier on in Chapter 3.4.
+</p><!--l. 241--><p class="noindent" >The theorem was generalised in 1901 by the Russian Mathematician Aleksandr Liapounov by
+introducing its characteristic functions. It was then extended by Markov for the case of
+independent variables.
+</p><!--l. 243--><p class="noindent" >Central limit theorem was originally called ‘limit theorem’, and it was added the preﬁx
+‘central’ due to the central position it has in the study of Probability Theory by George
+Pólya.
+</p><!--l. 245--><p class="noindent" >The statement of the theorem will be stated without proof here as it involves more advanced
+Mathematics than the level of this notebook. It will, like many other more advanced
+concepts, be included in the next notebook <span 
+class="cmti-10x-x-109">Probability Theory and Statistics Notebook</span>
+<span 
+class="cmti-10x-x-109">II</span>.
+</p><!--l. 247--><p class="noindent" >Let <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span> be a sequence of i.i.d. random variables, each having mean <span 
+class="cmmi-10x-x-109">μ </span>and variance <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>.
+Then the distribution of
+</p>
+   <center class="math-display" >
+<img 
+src="chp425x.png" alt="X1-+-⋅⋅⋅Xn-−-nμ-
+      σ√n--
+" class="math-display"  /></center>
+<!--l. 249--><p class="nopar" > tends to the standard normal as <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">→∞</span>. That is, for <span 
+class="cmsy-10x-x-109">−∞ </span><span 
+class="cmmi-10x-x-109">&#x003C; a &#x003C; </span><span 
+class="cmsy-10x-x-109">∞</span>,
+</p>
+   <center class="math-display" >
+<img 
+src="chp426x.png" alt="        X1 + ⋅⋅⋅Xn − nμ          1  ∫ a  − x2∕2
+nl→im∞ P (-----σ-√n-------≤ a ) = √---    e     dx.
+                                 2π  −∞
+" class="math-display"  /></center>
+<!--l. 252--><p class="nopar" >
+                                                                                
+</p>
+
+<br><br>
+
+<a href="../SPT1.html" style="text-align: left; font-family: 'Times';font-size: large;">Back</a>  
+<a href="../chp5/chp5.html" style="float: right; font-family: 'Times';font-size: large;">Next Chapter</a>
+
+<br><br>
+
+
+
+
+
+
+                </div>
+            </div> 
+
+
+
+            
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+

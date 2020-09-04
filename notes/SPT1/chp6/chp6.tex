@@ -1,0 +1,459 @@
+\documentclass[11pt, a4paper, oneside]{book}
+\usepackage{amsmath,amsthm,amssymb, enumitem, etoolbox, mathtools, centernot, microtype, geometry, tcolorbox,lipsum, makeidx, csquotes, lscape, graphicx, wrapfig, titling}
+\usepackage[colorlinks,linkcolor=black,anchorcolor=black,
+citecolor=green,CJKbookmarks=True]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage[font={it, small}]{caption}
+
+\urlstyle{same}
+
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\emph{Probability Theory and Statistics Notebook I}}
+\cfoot{\thepage}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+
+\newcommand{\var}[1]{\text{Var}(#1)}
+\newcommand{\cov}[1]{\text{Cov}(#1)}
+\newcommand{\E}[1]{\text{E}[#1]}
+
+\newcommand{\poisson}[1]{\text{Poisson}(#1)}
+\newcommand{\gammaf}[1]{\Gamma(#1)}
+\newcommand{\normal}[2]{\text{Normal}(#1, #2)}
+\newcommand{\gammad}[2]{\text{Gamma}(#1, #2)}
+\newcommand{\binomial}[2]{\text{Binom}(#1, #2)}
+\newcommand{\markov}[2]{\text{Markov}(#1, #2)}
+\newcommand{\Exp}[1]{\text{Exp}(#1)}
+
+
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\cprocess{\{N(t), t\ge 0\}}
+\def\lra{\leftrightarrow}
+
+\newcommand{\breaking}{%
+    \begin{center}
+    $-$
+    \end{center}%
+}
+
+\makeindex
+
+\setlength{\parskip}{0.5em}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
+
+
+
+\begin{document}
+\frontmatter 
+
+\title{\huge Probability Theory and Statistics Notebook I}
+\author{\Large{Zhang Ruiyang}}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\mainmatter
+
+\part{Probability Theory} 
+
+\chapter{Fundamentals}
+\chapter{Random Variables}
+\chapter{Common Distributions}
+\chapter{Limit Theorem}
+\chapter{Poisson Process}
+
+
+\chapter{Discrete-Time Markov Chain}
+
+\noindent Markov chains\index{Markov Chain} are the simplest mathematical models for random phenomena evolving in time. Its simple structure allows us to say a great deal about its behaviour. Also, it is a wildly applicable model in real life. These make Markov chain undoubtedly the first and most important examples of random processes. 
+
+\noindent As we have mentioned, Markov chains will evolve over time. There are two ways to look at time. We either look at it as discrete slots and intervals or we consider them to be a continuous object, like a real number line. These two ways of assessing time divides the study into discrete and continuous. The continuous Markov chains are harder to study, and we will not cover them here. Only discrete Markov chains will be studied here. The interested readers should refer to other textbook or my second notebook for the continuous case and more advanced material. 
+
+\noindent The studying of discrete-time Markov chain in this notebook will be broken into three sections. For each section, we will raise a question and try to answer it as we proceed. The three questions are: What is a Markov chain? How does a Markov chain develop over time? How will a Markov chain end?
+
+\section{Definition of Markov Chains}
+
+\noindent In this section, we aim to answer the question ``What is a Markov chain?". 
+
+\noindent Let us have a countable set $I$. We call it the \textbf{state space}\index{State Space} and each $i \in I$ is then called a state. $I$ is countable since we are talking about discrete time. In addition, a \textbf{distribution} on $I$ is then defined as a collection $\lambda = (\lambda_i, i\in I)$ with $\lambda_i$ for all $i$, and $\sum \lambda = 1$ due to normality. Normally, we will think of $\lambda$ as a row vector. 
+
+\noindent This way, we are working in the probability space $(\Omega, \mathcal{F}, P)$. We would like to define our random variables. Given a random variable $X: \Omega \to I$, we have \[
+\lambda_i = P(X = i) = P(\{ \omega : X(\omega) = i\})
+\]
+which means $\lambda$ defines a distribution of $X$. 
+
+\noindent In addition, we say that a matrix $P = (p_{ij} : i, j \in I)$\footnote{Do not confuse this $P$ with the probability measure $P$.} is \textbf{stochastic} if every row $(p_{ij} : j \in I)$ is a distribution. Base on this definition, we can see that each stochastic matrix will uniquely define a Markov chain. 
+
+\noindent Now, lets formalise the language to give a better definition. We say that $(X_n)_{n \ge 0}$ is a Markov chain with \textbf{initial distribution} $\lambda$ and \textbf{transition matrix} $P$ if for $n \ge 0$ and $i_0, \dots, i_{n+1} \in I$, 
+
+(1) $P(X_0 = i_0) = \lambda_{i_0}$
+
+(2) $P(X_{n+1} = i_{n+1} \vert X_0 = i_0, \dots, X_n = i_n) = p_{i_n i_{n+1}}$
+
+\noindent We will then call it $\markov{\lambda}{P}$ for short. 
+
+\noindent We can combine the two properties of a Markov chain and find out the expression for any particular combination of positions of states $X_0$ to $X_N$ for an integer $N$. The combination is essentially $P(X_0 = i_0, \dots, X_N = i_N)$, and we can rewrite it as
+\begin{equation*}
+\begin{split}
+&P(X_0 = i_0, \dots, X_N = i_N) \\
+&= P(X_0 = i_0) P(X_1 = i_1 \vert X_0 = i_0) \cdots P(X_N = i_N, \vert X_0 = i_0 \dots, X_{N-1} = i_{N-1}) \\
+&= \lambda_{i_0} p_{i_0 i_1} \cdots p_{i_{N-1} i_N}. \\
+\end{split}
+\end{equation*}
+
+\noindent It is not hard to see that the above $(X_n)_{0 \le n \le N}$ is also $\markov{\lambda}{P}$, since everything is derived from $\markov{\lambda}{P}$.
+
+\breaking
+
+\noindent We need one more property, the \textbf{Markov property}\index{Markov Property}, to fully define a Markov chain.
+
+\noindent In a more casual way, the Markov property is the property of memoryless - the past does not the future, only the current state does. Because of this characteristics, a somewhat famous and inspiring quote states that ``Life is like a Markov chain, your future only depends on what you are doing now, and independent of your past."\footnote{I do not fully agree with this, maybe I am not as optimistic. But it is quite inspirational nonetheless.}
+
+\noindent To write it formally, let $(X_n)_{n \ge 0}$ be $\markov{\lambda}{P}$. Then, condition on $X_m = i, (X_{m+n})_{n \ge 0}$ is $\markov{\delta_i}{P}$ and is independent of the random variables $X_0, \dots, X_m$. We should note that $\delta_i = (\delta_{ij} : j \in I)$ for the unit mass at $i$ where $\delta_{ij} = 1$ if $i = j$ and $0$ otherwise. 
+
+\noindent To prove the Markov property, if we can show that for any event $A$ determined by $X_0, \dots, X_m$, we have 
+\begin{equation*}
+\begin{split}
+P(\{ X_m &= i_m, \dots, X_{m+n} = i_{m+n}\} \cap A \vert X_m = i) \\
+&= \delta_{ii_m} p_{i_m i_{m+1}} \cdots p_{i_{m+n-1} i_{m+n}} P(A \vert X_m = i_m) \\
+\end{split}
+\end{equation*}
+which will give us the result by applying the manipulation of the definition of a Markov chain we derived earlier on. 
+
+\noindent Consider the case of elementary events $A = \{ X_0 = i_0, \cdots , X_m = i_m \}$. In this case, we get 
+\begin{equation*}
+\begin{split}
+P(X_0 &= i_0, \dots, X_{m+n} = i_{m+n}\text{ and } i = i_m) / P(X_m = i) \\
+&= \delta_{ii_m} p_{i_m i_{m+1}} \cdots p_{i_{m+n-1} i_{m+n}} \times P(X_0 = i_0, \dots, X_m = i_m \text{ and } i = i_m) / P(X_m = i) \\
+\end{split}
+\end{equation*}
+which completes the proof. Also, we can also extend it by writing any event $A$ by a countable disjoint union of elementary events $A = \cup_{k=1}^{\infty} A_k$, which will provide us with a similar result to complete the proof. 
+
+\noindent Because of the Markov property, we can rewrite the second property of the definition of a Markov chain as\[
+P(X_{n+1} = i_{n+1} \vert X_0 = i_0, \dots, X_n = i_n) = P(X_{n+1} = i_{n+1} \vert X_n = i_n) = p_{i_n i_{n+1}}
+\]
+which is also the probability to reach state $i_{n+1}$ from state $i$ in one step. In addition, we will call the Markov chain \textbf{time homogeneous} if \[
+\text{P}(X_{n+1}=j|X_n=i) = \text{P}(X_{1}=j|X_0=i),
+\]
+for all $n \ge 0$. This is normally assumed in the context of this note. 
+
+\noindent The Markov property can be extended to become strong Markov property. We will be discussing about that at a later stage in this Chapter. 
+
+\section{Development of Markov Chains}
+
+\noindent We now move on to the second question we want to solve in this Chapter: ``How does a Markov chain develop over time?". Since we are only talking about discrete Markov chain, the behaviour after a while is the same as the state after a certain number $n$ of steps.
+
+\noindent In the previous section, we have learned that the probability to reach state $j$ from state $i$ in one step is $p_{ij}$. If we recall the definition of transition matrix $P$, it is not hard to see that the value $p_{ij}$ is one entry of the matrix $P$. This is for one step. 
+
+\noindent If we want to know the probability to reach state $j$ from state $i$ in two steps, we just need to introduce an intermediate state $k$ and calculate \[
+\sum_{k\in I} p_{ik}p_{kj}
+\]
+as the probability of going from state $i$ to state $j$ in two steps is the same as the sum of the probability of going from state $i$ to state $k$ in one step times the probability of going from state $k$ to state $j$ in one time for any possible state $k$. 
+
+\noindent Using some knowledge from Linear Algebra, we can see that in order to summarise all such information, we just need to compute the matrix $P^2$ for all probability of transition in two steps. This can be extended to $n$ steps transition which gives us $P^n$.
+
+\noindent We can generalise the process of finding $P^2$ to get the \textbf{Chapman-Kolmogorov equation}\index{Chapman-Kolmogorov Equation} which provides a method for computing $n$-step transition probabilities. We have 
+
+(1) $p_{ik}^{n+m} = \sum_{j ]in I} p_{ij}^{n} p_{jk}^{m}.$
+
+(2) $p_{ij}^{n} = (P^n)_{i,j}.$
+
+\noindent Also from Linear Algebra, we know that if we have an identity matrix $I$, we will have $I A = A$ for all possible matrix $A$. In the case for transition matrix $P$, the identity matrix $I$ will be the matrix having $I_{ij}=\delta_{ij}$ where $\delta$ is the same unit mass we defined in the first section of this Chapter. The row vectors of $I$ will be denoted by $\lambda$. This gives us the identity $(\lambda P)_j = \sum_{i \in I}\lambda_i p_{ij}$\footnote{Please note that the $I$ in the underscore of the summation represents the state space $I$ instead of the identity matrix $I$. Such ambiguity exists in Mathematics from time to time due to the limited number of alphabets.}.
+
+\breaking
+
+\noindent After some number of steps, the development of a Markov chain may form some patterns. Some groups of states will only proceed to other states in the group, and we may never come back to some states after we passes through them. This leads to the introduction of class structure of a Markov chain, so that we can possibly break one up into smaller pieces, each of which is relatively easy to understand. This is done by identifying the communicating classes of the chain.
+
+\noindent For two distinct states $i$ and $j$, we will say \textbf{$i$ leads to $j$} and write $i \to j$ if\[
+P_i(X_n = j) > 0 
+\]
+for some $n \ge 0$. If we have both $i \to j$ and $j \to i$, we will say \textbf{$i$ communicates with $j$} or $i \lra j$. 
+
+\noindent If we have $i \to j$, we will also have $P(i_n = j \vert i_0 = i) = p_{ij}^n > 0$ for some $n \ge 0$. This indicates that $i \to k$ and $k \to j$ imply $i \to j$. 
+
+\noindent Also, we have $i \to i$ for any state $i$, because we can always use the statement $p_{ii}^0 = 1$ to show the relation.
+
+\noindent If we recall from Abstract Algebra the definition of an \textbf{equivalence relation}\footnote{Refer to Chapter 2.7 of \emph{Algebra 2nd Ed} by Michael Artin for a detailed discussion on this topic.}, we will notice that $\lra$ satisfies the conditions for one on $I$, and thus it partitions $I$ into \textbf{communicating classes}\index{Communicating Class}. We say that a class $C$ is \textbf{closed} if $i \in C, i \to j$ imply $j \in C$. A closed class, therefore, has no escape. A state will be called \textbf{absorbing}\index{Absorbing State} if $\{ i \}$ is a closed class, since once we reach this state we will get stuck and be `absorbed' and never be able to escape. 
+
+\noindent So, we can divide all states of a Markov chain into communicating classes and if the state space $I$ of a chain $P$ is a single class, it is \textbf{irreducible}\index{Irreducible}. It is easy to see the communicating classes if we draw out the states of the chain. 
+
+\breaking
+
+\noindent Knowing some sort of recurrence may exist in a Markov chain, we would like to study a bit more about how often we will come back to any state. For a chain and a state $i \in I$, the \textbf{period}\index{Period} of the state $i$ is defined to be the greatest common divisor of the set $\{ n \ge 1 : p_{ii}^{n} > 0\}$. The set is for all the possible number of steps to travel from state $i$ and come back to the itself. The greatest common divisor of that set of number will give us a sense of how regular it comes back. If the g.c.d of a state $i$ is 1, the state is then called \textbf{aperiodic}\index{Aperiodic}
+.
+
+\noindent One interesting fact about periodicity of a Markov chain is that all states in a communicating class have the same period. 
+
+\breaking
+
+\noindent Since we can divide a Markov chain into classes, we would like to find out when we will reach one class, and also what is the chance for us to get stuck in one particular class. We want to study \textbf{hitting time}\index{Hitting Time} and \textbf{absorption probabilities}\index{Absorption Probability}. 
+
+\noindent For a Markov chain $(X_n)_{n \ge 0}$ with transition matrix $P$, the hitting time of a subset $A$ of state space $I$ is the random variable $H^A : \Omega \to \{ 0,1,2, \dots\} \cup \{ \infty \}$ given by \[
+H^A(\omega) = \inf\{n \ge 0: X_n(\omega) \in A\}
+\]
+where we let the infimum of the empty set $\varnothing$ to be $\infty$.
+
+\noindent The probability of starting from state $i$ and $(X_n)_{n \ge 0}$ ever hitting $A$ is then\[
+h_i^A = P_i(H^A < \infty)
+\]
+When $A$ is a closed class, the probability $h_i^A$ will be the absorption probability. 
+
+\noindent In order to find out the values of hitting probabilities, we have the following theorem\footnote{Proof is omitted here, refer to p13 and p14 of Norris Markov Chain}. The vector of hitting probabilities $(h_i^A, i \in I)$ is the minimal nonnegative solution to the equations: 
+\begin{equation*}
+h_i^A = 
+\begin{cases} 
+      1 \text{ if }i \in A\\
+      \sum_j p_{ij}h_j^A \text{ if }i \notin A\\
+\end{cases}
+\end{equation*}
+
+\noindent The expectation of the hitting time will be the mean time $k_i^A$ taken for $(X_n)_{n \ge 0}$ to reach $A$, and we have the equation \[
+k_i^A = \text{E}_i(H^A) = \sum_{n < \infty} nP(H^A = n) + \infty P(H^A = \infty).
+\]
+
+\noindent In order to find out the vector of mean hitting time, we have the following theorem\footnote{Proof is omitted here, refer to p17 and p18 of Norris Markov Chain}. The vector of mean hitting time $k^A = (k_i^A, i \in I)$ is the minimal nonnegative solution to the equations: 
+\begin{equation*}
+k_i^A = 
+\begin{cases} 
+      0 \text{ if }i \in A\\
+      1 + \sum_j p_{ij}k_j^A \text{ if }i \notin A\\
+\end{cases}
+\end{equation*}
+
+\breaking
+
+\noindent We would also want to know the average time to return to a certain state. This is the \textbf{mean return time}, denoted by $m_i$. The mean return time of state $i$ is $m_i = \text{E}_i(\inf\{ n \ge 1: X_n = i \}) = 1 + \sum_j p_{ij}k_j^{i}$. This quantity will be more useful in the next section when we talk about the long-run behaviour of a chain. 
+
+\noindent The concept of recurrent and transient can be defined using mean return time too. If a state $i$ is transient, it is obvious that $m_i = \infty$. If a state is recurrent, the mean return time can be both finite and infinite. If $m_i =\infty$, the state $i$ is said to be \textbf{null recurrent}\index{Recurrent!null}. If $m_i < \infty$, then the state $i$ is said to be \textbf{positive recurrent}\index{Recurrent!positive}. Just like transient and recurrent to the class structure, if one state in a communicating class is positive recurrent, then the entire class is positive recurrent. Same goes for null recurrent states. 
+
+\noindent An irreducible chain is called as either transient, or null recurrent, or positive recurrent. 
+
+\breaking 
+
+\noindent An important application is the example of ``Gambler's ruin". It is one of the earliest real life problems that Probability Theory aim to solve. 
+
+\noindent Given a state space $I = \{ 0, 1, 2, \dots \}$. Let $p \in (0,1)$ and $q = 1 - p$, and consider the transition probabilities given by
+\begin{equation*}
+\begin{cases}
+p_{00} &= 1 \\
+p_{i, i-1} &= q \text{ for } i \ge 1 \\
+p_{i, i+1} &= p \text{ for } i \ge 1. \\
+\end{cases}
+\end{equation*}
+
+\noindent If we let the state space be the amount of money a gambler, who repeated bet 1, currently owns, against an infinitely rich dealer. The gambler will win with probability $p$ and lose with probability $q$, and once he (or she) has 0 money, the game will stop - or we have reached the gambler's ruin. We want to know the answer to the question: Will the gambler eventually lose all the money? We can adjust the setting of this example slightly to study other questions. For example, we can have chains on $\Z_{+}$ to model the ``birth-and-death chains".
+
+\noindent Let $h_i = P_i(\text{hit }0)$. To find $h_i$, we need to find the minimal nonnegative solution to 
+\begin{equation*}
+\begin{cases}
+h_{0} &= 1 \\
+h_{i} &= ph_{i+1} + qh_{i-1} \text{ for } i \ge 1. \\
+\end{cases}
+\end{equation*}
+
+\noindent If $p \neq q$, we have the general solution $h_i = A+B\big(\frac{q}{p} \big)^i$. We divide the problem into three cases and solve it respectively. 
+
+\noindent When $p < q$, it is more likely to lose than to win. We know $A+B = 1$ by substituting the first equation into the general solution. For minimality, we have $A = 1$ and $B = 0$ since $\big(\frac{q}{p} \big)^i \ge 1$ for all $i$ here. This gives us $h_i = 1$, meaning the chain will hit 0 with probability 1, the gambler will always lose all the money. 
+
+\noindent When $p < q$, we again have $A+B = 1$. Also, we know $\big(\frac{q}{p} \big)^i \to 0$ as $i \to \infty$, so we need to have a positive $A$ to get a nonnegative solution. For a minimal solution, we have $A = 0$ and $B = 1$. This gives us $h_i = \big(\frac{q}{p} \big)^i$, meaning that there is a small but positive probability for the gambler to go away to infinitely many money.
+
+\noindent When $p = q$, the general solution becomes $h_i = A+Bi$. We get $A = 1$ and $B = 0$ by substituting $i = 0$ and applying minimality. We get $h_i = 1$ again, meaning the gambler will always lose all the money. 
+
+\noindent All in all, unless the dealer is stupid enough to let the probability of winning greater than that of losing, a gambler will always eventually end up with nothing no matter how much he (or she) brings to the table. 
+
+\breaking
+
+\noindent From the example of gambler's ruin, we have seen glimpses of how a Markov chain may end up being. 
+
+\noindent In gambler's ruin, we notice that we will always reach state 0 if $p < q$ or $p = q$ at certain time of the development of the chain. A state like that, as it is appearing every now and then, is known to be \textbf{recurrent}\index{Recurrent}. The formal definition of a recurrent state $i$ is $P(X_n = i \text{ for infinitely many }n) = 1$. We can also write the definition as a state $i$ is recurrent if and only if $\sum_{n=0}^{\infty} p_{ii}^n = \infty$. It is not hard to understand the definition.
+
+\noindent The opposite of recurrent is \textbf{transient}\index{Transient}. This means we will eventually never reach that state after a while. The definition is the opposite of that of recurrent. A transient state $i$ is $P(X_n = i \text{ for infinitely many }n) = 0$. We can also write the definition as a state $i$ is transient if and only if $\sum_{n=0}^{\infty} p_{ii}^n < \infty$.
+
+\noindent Knowing the definition of recurrent and transient, we can get the fact that all states in a communicating class are either all recurrent or all transient - we can say the whole class is either transient or recurrent. This fact is proved using the summation definition of transient and recurrent as well as the definition of a communicating class. The readers can complete it on their own.
+
+\noindent Two other useful theorems are `every recurrent class is closed' and `every finite closed class is recurrent'.
+
+\noindent Lastly, if we have an irreducible and recurrent $P$, then any state $j$ of the state space is recurrent. 
+
+\breaking
+
+\noindent An application of recurrence and transience is those of symmetric random walks on $\Z^d$. Random walk is a stochastic process that starts from some point and either increase or decrease by 1 unit towards one direction after 1 unit of time. The example of the gambler's ruin is in fact a type of random walk - a random walk on $\Z^1$. 
+
+\noindent Although we have obtained some results from the discussion of gambler's ruin, the approach we implemented was not the only way to deal with such problems. We will use an alternative method to reach a similar result - the method involving Stirling formula. 
+
+\noindent Let us start with the simple random walk on $\Z^1$. We will start from a state $i$. We have a rate of going to $i + 1$ of $p$ and a rate of going to $i - 1$ of $q$. We should note that $0 < p  = 1 - q < 1$ and the rates are identical at any state of the state space. 
+
+\noindent Suppose we start at 0. It is obvious that we can only return to 0 after even number of steps, and $p_{00}^{2n+1} = 0$ for all $n$. For the even number $2n$ of steps, to return to 0, we need to have exactly $n$ steps to $i + 1$ and $n$ to $i -1$. The probability of each possible such path to the starting point is $p^n q^n$, and there are $2n$ choose $n$ number of such paths. Thus,\[
+p_{00}^{2n} = \binom{2n}{n} p^n q^n.
+\] 
+
+\noindent From the work we have done in Chapter 3, we know that the Stirling formula is an excellent tool to approximate factorials. The statement of the formula is $n! \sim A\sqrt{n}(n/e)^n$ as $n \to \infty$ for some $A \in [1, \infty)$. We know that $A = \sqrt{2\pi}$, but that is not necessary here, so we can keep working with $A$. 
+
+\noindent Using the Stirling formula, the $2n$-step transition probability can be approximated. We get\[
+p_{00}^{2n} = \frac{(2n)!}{(n!)^2} (pq)^n \sim \frac{(4pq)^n}{A\sqrt{n/2}} \text{ as } n \to \infty
+\]  
+after simple algebraic manipulation. 
+
+\noindent In the symmetric case $p = q = 1/2$, we have $4pq = 1$, which means for some $N$ and all $n \ge N$ we have \[
+p_{00}^{2n} \ge \frac{1}{2A\sqrt{n}}
+\]
+so \[
+\sum_{n=N}^{\infty} p_{00}^{2n} \ge \frac{1}{2A} \sum_{n=N}^{\infty} \frac{1}{\sqrt{n}} = \infty
+\]
+as $\sum_{n=N}^{\infty} \frac{1}{\sqrt{n}}$ diverges. This equation shows that 1D symmetric random walk is recurrent. We have recreated this result using Stirling formula. 
+
+\noindent When $p \neq q$, $4pq = r < 1$, so by a similar argument, for some $N$\[
+\sum_{n=N}^{\infty} p_{00}^{2n} \le \frac{1}{A} \sum_{n=N}^{\infty} r^n < \infty
+\]
+which shows this random walk is transient. 
+
+\breaking
+
+\noindent We can extend the discussion of 1D random walk to 2D one. We will only talk about the symmetric random walk here as that will make things easier. By symmetric, we mean the probability of going in any of the four directions (up, down, left, right or north, south, east, west) is $1/4$. 
+
+\noindent This gives us the transition probabilities 
+\begin{equation*}
+p_{ij} = 
+\begin{cases}
+	1/4 \text{ if } |i - j| = 1 \\ 
+	0 \text{ otherwise}. \\
+\end{cases} 
+\end{equation*}
+
+\noindent In the previous case, we know using logic that we must have same number of steps going left and going right to return back to the starting point of 0. In the current case, we would also want to do something like that so that we can simply the problem. If we draw the lattice for the random walk out using a Cartesian coordinate system, we can add in two diagonal linear lines that pass through the origin, with functions $y = \pm x$. So, we can see (after drawing it out) that each step will bring one unit of change to both diagonals. The question is then converted into two 1D random walk with unit length $1/\sqrt{2}$ instead of 1, due to the diagonalisation. 
+
+\noindent So, we have\[
+p_{00}^{2n} = \Big( \binom{2n}{n} \big( \frac{1}{2}\big)^{2n} \Big)^2 \sim \frac{2}{A^2 n} \text{ as } n \to \infty
+\]
+by Stirling's formula. Since $\sum_{n=0}^{\infty} 1/n$ diverges, we have $\sum_{n=0}^{\infty} p_{00}^n = \infty$ and the walk is therefore recurrent. This is why we have the saying ``Drunk man will always find his home."
+
+\breaking
+
+\noindent Let us extend the discussion further and talk about random walk on $\Z^3$. In a similar manner, we have the transition probabilities 
+\begin{equation*}
+p_{ij} = 
+\begin{cases}
+	1/6 \text{ if } |i - j| = 1 \\ 
+	0 \text{ otherwise}. \\
+\end{cases} 
+\end{equation*}
+
+\noindent Again, we can only go back to the origin after even number of steps. This is because we must have the same number of up and down, north and south, as well as east and west to cancel each other to return to origin. To convert that into mathematical equations, we get \[
+p_{00}^{2n} = \sum_{\substack{i,j,k \ge 0 \\ i+j+k = n}} \frac{(2n)!}{(i!j!k!)^2} \Big( \frac{1}{6}\Big)^{2n} = \binom{2n}{n} \Big( \frac{1}{2}\Big)^{2n} \sum_{\substack{i,j,k \ge 0 \\ i+j+k = n}} \binom{n}{i j k}^2 \Big( \frac{1}{3}\Big)^{2n}.
+\]
+
+\noindent Now, we know for a fact that \[
+\binom{n}{i j k} \Big( \frac{1}{3}\Big)^{n} = 1
+\]
+using the normalisation of a multinomial distribution PDF. 
+
+\noindent For the case where $n = 3m$, we have \[
+\binom{n}{i j k} = \frac{n!}{i!j!k!} \le \binom{n}{m m m}
+\]
+for all $i, j, k$, so \[
+p_{00}^{2n} \le \binom{2n}{n} \Big( \frac{1}{2}\Big)^{2n}\binom{n}{m m m}\Big( \frac{1}{3}\Big)^{n} \sim \frac{1}{2A^3} \Big( \frac{3}{n}\Big)^{3/2} \text{ as } n \to \infty
+\]
+by Stirling's formula. We know $\sum_{m=0}^{\infty}p_{00}^{6m}$ converges by comparison with $\sum_{n=0}^{\infty} n^{-3/2}$. In addition, we have $p_{00}^{6m} \ge (\frac{1}{6})^2 p_{00}^{6m-2}$ and $p_{00}^{6m} \ge (\frac{1}{6})^4 p_{00}^{6m-4}$, so we have $\sum_{n=0}^{\infty}p_{00}^{n} \le \infty$. So, the walk is transient. This is why we have the saying ``Drunk bird will be lost."
+
+\noindent For $d \ge 4$, we can obtain from it a walk on $\Z^3$ by looking only at the first 3 coordinates, and ignoring any transitions that do not change them. Since we know that random walk on $\Z^3$ is transient, random walk on higher dimensions should be transient too. So, we have transience for all $d \ge 3$.
+
+\breaking
+
+\noindent Before we end this section, we will talk about a extension to one of the properties we discussed early in this Chapter. We will be talking about the strong Markov property.
+
+\noindent The version we mentioned earlier on says that for each time $m$, conditional on $X_m = i$, the process after time $m$ begins afresh from $i$. Suppose, instead of conditioning on $X_m = i$, we just waited for the process to hit state $i$, at some random time $H$. How will the process be after time $H$? What if we replace $H$ by a more general random time? 
+
+\noindent We will call a random variable $T:\Omega \to \{ 0,1,2,\dots\} \cup \{ \infty\}$ a \textbf{stopping time}\index{Stopping Time} if the event $\{ T=n\}$ depends only on $X_0, X_1, \dots ,X_n$ for $n = 0, 1, 2, \dots$. 
+
+\noindent The \textbf{strong Markov property}\index{Markov Property!Strong} states that, let $(X_n)_{n \ge 0}$ be $\markov{\lambda}{P}$ and let $T$ be a stopping time of $(X_n)_{n \ge 0}$. Then, conditional on $T < \infty$ and $X_T = i$, $(X_{T+n})_{n \ge 0}$ is $\markov{\delta_i}{P}$ and independent of $X_0, X_1, \dots ,X_T$.
+
+\noindent The essence of the proof of the strong Markov property is that if $T$ is a stopping time and $B \subseteq \Omega$ is determined by $X_0, X_1, \dots ,X_T$, then $B \cap \{ T = m \}$ is determined by $X_0, X_1, \dots ,X_m$ for all $m = 0, 1, 2, \dots$. 
+
+\noindent So, by Markov property at time $m$, we have
+\begin{equation*}
+\begin{split}
+P(\{&X_T = j_0, X_{T+1} = j_1, \dots, X_{T+n} = j_n\} \cap B \cap \{ T = m\} \cap \{ X_T = i\}) \\
+&= P_i(X_0 = j_0, X_{1} = j_1, \dots, X_{n} = j_n)P(B\cap \{ T = m\} \cap \{ X_T = i\})
+\end{split}
+\end{equation*}
+where we have used the condition $T = m$ to replace $m$ by $T$. Now, we can sum that over $m = 0, 1, 2, \dots$ and divide by $P(T < \infty, X_T =i)$ to obtain 
+\begin{equation*}
+\begin{split}
+P(\{&X_T = j_0, X_{T+1} = j_1, \dots, X_{T+n} = j_n\} \cap B \vert T<\infty, X_T = i) \\
+&= P_i(X_0 = j_0, X_{1} = j_1, \dots, X_{n} = j_n)P(B \vert T < \infty, X_T = i)
+\end{split}
+\end{equation*}
+which completes the proof.
+
+\section{End of Markov Chains}
+
+\noindent This leads us to the last question: ``How will a Markov chain end?"
+
+\noindent The first thing we discuss here is on \textbf{stationary distribution}\index{Stationary Distribution}. It is also known as \textbf{invariant distribution}\index{Invariant Distribution} or \textbf{equilibrium distribution}\index{Equilibrium Distribution}. A distribution $\pi = (\pi_i, i \in I)$ on the state space $I$ will be stationary if we have, for the transition matrix $P$, the equation $\pi P = \pi$. Since $P$ is a matrix, it is not hard to see that $\pi$ is a left eigenvector for the matrix $P$ with eigenvalue $1$. 
+
+\noindent There are several theorems related to a stationary distribution. The first theorem will be on the existence and uniqueness of stationary distributions. If we have an irreducible transition matrix $P$, 
+
+(a) $P$ has a stationary distribution if $P$ is positive recurrent. 
+
+(b) In that case, the stationary distribution $\pi$ is unique, and is given by $\pi_i = 1/m_1$ for all $i$ where $m_i$ is the mean return time to state $i$. 
+
+\breaking 
+
+\noindent The next theorem is about the convergence of a chain. Suppose $P$ is irreducible and aperiodic, with stationary distribution $\pi$. If $X_n$ is a Markov chain with transition matrix $P$ and any initial distribution, then for all $j \in I$, we have \[
+P(X_n = j) \to \pi_j \text{ as } n \to \infty
+\]
+In particular, \[
+p_{ij}^n\to \pi_j \text{ as } n \to \infty \text{ for all } i, j.
+\]
+
+\breaking
+
+\noindent The last theorem is about ergodicity. Let $P$ be irreducible. Let $V_i(n)$ be the number of visits to state $i$ before time $n$, that is \[
+V_i(n) = \sum_{r = 0}^{n-1} I(X_r = i)
+\]
+where $I$ is an indicator function here. 
+
+\noindent Then for any initial distribution, and for all $i \in I$, \[
+\frac{V_i(n)}{n} \to \frac{1}{m_i} \text{ almost surely, as } n \to \infty.
+\]
+
+\noindent In another way, we have \[
+P\Big( \frac{V_i(n)}{n} \to \frac{1}{m_i} \text{ as } n \to \infty \Big) = 1
+\]
+using the definition of convergence almost surely mentioned in Chapter 4.
+
+\noindent The ergodic theorem concerns the ``long-run proportion of time" spent in a state. In the positive recurrent case, $1/m_i = \pi_i$ where $\pi$ is the stationary distribution, so the ergodic theorem says that (with probability 1) the long-run proportion of time spent in a state is the stationary probability of that state. In the null recurrent or transient case, $1/m_i = 0$, so the ergodic theorem says that with probability 1 the long-run proportion of time spent in a state is 0. 
+
+\noindent We can see the ergodic theorem as a generalisation of the strong law of large numbers. If $X_n$ is an i.i.d. sequence, then the strong law tells us that, with probability 1, the long run proportion of entries in the sequence which are equal to $i$ is equal to the probability that any given entry is equal to i. The ergodic theorem can be seen as extending this to the case where $X_n$ is not i.i.d. but is a Markov chain.
+
+\noindent For the above theorems, interested readers can check their proofs from Chapter 1.7, 1.8 and 1.10 of Norris' Markov Chain.
+
+
+\backmatter
+
+
+\end{document}

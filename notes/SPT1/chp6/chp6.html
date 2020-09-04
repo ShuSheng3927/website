@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Probability Theory and Statistics Notebook I</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />  
+  <link rel="stylesheet" type="text/css" href="chp6.css" /> 
+  <meta name="src" content="chp6.tex" /> 
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%; font-family: 'Times'">
+                                                                                
+<!--l. 74--><p class="indent" >
+</p>
+
+<!--l. 81--><p class="indent" >
+</p>
+                                                                                
+                                                                      
+   <h2 style="text-align: center"><span>Chapter 6 Discrete-Time Markov Chain</span><br /></h2>
+
+<br />    <span class="sectionToc" >6.1 <a 
+href="#x1-100006.1" id="QQ2-1-11">Deﬁnition of Markov Chains</a></span>
+<br />    <span class="sectionToc" >6.2 <a 
+href="#x1-110006.2" id="QQ2-1-12">Development of Markov Chains</a></span>
+<br />    <span class="sectionToc" >6.3 <a 
+href="#x1-120006.3" id="QQ2-1-13">End of Markov Chains</a></span>
+
+<br><br>
+
+<!--l. 92--><p class="noindent" >Markov chains<a 
+ id="dx1-9001"></a> are the simplest mathematical models for random phenomena evolving in time.
+Its simple structure allows us to say a great deal about its behaviour. Also, it is a wildly
+applicable model in real life. These make Markov chain undoubtedly the ﬁrst and most
+important examples of random processes.
+</p><!--l. 94--><p class="noindent" >As we have mentioned, Markov chains will evolve over time. There are two ways to look at
+time. We either look at it as discrete slots and intervals or we consider them to be a
+continuous object, like a real number line. These two ways of assessing time divides the study
+into discrete and continuous. The continuous Markov chains are harder to study, and we will
+not cover them here. Only discrete Markov chains will be studied here. The interested readers
+should refer to other textbook or my second notebook for the continuous case and more
+advanced material.
+</p><!--l. 96--><p class="noindent" >The studying of discrete-time Markov chain in this notebook will be broken into three
+sections. For each section, we will raise a question and try to answer it as we proceed. The
+three questions are: What is a Markov chain? How does a Markov chain develop over time?
+How will a Markov chain end?
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-100006.1"></a>Deﬁnition of Markov Chains</h3>
+<!--l. 100--><p class="noindent" >In this section, we aim to answer the question “What is a Markov chain?”.
+</p><!--l. 102--><p class="noindent" >Let us have a countable set <span 
+class="cmmi-10x-x-109">I</span>. We call it the <span 
+class="cmbx-10x-x-109">state space</span><a 
+ id="dx1-10001"></a> and each <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I </span>is then called a state.
+<span 
+class="cmmi-10x-x-109">I </span>is countable since we are talking about discrete time. In addition, a <span 
+class="cmbx-10x-x-109">distribution </span>on <span 
+class="cmmi-10x-x-109">I </span>is
+then deﬁned as a collection <span 
+class="cmmi-10x-x-109">λ </span>= (<span 
+class="cmmi-10x-x-109">λ</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">,i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) with <span 
+class="cmmi-10x-x-109">λ</span><sub><span 
+class="cmmi-8">i</span></sub> for all <span 
+class="cmmi-10x-x-109">i</span>, and <span 
+class="cmex-10x-x-109">∑</span>
+  <span 
+class="cmmi-10x-x-109">λ </span>= 1 due to normality.
+Normally, we will think of <span 
+class="cmmi-10x-x-109">λ </span>as a row vector.
+</p><!--l. 104--><p class="noindent" >This way, we are working in the probability space (Ω<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmsy-10x-x-109">ℱ</span><span 
+class="cmmi-10x-x-109">,P</span>). We would like to deﬁne our
+random variables. Given a random variable <span 
+class="cmmi-10x-x-109">X </span>: Ω <span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">I</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp60x.png" alt="λi = P(X  = i) = P ({ω : X (ω) = i})
+" class="math-display"  /></center>
+<!--l. 106--><p class="nopar" > which means <span 
+class="cmmi-10x-x-109">λ </span>deﬁnes a distribution of <span 
+class="cmmi-10x-x-109">X</span>.
+</p><!--l. 109--><p class="noindent" >In  addition,  we  say  that  a  matrix
+                                                                                
+
+                                                                                
+<span 
+class="cmmi-10x-x-109">P </span>= (<span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub> : <span 
+class="cmmi-10x-x-109">i,j </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>)<span class="footnote-mark"><a 
+href="chp62.html#fn1x7"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-10002f1"></a> 
+is <span 
+class="cmbx-10x-x-109">stochastic </span>if every row (<span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub> : <span 
+class="cmmi-10x-x-109">j </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) is a distribution. Base on this deﬁnition, we can see
+that each stochastic matrix will uniquely deﬁne a Markov chain.
+</p><!--l. 111--><p class="noindent" >Now, lets formalise the language to give a better deﬁnition. We say that (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> is a
+Markov chain with <span 
+class="cmbx-10x-x-109">initial distribution </span><span 
+class="cmmi-10x-x-109">λ </span>and <span 
+class="cmbx-10x-x-109">transition matrix </span><span 
+class="cmmi-10x-x-109">P </span>if for <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>0 and
+<span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,i</span><sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+1</span></sub> <span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>,
+</p><!--l. 113--><p class="indent" >   (1) <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub>) = <span 
+class="cmmi-10x-x-109">λ</span><sub><span 
+class="cmmi-8">i</span><sub><span 
+class="cmr-6">0</span></sub></sub>
+</p><!--l. 115--><p class="indent" >   (2) <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+1</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+1</span></sub><span 
+class="cmsy-10x-x-109">|</span><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">n</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">n</span></sub>) = <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">i</span><sub><span 
+class="cmmi-6">n</span></sub><span 
+class="cmmi-8">i</span><sub><span 
+class="cmmi-6">n</span><span 
+class="cmr-6">+1</span></sub></sub>
+</p><!--l. 117--><p class="noindent" >We will then call it Markov(<span 
+class="cmmi-10x-x-109">λ,P</span>) for short.
+</p><!--l. 119--><p class="noindent" >We can combine the two properties of a Markov chain and ﬁnd out the expression for any
+particular combination of positions of states <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub> to <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">N</span></sub> for an integer <span 
+class="cmmi-10x-x-109">N</span>. The combination is
+essentially <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">N</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">N</span></sub>), and we can rewrite it as
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp61x.png" alt="P (X0 = i0,...,XN  = iN )
+ = P (X  = i )P (X  = i |X   = i) ⋅⋅⋅P (X   = i ,|X  = i ...,X     = i   )
+       0    0     1   1  0    0        N    N   0    0     N −1    N−1
+ = λi0pi0i1 ⋅⋅⋅piN −1iN.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 126--><p class="nopar" >
+</p><!--l. 128--><p class="noindent" >It is not hard to see that the above (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmr-8">0</span><span 
+class="cmsy-8">≤</span><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≤</span><span 
+class="cmmi-8">N</span></sub> is also Markov(<span 
+class="cmmi-10x-x-109">λ,P</span>), since everything is
+derived from Markov(<span 
+class="cmmi-10x-x-109">λ,P</span>).
+</p>
+<div class="center" 
+>
+                                                                                
+
+                                                                                
+<!--l. 130--><p class="noindent" >
+</p><!--l. 130--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 132--><p class="noindent" >We need one more property, the <span 
+class="cmbx-10x-x-109">Markov property</span><a 
+ id="dx1-10003"></a>, to fully deﬁne a Markov chain.
+</p><!--l. 134--><p class="noindent" >In a more casual way, the Markov property is the property of memoryless - the past
+does not the future, only the current state does. Because of this characteristics,
+a somewhat famous and inspiring quote states that “Life is like a Markov chain,
+your future only depends on what you are doing now, and independent of your
+past.”<span class="footnote-mark"><a 
+href="chp63.html#fn2x7"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-10004f2"></a> 
+</p><!--l. 136--><p class="noindent" >To write it formally, let (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> be Markov(<span 
+class="cmmi-10x-x-109">λ,P</span>). Then, condition on <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">m</span></sub> = <span 
+class="cmmi-10x-x-109">i,</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">m</span><span 
+class="cmr-8">+</span><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> is
+Markov(<span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">,P</span>) and is independent of the random variables <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">m</span></sub>. We should note that
+<span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">i</span></sub> = (<span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">ij</span></sub> : <span 
+class="cmmi-10x-x-109">j </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) for the unit mass at <span 
+class="cmmi-10x-x-109">i </span>where <span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">ij</span></sub> = 1 if <span 
+class="cmmi-10x-x-109">i </span>= <span 
+class="cmmi-10x-x-109">j </span>and 0 otherwise.
+</p><!--l. 138--><p class="noindent" >To prove the Markov property, if we can show that for any event <span 
+class="cmmi-10x-x-109">A </span>determined by <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">m</span></sub>,
+we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp62x.png" alt="P ({Xm =  im, ...,Xm+n   = im+n } ∩ A|Xm  = i)
+
+       =  δiimpimim+1 ⋅⋅⋅pim+n−1im+nP (A |Xm = im)
+" class="math-display"  /></center></td></tr></table>
+<!--l. 144--><p class="nopar" >
+which will give us the result by applying the manipulation of the deﬁnition of a Markov chain
+we derived earlier on.
+</p><!--l. 147--><p class="noindent" >Consider the case of elementary events <span 
+class="cmmi-10x-x-109">A </span>= <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,</span><img 
+src="chp63x.png" alt="⋅⋅⋅"  class="@cdots"  /><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">m</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">m</span></sub><span 
+class="cmsy-10x-x-109">}</span>. In this case, we
+get
+                                                                                
+
+                                                                                
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp64x.png" alt="P (X0 = i0,...,Xm+n  =  im+n  and i = im)∕P (Xm = i)
+      = δiimpimim+1 ⋅⋅⋅pim+n−1im+n × P (X0 = i0,...,Xm = im and i = im)∕P (Xm = i)
+" class="math-display"  /></center></td></tr></table>
+<!--l. 153--><p class="nopar" >
+which completes the proof. Also, we can also extend it by writing any event <span 
+class="cmmi-10x-x-109">A </span>by a countable
+disjoint union of elementary events <span 
+class="cmmi-10x-x-109">A </span>= <span 
+class="cmsy-10x-x-109">∪</span><sub><span 
+class="cmmi-8">k</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">k</span></sub>, which will provide us with a similar result
+to complete the proof.
+</p><!--l. 156--><p class="noindent" >Because of the Markov property, we can rewrite the second property of the deﬁnition of a
+Markov chain as
+</p>
+   <center class="math-display" >
+<img 
+src="chp65x.png" alt="P (Xn+1 = in+1|X0 = i0,...,Xn = in) = P(Xn+1 =  in+1|Xn =  in) = pinin+1
+" class="math-display"  /></center>
+<!--l. 158--><p class="nopar" > which is also the probability to reach state <span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+1</span></sub> from state <span 
+class="cmmi-10x-x-109">i </span>in one step. In addition, we will
+call the Markov chain <span 
+class="cmbx-10x-x-109">time homogeneous </span>if
+</p>
+   <center class="math-display" >
+<img 
+src="chp66x.png" alt="P(Xn+1 =  j|Xn =  i) = P(X1 =  j|X0 =  i),
+" class="math-display"  /></center>
+<!--l. 161--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>0. This is normally assumed in the context of this note.
+</p><!--l. 164--><p class="noindent" >The Markov property can be extended to become strong Markov property. We will be
+discussing about that at a later stage in this Chapter.
+                                                                                
+
+                                                                                
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-110006.2"></a>Development of Markov Chains</h3>
+<!--l. 168--><p class="noindent" >We now move on to the second question we want to solve in this Chapter: “How does a
+Markov chain develop over time?”. Since we are only talking about discrete Markov chain,
+the behaviour after a while is the same as the state after a certain number <span 
+class="cmmi-10x-x-109">n </span>of
+steps.
+</p><!--l. 170--><p class="noindent" >In the previous section, we have learned that the probability to reach state <span 
+class="cmmi-10x-x-109">j </span>from state <span 
+class="cmmi-10x-x-109">i </span>in
+one step is <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub>. If we recall the deﬁnition of transition matrix <span 
+class="cmmi-10x-x-109">P</span>, it is not hard to see that the
+value <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub> is one entry of the matrix <span 
+class="cmmi-10x-x-109">P</span>. This is for one step.
+</p><!--l. 172--><p class="noindent" >If we want to know the probability to reach state <span 
+class="cmmi-10x-x-109">j </span>from state <span 
+class="cmmi-10x-x-109">i </span>in two steps, we just need to
+introduce an intermediate state <span 
+class="cmmi-10x-x-109">k </span>and calculate
+</p>
+   <center class="math-display" >
+<img 
+src="chp67x.png" alt="∑
+    pikpkj
+k∈I
+" class="math-display"  /></center>
+<!--l. 174--><p class="nopar" > as the probability of going from state <span 
+class="cmmi-10x-x-109">i </span>to state <span 
+class="cmmi-10x-x-109">j </span>in two steps is the same as the sum of the
+probability of going from state <span 
+class="cmmi-10x-x-109">i </span>to state <span 
+class="cmmi-10x-x-109">k </span>in one step times the probability of going from
+state <span 
+class="cmmi-10x-x-109">k </span>to state <span 
+class="cmmi-10x-x-109">j </span>in one time for any possible state <span 
+class="cmmi-10x-x-109">k</span>.
+</p><!--l. 177--><p class="noindent" >Using some knowledge from Linear Algebra, we can see that in order to summarise
+all such information, we just need to compute the matrix <span 
+class="cmmi-10x-x-109">P</span><sup><span 
+class="cmr-8">2</span></sup> for all probability of
+transition in two steps. This can be extended to <span 
+class="cmmi-10x-x-109">n </span>steps transition which gives us
+<span 
+class="cmmi-10x-x-109">P</span><sup><span 
+class="cmmi-8">n</span></sup>.
+</p><!--l. 179--><p class="noindent" >We can generalise the process of ﬁnding <span 
+class="cmmi-10x-x-109">P</span><sup><span 
+class="cmr-8">2</span></sup> to get the <span 
+class="cmbx-10x-x-109">Chapman-Kolmogorov</span>
+<span 
+class="cmbx-10x-x-109">equation</span><a 
+ id="dx1-11001"></a> which provides a method for computing <span 
+class="cmmi-10x-x-109">n</span>-step transition probabilities. We
+have
+</p><!--l. 181--><p class="indent" >   (1) <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ik</span></sub><sup><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+</span><span 
+class="cmmi-8">m</span></sup> = <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span><span 
+class="cmr-8">]</span><span 
+class="cmmi-8">inI</span></sub><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">jk</span></sub><sup><span 
+class="cmmi-8">m</span></sup><span 
+class="cmmi-10x-x-109">.</span>
+</p><!--l. 183--><p class="indent" >   (2) <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub><sup><span 
+class="cmmi-8">n</span></sup> = (<span 
+class="cmmi-10x-x-109">P</span><sup><span 
+class="cmmi-8">n</span></sup>)<sub><span 
+class="cmmi-8">i,j</span></sub><span 
+class="cmmi-10x-x-109">.</span>
+</p><!--l. 185--><p class="noindent" >Also from Linear Algebra, we know that if we have an identity matrix <span 
+class="cmmi-10x-x-109">I</span>, we will have <span 
+class="cmmi-10x-x-109">IA </span>= <span 
+class="cmmi-10x-x-109">A</span>
+for all possible matrix <span 
+class="cmmi-10x-x-109">A</span>. In the case for transition matrix <span 
+class="cmmi-10x-x-109">P</span>, the identity matrix <span 
+class="cmmi-10x-x-109">I </span>will be the
+matrix having <span 
+class="cmmi-10x-x-109">I</span><sub><span 
+class="cmmi-8">ij</span></sub> = <span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">ij</span></sub> where <span 
+class="cmmi-10x-x-109">δ </span>is the same unit mass we deﬁned in the ﬁrst section of
+this Chapter. The row vectors of <span 
+class="cmmi-10x-x-109">I </span>will be denoted by <span 
+class="cmmi-10x-x-109">λ</span>. This gives us the identity
+                                                                                
+
+                                                                                
+(<span 
+class="cmmi-10x-x-109">λP</span>)<sub><span 
+class="cmmi-8">j</span></sub> = <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">i</span><span 
+class="cmsy-8">∈</span><span 
+class="cmmi-8">I</span></sub><span 
+class="cmmi-10x-x-109">λ</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub><span class="footnote-mark"><a 
+href="chp64.html#fn3x7"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-11002f3"></a> .
+</p>
+<div class="center" 
+>
+<!--l. 187--><p class="noindent" >
+</p><!--l. 187--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 189--><p class="noindent" >After some number of steps, the development of a Markov chain may form some patterns.
+Some groups of states will only proceed to other states in the group, and we may never come
+back to some states after we passes through them. This leads to the introduction of class
+structure of a Markov chain, so that we can possibly break one up into smaller pieces, each of
+which is relatively easy to understand. This is done by identifying the communicating classes
+of the chain.
+</p><!--l. 191--><p class="noindent" >For two distinct states <span 
+class="cmmi-10x-x-109">i </span>and <span 
+class="cmmi-10x-x-109">j</span>, we will say <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmbx-10x-x-109">leads to </span><span 
+class="cmmi-10x-x-109">j </span>and write <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j </span>if
+</p>
+   <center class="math-display" >
+<img 
+src="chp68x.png" alt="Pi(Xn  = j) &#x003E; 0
+" class="math-display"  /></center>
+<!--l. 193--><p class="nopar" > for some <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>0. If we have both <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j </span>and <span 
+class="cmmi-10x-x-109">j </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">i</span>, we will say <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmbx-10x-x-109">communicates with </span><span 
+class="cmmi-10x-x-109">j </span>or
+<span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">↔ </span><span 
+class="cmmi-10x-x-109">j</span>.
+</p><!--l. 196--><p class="noindent" >If we have <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j</span>, we will also have <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmmi-8">n</span></sub> = <span 
+class="cmmi-10x-x-109">j</span><span 
+class="cmsy-10x-x-109">|</span><span 
+class="cmmi-10x-x-109">i</span><sub><span 
+class="cmr-8">0</span></sub> = <span 
+class="cmmi-10x-x-109">i</span>) = <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub><sup><span 
+class="cmmi-8">n</span></sup> <span 
+class="cmmi-10x-x-109">&#x003E; </span>0 for some <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>0. This indicates
+that <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">k </span>and <span 
+class="cmmi-10x-x-109">k </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j </span>imply <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j</span>.
+</p><!--l. 198--><p class="noindent" >Also, we have <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">i </span>for any state <span 
+class="cmmi-10x-x-109">i</span>, because we can always use the statement <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ii</span></sub><sup><span 
+class="cmr-8">0</span></sup> = 1 to show
+the relation.
+</p><!--l. 200--><p class="noindent" >If we recall from Abstract Algebra the deﬁnition of an <span 
+class="cmbx-10x-x-109">equivalence</span>
+                                                                                
+
+                                                                                
+<span 
+class="cmbx-10x-x-109">relation</span><span class="footnote-mark"><a 
+href="chp65.html#fn4x7"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-11003f4"></a> ,
+we will notice that <span 
+class="cmsy-10x-x-109">↔ </span>satisﬁes the conditions for one on <span 
+class="cmmi-10x-x-109">I</span>, and thus it partitions <span 
+class="cmmi-10x-x-109">I </span>into
+<span 
+class="cmbx-10x-x-109">communicating classes</span><a 
+ id="dx1-11004"></a>. We say that a class <span 
+class="cmmi-10x-x-109">C </span>is <span 
+class="cmbx-10x-x-109">closed </span>if <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">C,i </span><span 
+class="cmsy-10x-x-109">→ </span><span 
+class="cmmi-10x-x-109">j </span>imply <span 
+class="cmmi-10x-x-109">j </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">C</span>. A
+closed class, therefore, has no escape. A state will be called <span 
+class="cmbx-10x-x-109">absorbing</span><a 
+ id="dx1-11005"></a> if <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">i</span><span 
+class="cmsy-10x-x-109">} </span>is a closed class,
+since once we reach this state we will get stuck and be ‘absorbed’ and never be able to
+escape.
+</p><!--l. 202--><p class="noindent" >So, we can divide all states of a Markov chain into communicating classes and if the state
+space <span 
+class="cmmi-10x-x-109">I </span>of a chain <span 
+class="cmmi-10x-x-109">P </span>is a single class, it is <span 
+class="cmbx-10x-x-109">irreducible</span><a 
+ id="dx1-11006"></a>. It is easy to see the communicating
+classes if we draw out the states of the chain.
+</p>
+<div class="center" 
+>
+<!--l. 204--><p class="noindent" >
+</p><!--l. 204--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 206--><p class="noindent" >Knowing some sort of recurrence may exist in a Markov chain, we would like to study a bit
+more about how often we will come back to any state. For a chain and a state <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>, the
+<span 
+class="cmbx-10x-x-109">period</span><a 
+ id="dx1-11007"></a> of the state <span 
+class="cmmi-10x-x-109">i </span>is deﬁned to be the greatest common divisor of the set <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>1 : <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ii</span></sub><sup><span 
+class="cmmi-8">n</span></sup> <span 
+class="cmmi-10x-x-109">&#x003E; </span>0<span 
+class="cmsy-10x-x-109">}</span>.
+The set is for all the possible number of steps to travel from state <span 
+class="cmmi-10x-x-109">i </span>and come back to the
+itself. The greatest common divisor of that set of number will give us a sense of how
+regular it comes back. If the g.c.d of a state <span 
+class="cmmi-10x-x-109">i </span>is 1, the state is then called <span 
+class="cmbx-10x-x-109">aperiodic</span><a 
+ id="dx1-11008"></a>
+.
+</p><!--l. 209--><p class="noindent" >One interesting fact about periodicity of a Markov chain is that all states in a communicating
+class have the same period.
+</p>
+<div class="center" 
+>
+<!--l. 211--><p class="noindent" >
+</p><!--l. 211--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 213--><p class="noindent" >Since we can divide a Markov chain into classes, we would like to ﬁnd out when we will reach
+one class, and also what is the chance for us to get stuck in one particular class. We want to
+study <span 
+class="cmbx-10x-x-109">hitting time</span><a 
+ id="dx1-11009"></a> and <span 
+class="cmbx-10x-x-109">absorption probabilities</span><a 
+ id="dx1-11010"></a>.
+                                                                                
+
+                                                                                
+</p><!--l. 215--><p class="noindent" >For a Markov chain (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> with transition matrix <span 
+class="cmmi-10x-x-109">P</span>, the hitting time of a subset <span 
+class="cmmi-10x-x-109">A </span>of state
+space <span 
+class="cmmi-10x-x-109">I </span>is the random variable <span 
+class="cmmi-10x-x-109">H</span><sup><span 
+class="cmmi-8">A</span></sup> : Ω <span 
+class="cmsy-10x-x-109">→{</span>0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmsy-10x-x-109">}∪{∞} </span>given by
+</p>
+   <center class="math-display" >
+<img 
+src="chp69x.png" alt="  A
+H   (ω) = inf{n ≥ 0 : Xn (ω ) ∈ A }
+" class="math-display"  /></center>
+<!--l. 217--><p class="nopar" > where we let the inﬁmum of the empty set <span 
+class="msbm-10x-x-109">∅ </span>to be <span 
+class="cmsy-10x-x-109">∞</span>.
+</p><!--l. 220--><p class="noindent" >The probability of starting from state <span 
+class="cmmi-10x-x-109">i </span>and (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> ever hitting <span 
+class="cmmi-10x-x-109">A </span>is then
+</p>
+   <center class="math-display" >
+<img 
+src="chp610x.png" alt=" A        A
+hi = Pi(H   &#x003C; ∞ )
+" class="math-display"  /></center>
+<!--l. 222--><p class="nopar" > When <span 
+class="cmmi-10x-x-109">A </span>is a closed class, the probability <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">A</span></sup> will be the absorption probability.
+</p><!--l. 225--><p class="noindent" >In order to ﬁnd out the values of hitting probabilities, we have the following
+theorem<span class="footnote-mark"><a 
+href="chp66.html#fn5x7"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-11011f5"></a> .
+The vector of hitting probabilities (<span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">A</span></sup><span 
+class="cmmi-10x-x-109">,i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) is the minimal nonnegative solution to the
+equations:
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp611x.png" alt="     {1  if i ∈ A
+hAi =   ∑
+         j pijhAj if i∈∕A
+" class="math-display"  /></center></td></tr></table>
+<!--l. 232--><p class="nopar" >
+                                                                                
+
+                                                                                
+</p><!--l. 234--><p class="noindent" >The expectation of the hitting time will be the mean time <span 
+class="cmmi-10x-x-109">k</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">A</span></sup> taken for (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> to reach <span 
+class="cmmi-10x-x-109">A</span>,
+and we have the equation
+</p>
+   <center class="math-display" >
+<img 
+src="chp612x.png" alt="               ∑
+kAi = Ei(HA ) =     nP (HA  = n)+ ∞P  (HA  = ∞ ).
+               n&#x003C;∞
+" class="math-display"  /></center>
+<!--l. 236--><p class="nopar" >
+</p><!--l. 238--><p class="noindent" >In order to ﬁnd out the vector of mean hitting time, we have the following
+theorem<span class="footnote-mark"><a 
+href="chp67.html#fn6x7"><sup class="textsuperscript">6</sup></a></span><a 
+ id="x1-11012f6"></a> .
+The vector of mean hitting time <span 
+class="cmmi-10x-x-109">k</span><sup><span 
+class="cmmi-8">A</span></sup> = (<span 
+class="cmmi-10x-x-109">k</span><sub><span 
+class="cmmi-8">i</span></sub><sup><span 
+class="cmmi-8">A</span></sup><span 
+class="cmmi-10x-x-109">,i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) is the minimal nonnegative solution to the
+equations:
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp613x.png" alt="      {
+  A    0 if i ∈ A
+ki =   1 + ∑j pijkAj if i ∕∈ A
+" class="math-display"  /></center></td></tr></table>
+<!--l. 245--><p class="nopar" >
+</p>
+<div class="center" 
+>
+<!--l. 247--><p class="noindent" >
+                                                                                
+
+                                                                                
+</p><!--l. 247--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 249--><p class="noindent" >We would also want to know the average time to return to a certain state. This is
+the <span 
+class="cmbx-10x-x-109">mean return time</span>, denoted by <span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub>. The mean return time of state <span 
+class="cmmi-10x-x-109">i </span>is
+<span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub> = E<sub><span 
+class="cmmi-8">i</span></sub>(inf<span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span>1 : <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> = <span 
+class="cmmi-10x-x-109">i</span><span 
+class="cmsy-10x-x-109">}</span>) = 1 + <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ij</span></sub><span 
+class="cmmi-10x-x-109">k</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmmi-8">i</span></sup>. This quantity will be more useful in the next
+section when we talk about the long-run behaviour of a chain.
+</p><!--l. 251--><p class="noindent" >The concept of recurrent and transient can be deﬁned using mean return time too. If a state <span 
+class="cmmi-10x-x-109">i</span>
+is transient, it is obvious that <span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmsy-10x-x-109">∞</span>. If a state is recurrent, the mean return time can
+be both ﬁnite and inﬁnite. If <span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmsy-10x-x-109">∞</span>, the state <span 
+class="cmmi-10x-x-109">i </span>is said to be <span 
+class="cmbx-10x-x-109">null recurrent</span><a 
+ id="dx1-11013"></a>. If
+<span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmsy-10x-x-109">∞</span>, then the state <span 
+class="cmmi-10x-x-109">i </span>is said to be <span 
+class="cmbx-10x-x-109">positive recurrent</span><a 
+ id="dx1-11014"></a>. Just like transient and
+recurrent to the class structure, if one state in a communicating class is positive
+recurrent, then the entire class is positive recurrent. Same goes for null recurrent
+states.
+</p><!--l. 253--><p class="noindent" >An irreducible chain is called as either transient, or null recurrent, or positive recurrent.
+</p>
+<div class="center" 
+>
+<!--l. 255--><p class="noindent" >
+</p><!--l. 255--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 257--><p class="noindent" >An important application is the example of “Gambler’s ruin”. It is one of the earliest real life
+problems that Probability Theory aim to solve.
+</p><!--l. 259--><p class="noindent" >Given a state space <span 
+class="cmmi-10x-x-109">I </span>= <span 
+class="cmsy-10x-x-109">{</span>0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmsy-10x-x-109">}</span>. Let <span 
+class="cmmi-10x-x-109">p </span><span 
+class="cmsy-10x-x-109">∈ </span>(0<span 
+class="cmmi-10x-x-109">,</span>1) and <span 
+class="cmmi-10x-x-109">q </span>= 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>, and consider the transition
+probabilities given by
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp614x.png" alt="(
+|{ p00    = 1
+| pi,i−1  = q for i ≥ 1
+( pi,i+1  = p for i ≥ 1.
+" class="math-display"  /></center></td></tr></table>
+                                                                                
+
+                                                                                
+<!--l. 266--><p class="nopar" >
+</p><!--l. 268--><p class="noindent" >If we let the state space be the amount of money a gambler, who repeated bet 1, currently
+owns, against an inﬁnitely rich dealer. The gambler will win with probability <span 
+class="cmmi-10x-x-109">p </span>and lose with
+probability <span 
+class="cmmi-10x-x-109">q</span>, and once he (or she) has 0 money, the game will stop - or we have reached the
+gambler’s ruin. We want to know the answer to the question: Will the gambler eventually lose
+all the money? We can adjust the setting of this example slightly to study other
+questions. For example, we can have chains on <span 
+class="msbm-10x-x-109">ℤ</span><sub><span 
+class="cmr-8">+</span></sub> to model the “birth-and-death
+chains”.
+</p><!--l. 270--><p class="noindent" >Let <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-10x-x-109">P</span><sub><span 
+class="cmmi-8">i</span></sub>(hit 0). To ﬁnd <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub>, we need to ﬁnd the minimal nonnegative solution
+to
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp615x.png" alt="{
+ h0   = 1
+
+ hi   = phi+1 + qhi−1 for i ≥ 1.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 276--><p class="nopar" >
+</p><!--l. 278--><p class="noindent" >If <span 
+class="cmmi-10x-x-109">p</span><span 
+class="cmmi-10x-x-109">≠</span><span 
+class="cmmi-10x-x-109">q</span>, we have the general solution <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-10x-x-109">A </span>+ <span 
+class="cmmi-10x-x-109">B</span><span class="big"><img 
+src="chp616x.png" alt="("  class="left" align="middle" /></span><img 
+src="chp617x.png" alt="qp"  class="frac" align="middle" /><span class="big"><img 
+src="chp618x.png" alt=" )"  class="left" align="middle" /></span><sup><span 
+class="cmmi-8">i</span></sup>. We divide the problem into three cases
+and solve it respectively.
+</p><!--l. 280--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">p &#x003C; q</span>, it is more likely to lose than to win. We know <span 
+class="cmmi-10x-x-109">A </span>+ <span 
+class="cmmi-10x-x-109">B </span>= 1 by substituting the ﬁrst
+equation into the general solution. For minimality, we have <span 
+class="cmmi-10x-x-109">A </span>= 1 and <span 
+class="cmmi-10x-x-109">B </span>= 0 since <span class="big"><img 
+src="chp619x.png" alt="("  class="left" align="middle" /></span><img 
+src="chp620x.png" alt="qp"  class="frac" align="middle" /><span class="big"><img 
+src="chp621x.png" alt=")"  class="left" align="middle" /></span><sup><span 
+class="cmmi-8">i</span></sup> <span 
+class="cmsy-10x-x-109">≥ </span>1
+for all <span 
+class="cmmi-10x-x-109">i </span>here. This gives us <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = 1, meaning the chain will hit 0 with probability 1, the gambler
+will always lose all the money.
+</p><!--l. 282--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">p &#x003C; q</span>, we again have <span 
+class="cmmi-10x-x-109">A </span>+ <span 
+class="cmmi-10x-x-109">B </span>= 1. Also, we know <span class="big"><img 
+src="chp622x.png" alt="("  class="left" align="middle" /></span><img 
+src="chp623x.png" alt="q
+p"  class="frac" align="middle" /><span class="big"><img 
+src="chp624x.png" alt=" )"  class="left" align="middle" /></span><sup><span 
+class="cmmi-8">i</span></sup> <span 
+class="cmsy-10x-x-109">→ </span>0 as <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">→∞</span>, so we need to have
+a positive <span 
+class="cmmi-10x-x-109">A </span>to get a nonnegative solution. For a minimal solution, we have <span 
+class="cmmi-10x-x-109">A </span>= 0 and <span 
+class="cmmi-10x-x-109">B </span>= 1.
+This gives us <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = <span class="big"><img 
+src="chp625x.png" alt="("  class="left" align="middle" /></span><img 
+src="chp626x.png" alt="qp"  class="frac" align="middle" /><span class="big"><img 
+src="chp627x.png" alt=" )"  class="left" align="middle" /></span><sup><span 
+class="cmmi-8">i</span></sup>, meaning that there is a small but positive probability for the gambler
+to go away to inﬁnitely many money.
+</p><!--l. 284--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">p </span>= <span 
+class="cmmi-10x-x-109">q</span>, the general solution becomes <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-10x-x-109">A </span>+ <span 
+class="cmmi-10x-x-109">Bi</span>. We get <span 
+class="cmmi-10x-x-109">A </span>= 1 and <span 
+class="cmmi-10x-x-109">B </span>= 0 by
+substituting <span 
+class="cmmi-10x-x-109">i </span>= 0 and applying minimality. We get <span 
+class="cmmi-10x-x-109">h</span><sub><span 
+class="cmmi-8">i</span></sub> = 1 again, meaning the gambler will
+always lose all the money.
+                                                                                
+
+                                                                                
+</p><!--l. 286--><p class="noindent" >All in all, unless the dealer is stupid enough to let the probability of winning greater than that
+of losing, a gambler will always eventually end up with nothing no matter how much he (or
+she) brings to the table.
+</p>
+<div class="center" 
+>
+<!--l. 288--><p class="noindent" >
+</p><!--l. 288--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 290--><p class="noindent" >From the example of gambler’s ruin, we have seen glimpses of how a Markov chain may end up
+being.
+</p><!--l. 292--><p class="noindent" >In gambler’s ruin, we notice that we will always reach state 0 if <span 
+class="cmmi-10x-x-109">p &#x003C; q </span>or <span 
+class="cmmi-10x-x-109">p </span>= <span 
+class="cmmi-10x-x-109">q </span>at
+certain time of the development of the chain. A state like that, as it is appearing
+every now and then, is known to be <span 
+class="cmbx-10x-x-109">recurrent</span><a 
+ id="dx1-11015"></a>. The formal deﬁnition of a recurrent
+state <span 
+class="cmmi-10x-x-109">i </span>is <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> = <span 
+class="cmmi-10x-x-109">i</span> for inﬁnitely many <span 
+class="cmmi-10x-x-109">n</span>) = 1. We can also write the deﬁnition as a
+state <span 
+class="cmmi-10x-x-109">i </span>is recurrent if and only if <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ii</span></sub><sup><span 
+class="cmmi-8">n</span></sup> = <span 
+class="cmsy-10x-x-109">∞</span>. It is not hard to understand the
+deﬁnition.
+</p><!--l. 294--><p class="noindent" >The opposite of recurrent is <span 
+class="cmbx-10x-x-109">transient</span><a 
+ id="dx1-11016"></a>. This means we will eventually never reach that state
+after a while. The deﬁnition is the opposite of that of recurrent. A transient state <span 
+class="cmmi-10x-x-109">i </span>is
+<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> = <span 
+class="cmmi-10x-x-109">i</span> for inﬁnitely many <span 
+class="cmmi-10x-x-109">n</span>) = 0. We can also write the deﬁnition as a state <span 
+class="cmmi-10x-x-109">i </span>is transient
+if and only if <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmmi-8">ii</span></sub><sup><span 
+class="cmmi-8">n</span></sup> <span 
+class="cmmi-10x-x-109">&#x003C; </span><span 
+class="cmsy-10x-x-109">∞</span>.
+</p><!--l. 296--><p class="noindent" >Knowing the deﬁnition of recurrent and transient, we can get the fact that all states in a
+communicating class are either all recurrent or all transient - we can say the whole class is
+either transient or recurrent. This fact is proved using the summation deﬁnition of transient
+and recurrent as well as the deﬁnition of a communicating class. The readers can complete it
+on their own.
+</p><!--l. 298--><p class="noindent" >Two other useful theorems are ‘every recurrent class is closed’ and ‘every ﬁnite closed class is
+recurrent’.
+</p><!--l. 300--><p class="noindent" >Lastly, if we have an irreducible and recurrent <span 
+class="cmmi-10x-x-109">P</span>, then any state <span 
+class="cmmi-10x-x-109">j </span>of the state space is
+recurrent.
+</p>
+<div class="center" 
+>
+<!--l. 302--><p class="noindent" >
+</p><!--l. 302--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 304--><p class="noindent" >An application of recurrence and transience is those of symmetric random walks on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmmi-8">d</span></sup>.
+                                                                                
+
+                                                                                
+Random walk is a stochastic process that starts from some point and either increase or
+decrease by 1 unit towards one direction after 1 unit of time. The example of the gambler’s
+ruin is in fact a type of random walk - a random walk on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmr-8">1</span></sup>.
+</p><!--l. 306--><p class="noindent" >Although we have obtained some results from the discussion of gambler’s ruin, the
+approach we implemented was not the only way to deal with such problems. We will
+use an alternative method to reach a similar result - the method involving Stirling
+formula.
+</p><!--l. 308--><p class="noindent" >Let us start with the simple random walk on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmr-8">1</span></sup>. We will start from a state <span 
+class="cmmi-10x-x-109">i</span>. We have a rate
+of going to <span 
+class="cmmi-10x-x-109">i </span>+ 1 of <span 
+class="cmmi-10x-x-109">p </span>and a rate of going to <span 
+class="cmmi-10x-x-109">i</span><span 
+class="cmsy-10x-x-109">− </span>1 of <span 
+class="cmmi-10x-x-109">q</span>. We should note that 0 <span 
+class="cmmi-10x-x-109">&#x003C; p </span>= 1 <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">q &#x003C; </span>1
+and the rates are identical at any state of the state space.
+</p><!--l. 310--><p class="noindent" >Suppose we start at 0. It is obvious that we can only return to 0 after even number of steps,
+and <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">2</span><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">+1</span></sup> = 0 for all <span 
+class="cmmi-10x-x-109">n</span>. For the even number 2<span 
+class="cmmi-10x-x-109">n </span>of steps, to return to 0, we need to
+have exactly <span 
+class="cmmi-10x-x-109">n </span>steps to <span 
+class="cmmi-10x-x-109">i </span>+ 1 and <span 
+class="cmmi-10x-x-109">n </span>to <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">− </span>1. The probability of each possible such
+path to the starting point is <span 
+class="cmmi-10x-x-109">p</span><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">q</span><sup><span 
+class="cmmi-8">n</span></sup>, and there are 2<span 
+class="cmmi-10x-x-109">n </span>choose <span 
+class="cmmi-10x-x-109">n </span>number of such paths.
+Thus,
+</p>
+   <center class="math-display" >
+<img 
+src="chp628x.png" alt="     (2n )
+p20n0 =      pnqn.
+        n
+" class="math-display"  /></center>
+<!--l. 312--><p class="nopar" >
+</p><!--l. 314--><p class="noindent" >From the work we have done in Chapter 3, we know that the Stirling formula is an excellent
+tool to approximate factorials. The statement of the formula is <span 
+class="cmmi-10x-x-109">n</span>! <span 
+class="cmsy-10x-x-109">∼ </span><span 
+class="cmmi-10x-x-109">A</span><img 
+src="chp629x.png" alt="√ --
+  n"  class="sqrt"  />(<span 
+class="cmmi-10x-x-109">n∕e</span>)<sup><span 
+class="cmmi-8">n</span>
+  </sup> as <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">→∞ </span>for
+some <span 
+class="cmmi-10x-x-109">A </span><span 
+class="cmsy-10x-x-109">∈ </span>[1<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmsy-10x-x-109">∞</span>). We know that <span 
+class="cmmi-10x-x-109">A </span>= <img 
+src="chp630x.png" alt="√ ---
+  2π"  class="sqrt"  />, but that is not necessary here, so we can keep
+working with <span 
+class="cmmi-10x-x-109">A</span>.
+</p><!--l. 316--><p class="noindent" >Using the Stirling formula, the 2<span 
+class="cmmi-10x-x-109">n</span>-step transition probability can be approximated. We
+get
+</p>
+   <center class="math-display" >
+<img 
+src="chp631x.png" alt="                        n
+p20n0 = (2n)!(pq)n ∼ -(4∘pq)--as n → ∞
+      (n!)2        A   n∕2
+" class="math-display"  /></center>
+<!--l. 318--><p class="nopar" > after simple algebraic manipulation.
+</p><!--l. 321--><p class="noindent" >In the symmetric case <span 
+class="cmmi-10x-x-109">p </span>= <span 
+class="cmmi-10x-x-109">q </span>= 1<span 
+class="cmmi-10x-x-109">∕</span>2, we have 4<span 
+class="cmmi-10x-x-109">pq </span>= 1, which means for some <span 
+class="cmmi-10x-x-109">N </span>and all <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">≥ </span><span 
+class="cmmi-10x-x-109">N</span>
+we have
+</p>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp632x.png" alt="        1
+p20n0 ≥ --√---
+      2A  n
+" class="math-display"  /></center>
+<!--l. 323--><p class="nopar" > so
+</p>
+   <center class="math-display" >
+<img 
+src="chp633x.png" alt=" ∞            ∞
+∑    2n   -1-∑   -1--
+    p00 ≥ 2A     √ n = ∞
+n=N          n=N
+" class="math-display"  /></center>
+<!--l. 326--><p class="nopar" > as <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=</span><span 
+class="cmmi-8">N</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><img 
+src="chp634x.png" alt="1√n-"  class="frac" align="middle" /> diverges. This equation shows that 1D symmetric random walk is recurrent.
+We have recreated this result using Stirling formula.
+</p><!--l. 329--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">p</span><span 
+class="cmmi-10x-x-109">≠</span><span 
+class="cmmi-10x-x-109">q</span>, 4<span 
+class="cmmi-10x-x-109">pq </span>= <span 
+class="cmmi-10x-x-109">r &#x003C; </span>1, so by a similar argument, for some <span 
+class="cmmi-10x-x-109">N</span>
+</p>
+   <center class="math-display" >
+<img 
+src="chp635x.png" alt=" ∞           ∞
+∑   p2n ≤ 1- ∑  rn &#x003C; ∞
+     00   A
+n=N         n=N
+" class="math-display"  /></center>
+<!--l. 331--><p class="nopar" > which shows this random walk is transient.
+</p>
+<div class="center" 
+>
+<!--l. 334--><p class="noindent" >
+</p><!--l. 334--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 336--><p class="noindent" >We can extend the discussion of 1D random walk to 2D one. We will only talk about the
+symmetric random walk here as that will make things easier. By symmetric, we mean the
+probability of going in any of the four directions (up, down, left, right or north, south, east,
+west) is 1<span 
+class="cmmi-10x-x-109">∕</span>4.
+</p><!--l. 338--><p class="noindent" >This gives us the transition probabilities
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp636x.png" alt="     {
+p  =  1 ∕4 if |i− j| = 1
+ ij    0 otherwise.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 345--><p class="nopar" >
+</p><!--l. 347--><p class="noindent" >In the previous case, we know using logic that we must have same number of steps going left
+and going right to return back to the starting point of 0. In the current case, we would also
+want to do something like that so that we can simply the problem. If we draw the lattice for
+the random walk out using a Cartesian coordinate system, we can add in two diagonal linear
+lines that pass through the origin, with functions <span 
+class="cmmi-10x-x-109">y </span>= <span 
+class="cmsy-10x-x-109">±</span><span 
+class="cmmi-10x-x-109">x</span>. So, we can see (after drawing it out)
+that each step will bring one unit of change to both diagonals. The question is then
+converted into two 1D random walk with unit length 1<span 
+class="cmmi-10x-x-109">∕</span><img 
+src="chp637x.png" alt=" --
+√2"  class="sqrt"  /> instead of 1, due to the
+diagonalisation.
+</p><!--l. 349--><p class="noindent" >So, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp638x.png" alt="      (   )
+p2n=  ( 2n  (1)2n)2 ∼ -2--as n → ∞
+ 00      n   2        A2n
+" class="math-display"  /></center>
+<!--l. 351--><p class="nopar" > by Stirling’s formula. Since <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup>1<span 
+class="cmmi-10x-x-109">∕n </span>diverges, we have <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmmi-8">n</span></sup> = <span 
+class="cmsy-10x-x-109">∞ </span>and the walk is
+therefore recurrent. This is why we have the saying “Drunk man will always ﬁnd his
+home.”
+</p>
+<div class="center" 
+>
+<!--l. 354--><p class="noindent" >
+</p><!--l. 354--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 356--><p class="noindent" >Let us extend the discussion further and talk about random walk on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmr-8">3</span></sup>. In a similar manner,
+we have the transition probabilities
+</p>
+                                                                                
+
+                                                                                
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp639x.png" alt="     {
+      1 ∕6 if |i− j| = 1
+pij =
+      0 otherwise.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 363--><p class="nopar" >
+</p><!--l. 365--><p class="noindent" >Again, we can only go back to the origin after even number of steps. This is because we must
+have the same number of up and down, north and south, as well as east and west to cancel
+each other to return to origin. To convert that into mathematical equations, we
+get
+</p>
+   <center class="math-display" >
+<img 
+src="chp640x.png" alt="        ∑      (2n)!  1      (2n)  1     ∑     ( n )2  1
+p20n0 =         ------2(-)2n =      (-)2n              ( -)2n.
+       i,j,k≥0  (i!j!k!)  6        n   2    i,j,k≥0   ijk    3
+      i+j+k=n                          i+j+k=n
+" class="math-display"  /></center>
+<!--l. 367--><p class="nopar" >
+</p><!--l. 369--><p class="noindent" >Now, we know for a fact that
+</p>
+   <center class="math-display" >
+<img 
+src="chp641x.png" alt="(   )
+  n   (1)n = 1
+ ijk   3
+" class="math-display"  /></center>
+<!--l. 371--><p class="nopar" > using the normalisation of a multinomial distribution PDF.
+</p><!--l. 374--><p class="noindent" >For the case where <span 
+class="cmmi-10x-x-109">n </span>= 3<span 
+class="cmmi-10x-x-109">m</span>, we have
+</p>
+   <center class="math-display" >
+                                                                                
+
+                                                                                
+<img 
+src="chp642x.png" alt="( n  )    n!     (  n   )
+       = -----≤
+  ijk     i!j!k!    mmm
+" class="math-display"  /></center>
+<!--l. 376--><p class="nopar" > for all <span 
+class="cmmi-10x-x-109">i,j,k</span>, so
+</p>
+   <center class="math-display" >
+<img 
+src="chp643x.png" alt="      (   )     (      )
+p2n ≤  2n  (1)2n    n    (1)n ∼ -1--(3)3∕2 as n → ∞
+ 00     n   2     mmm     3     2A3  n
+" class="math-display"  /></center>
+<!--l. 379--><p class="nopar" > by Stirling’s formula. We know <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">m</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">6</span><span 
+class="cmmi-8">m</span></sup> converges by comparison with <span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">n</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">3</span><span 
+class="cmmi-8">∕</span><span 
+class="cmr-8">2</span></sup>.
+In addition, we have <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">6</span><span 
+class="cmmi-8">m</span></sup> <span 
+class="cmsy-10x-x-109">≥ </span>(<img 
+src="chp644x.png" alt="1
+6"  class="frac" align="middle" />)<sup><span 
+class="cmr-8">2</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">6</span><span 
+class="cmmi-8">m</span><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">2</span></sup> and <span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">6</span><span 
+class="cmmi-8">m</span></sup> <span 
+class="cmsy-10x-x-109">≥ </span>(<img 
+src="chp645x.png" alt="1
+6"  class="frac" align="middle" />)<sup><span 
+class="cmr-8">4</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmr-8">6</span><span 
+class="cmmi-8">m</span><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">4</span></sup>, so we have
+<span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">p</span><sub><span 
+class="cmr-8">00</span></sub><sup><span 
+class="cmmi-8">n</span></sup> <span 
+class="cmsy-10x-x-109">≤∞</span>. So, the walk is transient. This is why we have the saying “Drunk bird will
+be lost.”
+</p><!--l. 382--><p class="noindent" >For <span 
+class="cmmi-10x-x-109">d </span><span 
+class="cmsy-10x-x-109">≥ </span>4, we can obtain from it a walk on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmr-8">3</span></sup> by looking only at the ﬁrst 3 coordinates, and
+ignoring any transitions that do not change them. Since we know that random walk on <span 
+class="msbm-10x-x-109">ℤ</span><sup><span 
+class="cmr-8">3</span></sup> is
+transient, random walk on higher dimensions should be transient too. So, we have transience
+for all <span 
+class="cmmi-10x-x-109">d </span><span 
+class="cmsy-10x-x-109">≥ </span>3.
+</p>
+<div class="center" 
+>
+<!--l. 384--><p class="noindent" >
+</p><!--l. 384--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 386--><p class="noindent" >Before we end this section, we will talk about a extension to one of the properties
+we discussed early in this Chapter. We will be talking about the strong Markov
+property.
+</p><!--l. 388--><p class="noindent" >The version we mentioned earlier on says that for each time <span 
+class="cmmi-10x-x-109">m</span>, conditional on <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">m</span></sub> = <span 
+class="cmmi-10x-x-109">i</span>,
+the process after time <span 
+class="cmmi-10x-x-109">m </span>begins afresh from <span 
+class="cmmi-10x-x-109">i</span>. Suppose, instead of conditioning on
+<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">m</span></sub> = <span 
+class="cmmi-10x-x-109">i</span>, we just waited for the process to hit state <span 
+class="cmmi-10x-x-109">i</span>, at some random time <span 
+class="cmmi-10x-x-109">H</span>. How
+will the process be after time <span 
+class="cmmi-10x-x-109">H</span>? What if we replace <span 
+class="cmmi-10x-x-109">H </span>by a more general random
+time?
+</p><!--l. 390--><p class="noindent" >We will call a random variable <span 
+class="cmmi-10x-x-109">T </span>: Ω <span 
+class="cmsy-10x-x-109">→{</span>0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span><span 
+class="cmsy-10x-x-109">}∪{∞} </span>a <span 
+class="cmbx-10x-x-109">stopping time</span><a 
+ id="dx1-11017"></a> if the event
+<span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">T </span>= <span 
+class="cmmi-10x-x-109">n</span><span 
+class="cmsy-10x-x-109">} </span>depends only on <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">n</span></sub> for <span 
+class="cmmi-10x-x-109">n </span>= 0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span>.
+</p><!--l. 392--><p class="noindent" >The <span 
+class="cmbx-10x-x-109">strong Markov property</span><a 
+ id="dx1-11018"></a> states that, let (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> be Markov(<span 
+class="cmmi-10x-x-109">λ,P</span>) and let <span 
+class="cmmi-10x-x-109">T </span>be a
+stopping time of (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub>. Then, conditional on <span 
+class="cmmi-10x-x-109">T &#x003C; </span><span 
+class="cmsy-10x-x-109">∞ </span>and <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">T</span> </sub> = <span 
+class="cmmi-10x-x-109">i</span>, (<span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">T</span><span 
+class="cmr-8">+</span><span 
+class="cmmi-8">n</span></sub>)<sub><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">≥</span><span 
+class="cmr-8">0</span></sub> is
+Markov(<span 
+class="cmmi-10x-x-109">δ</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">,P</span>) and independent of <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">T</span> </sub>.
+                                                                                
+
+                                                                                
+</p><!--l. 394--><p class="noindent" >The essence of the proof of the strong Markov property is that if <span 
+class="cmmi-10x-x-109">T </span>is a stopping time and
+<span 
+class="cmmi-10x-x-109">B </span><span 
+class="cmsy-10x-x-109">⊆ </span>Ω is determined by <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">T</span> </sub>, then <span 
+class="cmmi-10x-x-109">B </span><span 
+class="cmsy-10x-x-109">∩{</span><span 
+class="cmmi-10x-x-109">T </span>= <span 
+class="cmmi-10x-x-109">m</span><span 
+class="cmsy-10x-x-109">} </span>is determined by <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">0</span></sub><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">m</span></sub> for
+all <span 
+class="cmmi-10x-x-109">m </span>= 0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span>.
+</p><!--l. 396--><p class="noindent" >So, by Markov property at time <span 
+class="cmmi-10x-x-109">m</span>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp646x.png" alt="P({XT  = j0,XT +1 = j1,...,XT +n = jn}∩ B ∩ {T =  m} ∩ {XT =  i})
+    = Pi(X0 = j0,X1 = j1,...,Xn = jn)P (B ∩ {T = m }∩ {XT  = i})
+" class="math-display"  /></center></td></tr></table>
+<!--l. 402--><p class="nopar" >
+where we have used the condition <span 
+class="cmmi-10x-x-109">T </span>= <span 
+class="cmmi-10x-x-109">m </span>to replace <span 
+class="cmmi-10x-x-109">m </span>by <span 
+class="cmmi-10x-x-109">T</span>. Now, we can sum that over
+<span 
+class="cmmi-10x-x-109">m </span>= 0<span 
+class="cmmi-10x-x-109">,</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span> and divide by <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">T &#x003C; </span><span 
+class="cmsy-10x-x-109">∞</span><span 
+class="cmmi-10x-x-109">,X</span><sub><span 
+class="cmmi-8">T</span> </sub> = <span 
+class="cmmi-10x-x-109">i</span>) to obtain
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp647x.png" alt="P ({XT =  j0,XT +1 = j1,...,XT+n =  jn} ∩ B |T &#x003C; ∞, XT  = i)
+    =  Pi(X0  = j0,X1 = j1,...,Xn  = jn)P(B |T &#x003C;  ∞, XT = i)
+" class="math-display"  /></center></td></tr></table>
+<!--l. 409--><p class="nopar" >
+which completes the proof.
+                                                                                
+
+                                                                                
+</p>
+   <h3 class="sectionHead"><span class="titlemark">6.3   </span> <a 
+ id="x1-120006.3"></a>End of Markov Chains</h3>
+<!--l. 414--><p class="noindent" >This leads us to the last question: “How will a Markov chain end?”
+</p><!--l. 416--><p class="noindent" >The ﬁrst thing we discuss here is on <span 
+class="cmbx-10x-x-109">stationary distribution</span><a 
+ id="dx1-12001"></a>. It is also known as <span 
+class="cmbx-10x-x-109">invariant</span>
+<span 
+class="cmbx-10x-x-109">distribution</span><a 
+ id="dx1-12002"></a> or <span 
+class="cmbx-10x-x-109">equilibrium distribution</span><a 
+ id="dx1-12003"></a>. A distribution <span 
+class="cmmi-10x-x-109">π </span>= (<span 
+class="cmmi-10x-x-109">π</span><sub><span 
+class="cmmi-8">i</span></sub><span 
+class="cmmi-10x-x-109">,i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>) on the state space
+<span 
+class="cmmi-10x-x-109">I </span>will be stationary if we have, for the transition matrix <span 
+class="cmmi-10x-x-109">P</span>, the equation <span 
+class="cmmi-10x-x-109">πP </span>= <span 
+class="cmmi-10x-x-109">π</span>. Since <span 
+class="cmmi-10x-x-109">P </span>is a
+matrix, it is not hard to see that <span 
+class="cmmi-10x-x-109">π </span>is a left eigenvector for the matrix <span 
+class="cmmi-10x-x-109">P </span>with eigenvalue
+1.
+</p><!--l. 418--><p class="noindent" >There are several theorems related to a stationary distribution. The ﬁrst theorem will be on
+the existence and uniqueness of stationary distributions. If we have an irreducible transition
+matrix <span 
+class="cmmi-10x-x-109">P</span>,
+</p><!--l. 420--><p class="indent" >   (a) <span 
+class="cmmi-10x-x-109">P </span>has a stationary distribution if <span 
+class="cmmi-10x-x-109">P </span>is positive recurrent.
+</p><!--l. 422--><p class="indent" >   (b) In that case, the stationary distribution <span 
+class="cmmi-10x-x-109">π </span>is unique, and is given by <span 
+class="cmmi-10x-x-109">π</span><sub><span 
+class="cmmi-8">i</span></sub> = 1<span 
+class="cmmi-10x-x-109">∕m</span><sub><span 
+class="cmr-8">1</span></sub> for all <span 
+class="cmmi-10x-x-109">i</span>
+where <span 
+class="cmmi-10x-x-109">m</span><sub><span 
+class="cmmi-8">i</span></sub> is the mean return time to state <span 
+class="cmmi-10x-x-109">i</span>.
+</p>
+<div class="center" 
+>
+<!--l. 424--><p class="noindent" >
+</p><!--l. 424--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 426--><p class="noindent" >The next theorem is about the convergence of a chain. Suppose <span 
+class="cmmi-10x-x-109">P </span>is irreducible and aperiodic,
+with stationary distribution <span 
+class="cmmi-10x-x-109">π</span>. If <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> is a Markov chain with transition matrix <span 
+class="cmmi-10x-x-109">P </span>and any
+initial distribution, then for all <span 
+class="cmmi-10x-x-109">j </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp648x.png" alt="P (Xn = j) → πj as n → ∞
+" class="math-display"  /></center>
+<!--l. 428--><p class="nopar" > In particular,
+</p>
+   <center class="math-display" >
+<img 
+src="chp649x.png" alt=" n
+pij → πj as n → ∞ for all i,j.
+" class="math-display"  /></center>
+                                                                                
+
+                                                                                
+<!--l. 431--><p class="nopar" >
+</p>
+<div class="center" 
+>
+<!--l. 433--><p class="noindent" >
+</p><!--l. 433--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 435--><p class="noindent" >The last theorem is about ergodicity. Let <span 
+class="cmmi-10x-x-109">P </span>be irreducible. Let <span 
+class="cmmi-10x-x-109">V</span> <sub><span 
+class="cmmi-8">i</span></sub>(<span 
+class="cmmi-10x-x-109">n</span>) be the number of visits
+to state <span 
+class="cmmi-10x-x-109">i </span>before time <span 
+class="cmmi-10x-x-109">n</span>, that is
+</p>
+   <center class="math-display" >
+<img 
+src="chp650x.png" alt="       n− 1
+       ∑
+Vi(n ) =    I(Xr = i)
+       r=0
+" class="math-display"  /></center>
+<!--l. 437--><p class="nopar" > where <span 
+class="cmmi-10x-x-109">I </span>is an indicator function here.
+</p><!--l. 440--><p class="noindent" >Then for any initial distribution, and for all <span 
+class="cmmi-10x-x-109">i </span><span 
+class="cmsy-10x-x-109">∈ </span><span 
+class="cmmi-10x-x-109">I</span>,
+</p>
+   <center class="math-display" >
+<img 
+src="chp651x.png" alt="Vi(n)     1
+----- →  ---almost surely, as n → ∞.
+  n      mi
+" class="math-display"  /></center>
+<!--l. 442--><p class="nopar" >
+</p><!--l. 444--><p class="noindent" >In another way, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp652x.png" alt="  Vi(n)    1
+P(----- →  ---as n → ∞ ) = 1
+    n      mi
+" class="math-display"  /></center>
+<!--l. 446--><p class="nopar" > using the deﬁnition of convergence almost surely mentioned in Chapter 4.
+</p><!--l. 449--><p class="noindent" >The ergodic theorem concerns the “long-run proportion of time” spent in a state. In the
+positive recurrent case, 1<span 
+class="cmmi-10x-x-109">∕m</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-10x-x-109">π</span><sub><span 
+class="cmmi-8">i</span></sub> where <span 
+class="cmmi-10x-x-109">π </span>is the stationary distribution, so the ergodic
+theorem says that (with probability 1) the long-run proportion of time spent in a state is the
+                                                                                
+
+                                                                                
+stationary probability of that state. In the null recurrent or transient case, 1<span 
+class="cmmi-10x-x-109">∕m</span><sub><span 
+class="cmmi-8">i</span></sub> = 0, so the
+ergodic theorem says that with probability 1 the long-run proportion of time spent in a state
+is 0.
+</p><!--l. 451--><p class="noindent" >We can see the ergodic theorem as a generalisation of the strong law of large numbers. If <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> is
+an i.i.d. sequence, then the strong law tells us that, with probability 1, the long run proportion
+of entries in the sequence which are equal to <span 
+class="cmmi-10x-x-109">i </span>is equal to the probability that any given entry
+is equal to i. The ergodic theorem can be seen as extending this to the case where <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> is not
+i.i.d. but is a Markov chain.
+</p><!--l. 453--><p class="noindent" >For the above theorems, interested readers can check their proofs from Chapter 1.7, 1.8 and
+1.10 of Norris’ Markov Chain.
+                                                                                
+
+                                                                                
+</p>
+
+<br><br>
+
+<a href="../SPT1.html" style="text-align: left; font-family: 'Times';font-size: large;">Back</a>  
+<a href="../chp7/chp7.html" style="float: right; font-family: 'Times';font-size: large;">Next Chapter</a>
+
+<br><br>
+
+
+
+
+
+
+                </div>
+            </div> 
+
+
+
+            
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+

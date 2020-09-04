@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Probability Theory and Statistics Notebook I</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />  
+  <link rel="stylesheet" type="text/css" href="chp3.css" /> 
+  <meta name="src" content="chp3.tex" /> 
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%; font-family: 'Times'">
+                                                                                
+<!--l. 74--><p class="indent" >
+</p>
+
+<!--l. 81--><p class="indent" >
+</p>
+                                                                                
+                                                                      
+<h2 style="text-align: center"><span>Chapter 3 Common Distributions</span><br /></h2>
+
+<br />    <span class="sectionToc" >3.1 <a 
+href="#x1-70003.1" id="QQ2-1-8">Bernoulli Trial</a></span>
+<br />    <span class="sectionToc" >3.2 <a 
+href="#x1-80003.2" id="QQ2-1-9">Binomial Distribution</a></span>
+<br />    <span class="sectionToc" >3.3 <a 
+href="#x1-90003.3" id="QQ2-1-10">Poisson Distribution</a></span>
+<br />    <span class="sectionToc" >3.4 <a 
+href="#x1-100003.4" id="QQ2-1-11">Normal Distribution</a></span>
+<br />    <span class="sectionToc" >3.5 <a 
+href="#x1-110003.5" id="QQ2-1-12">Other Distributions</a></span>
+<br />    <span class="sectionToc" >3.6 <a 
+href="#x1-120003.6" id="QQ2-1-13">Summary</a></span>
+
+<br>
+<br>
+<!--l. 91--><p class="noindent" >In the previous Chapter, we have talked a lot about properties of random variables. They may
+sound boring and dull if we do not have solid examples of what random variables can be. In
+this Chapter, we will be discussing some of the more common types of random variables and
+distributions.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-70003.1"></a>Bernoulli Trial</h3>
+<!--l. 95--><p class="noindent" >A  <span 
+class="cmbx-10x-x-109">Bernoulli  trial</span><a 
+ id="dx1-7001"></a>,  named  after  Jacob
+Bernoulli<span class="footnote-mark"><a 
+href="chp32.html#fn1x4"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-7002f1"></a> ,
+is a random experiment with exactly two possible outcomes and constant probability.
+</p><!--l. 97--><p class="noindent" >An example of a Bernoulli trial is a coin tossing, with only two possible outcomes head and
+tail. Since there are ﬁnite many (2, to be more precise) possible outcomes, the distribution is
+discrete.
+</p><!--l. 99--><p class="noindent" >Normally, we will denote the ‘success’ outcome as 1 and ‘failure’ as 0. Also,
+we usually denote the chance of ‘success’ as <span 
+class="cmmi-10x-x-109">p</span>, the other being 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p </span>for
+obvious reason. This variable <span 
+class="cmmi-10x-x-109">p </span>is the <span 
+class="cmbx-10x-x-109">parameter </span>of the distribution. A
+parameter<span class="footnote-mark"><a 
+href="chp33.html#fn2x4"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-7003f2"></a> 
+is a characteristic that can help deﬁning a distribution or a function.
+</p><!--l. 101--><p class="noindent" >Knowing the nature of the distribution, we would want to ﬁnd out the PMF of it. A random
+variable that follows Bernoulli trials is called Bernoulli random variable. Thus, for a Bernoulli
+random variable <span 
+class="cmmi-10x-x-109">X</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp30x.png" alt="P (X  = x) = px(1− p)1−x
+" class="math-display"  /></center>
+<!--l. 103--><p class="nopar" > where <span 
+class="cmmi-10x-x-109">x </span>= 0<span 
+class="cmmi-10x-x-109">,</span>1 and 0 <span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">p </span><span 
+class="cmsy-10x-x-109">≤ </span>1.
+</p><!--l. 106--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">x </span>= 1, <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X </span>= 1) = <span 
+class="cmmi-10x-x-109">p</span>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>)<sup><span 
+class="cmr-8">0</span></sup> = <span 
+class="cmmi-10x-x-109">p</span>. When <span 
+class="cmmi-10x-x-109">x </span>= 0, <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">X </span>= 0) = <span 
+class="cmmi-10x-x-109">p</span><sup><span 
+class="cmr-8">0</span></sup>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>)<sup><span 
+class="cmr-8">1</span></sup> = 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>.
+</p><!--l. 108--><p class="noindent" >Having the PMF will help us obtain the expectation and variance. For the same random
+variable <span 
+class="cmmi-10x-x-109">X</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp31x.png" alt="E[X] = 0× (1 − p)+ 1 × p = p
+" class="math-display"  /></center>
+<!--l. 110--><p class="nopar" > and
+</p>
+   <center class="math-display" >
+<img 
+src="chp32x.png" alt="Var (X) = E[X2 ]− E[X ]2 = p × 12 − p2 = p(1− p).
+" class="math-display"  /></center>
+<!--l. 113--><p class="nopar" >
+</p><!--l. 115--><p class="noindent" >The last property we will be discussing for a Bernoulli trial is its MGF. Since we
+know
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp33x.png" alt="            (
+            |{ p if x = 1
+P (X =  x) =  1 − p if x = 0
+            |(
+              0 otherwise
+" class="math-display"  /></center></td></tr></table>
+<!--l. 123--><p class="nopar" >
+and
+                                                                                
+
+                                                                                
+</p>
+   <center class="math-display" >
+<img 
+src="chp34x.png" alt="                 ∑
+MX  (t) = E[etX ] =    P(X  = n)etn,
+                  n
+" class="math-display"  /></center>
+<!--l. 126--><p class="nopar" > we get
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp35x.png" alt="MX  (t) = P (X  = 0)e0 + P (X = 1)et
+                    t
+       = (1− p) + pe .
+" class="math-display"  /></center></td></tr></table>
+<!--l. 133--><p class="nopar" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-80003.2"></a>Binomial Distribution</h3>
+<!--l. 137--><p class="noindent" >Bernoulli trials deals with single-time experiment with two possible outcomes. This is quite
+limited, and we would like to go further from this model. The most immediate thing we can
+change is by changing the number of times of the experiment from 1 to <span 
+class="cmmi-10x-x-109">n</span>. This gives us
+<span 
+class="cmbx-10x-x-109">binomial distribution</span><a 
+ id="dx1-8001"></a>, discovered by Jacob Bernoulli in his work entitled <span 
+class="cmti-10x-x-109">Ars</span>
+<span 
+class="cmti-10x-x-109">Conjectandi</span>.
+</p><!--l. 139--><p class="noindent" >Bernoulli trials have a single parameter, the probability of success <span 
+class="cmmi-10x-x-109">p</span>, and binomial
+distribution has one more parameter, the number of trials <span 
+class="cmmi-10x-x-109">n</span>. Everything else, like
+0 and 1 for success and failure, <span 
+class="cmmi-10x-x-109">p </span>for success rate and 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p </span>for failure rate, are
+deﬁned identically for a typical binomial distribution. We will sometimes denote such
+a distribution as Binom(<span 
+class="cmmi-10x-x-109">n,p</span>). This type of distribution, like a Bernoulli trial, is
+discrete.
+                                                                                
+
+                                                                                
+</p><!--l. 141--><p class="noindent" >The PMF of a binomial distribution can be found by referring to binomial theorem. Binomial
+theorem states that
+</p>
+   <center class="math-display" >
+<img 
+src="chp36x.png" alt="          (n)       (n )              (  n  )         (n )       ∑n  (n)
+(x+ y)n =     xny0 +     xn−1y1+ ⋅⋅⋅+         x1yn−1+     x0yn =         xkyn− k
+           0          1                n − 1           n         k=0  k
+" class="math-display"  /></center>
+<!--l. 143--><p class="nopar" > where the value of <span 
+class="cmmi-10x-x-109">n </span>can be any real number.
+</p><!--l. 146--><p class="noindent" >We can substitute <span 
+class="cmmi-10x-x-109">x </span>and <span 
+class="cmmi-10x-x-109">y </span>with <span 
+class="cmmi-10x-x-109">p </span>and 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>, which change the statement into
+</p>
+   <center class="math-display" >
+<img 
+src="chp37x.png" alt="    (  )            (  )                   (  )
+     n   n      0    n   n− 1      1         n   0      n
+1 =  0  p (1 − p) +   1 p   (1 − p) + ⋅⋅⋅+   n p (1 − p) .
+" class="math-display"  /></center>
+<!--l. 148--><p class="nopar" >
+</p><!--l. 150--><p class="noindent" >This way, we get the PMF of a binomial distribution with random variable as <span 
+class="cmmi-10x-x-109">X</span>, <span 
+class="cmmi-10x-x-109">n </span>trials and
+success rate as <span 
+class="cmmi-10x-x-109">p </span>as
+</p>
+   <center class="math-display" >
+<img 
+src="chp38x.png" alt="            (n )
+P (X =  x) =     px(1− p)n−x.
+              x
+" class="math-display"  /></center>
+<!--l. 152--><p class="nopar" >
+</p><!--l. 154--><p class="noindent" >Having the PMF will help us to obtain the expectation and variance. For the same random
+variable <span 
+class="cmmi-10x-x-109">X</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp39x.png" alt="        ∑n
+E [X ] =    E[X ] = np
+        i=1     i
+" class="math-display"  /></center>
+                                                                                
+
+                                                                                
+<!--l. 156--><p class="nopar" > and
+</p>
+   <center class="math-display" >
+<img 
+src="chp310x.png" alt="         ∑n
+Var(X ) =    Var(Xi) = np(1− p).
+         i=1
+" class="math-display"  /></center>
+<!--l. 159--><p class="nopar" > where each <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">i</span></sub> is an identical and independent Bernoulli random variable.
+</p><!--l. 162--><p class="noindent" >The fact that a binomial distribution is a compilation of several Bernoulli trials help us to get
+its MGF. Since
+</p>
+   <center class="math-display" >
+<img 
+src="chp311x.png" alt="MX (t) = E [etX] = E[et(nXi)],
+" class="math-display"  /></center>
+<!--l. 164--><p class="nopar" > we get
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp312x.png" alt="MX (t) = (E [et(Xi)])n
+                    t n
+      =  ((1 − p)+ pe ) .
+" class="math-display"  /></center></td></tr></table>
+<!--l. 171--><p class="nopar" >
+</p><!--l. 173--><p class="noindent" >
+</p>
+                                                                                
+
+                                                                                
+   <h3 class="sectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-90003.3"></a>Poisson Distribution</h3>
+<!--l. 175--><p class="noindent" >Binomial distribution involves <span 
+class="cmmi-10x-x-109">n </span>Bernoulli trials each with success rate <span 
+class="cmmi-10x-x-109">p</span>. These are useful in
+many cases, but it can deﬁnitely be extended. The probability of an event occurring does not
+always have to be constant throughout. For example, the probability of crime occurring in a
+neighbourhood may be constant at ﬁrst, but it will not have the same probability as the total
+number of crime increases. Many factors and reasons may cause this phenomenon to
+occur but we will not try to ﬁgure out why in this notebook. What we do see here
+is that there are deﬁnitely examples of things that have less and less chances of
+happening when the number of times increase. These examples will be modelled
+by the <span 
+class="cmbx-10x-x-109">Poisson distribution</span><a 
+ id="dx1-9001"></a>, named after the French Mathematician Siméon
+Poisson<span class="footnote-mark"><a 
+href="chp34.html#fn3x4"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-9002f3"></a> .
+</p><!--l. 177--><p class="noindent" >Given Binom(<span 
+class="cmmi-10x-x-109">n,p</span>) with random variable <span 
+class="cmmi-10x-x-109">X</span>, we have PMF
+</p>
+   <center class="math-display" >
+<img 
+src="chp313x.png" alt="                          (  )
+                            n  k       n−k
+Binomk(n,p ) = P (X = k) =  k p (1 − p)
+" class="math-display"  /></center>
+<!--l. 179--><p class="nopar" > where 0 <span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">k </span><span 
+class="cmsy-10x-x-109">≤ </span><span 
+class="cmmi-10x-x-109">n</span>.
+</p><!--l. 182--><p class="noindent" >Since we know the probability will decrease as number of trials increase, we might as well set
+the probability of success as <span 
+class="cmmi-10x-x-109">α∕n </span>where <span 
+class="cmmi-10x-x-109">α </span>is a constant. Making that change to the statement
+of PMF, we get
+</p>
+   <center class="math-display" >
+<img 
+src="chp314x.png" alt="                 (n ) α       α
+Binomk (n, α∕n) =     (--)k(1 − --)n−k
+                  k   n       n
+" class="math-display"  /></center>
+<!--l. 184--><p class="nopar" >
+</p><!--l. 186--><p class="noindent" >This is not that nice of an equation. We need to ﬁnd ways to make it more elegant. Let us ﬁrst
+set <span 
+class="cmmi-10x-x-109">n </span>to a very big number and approaches inﬁnity. Looking at the case when <span 
+class="cmmi-10x-x-109">k </span>= 0, we
+get
+</p>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp315x.png" alt="                          α-n
+lnim→∞ Binom0 (n) = lni→m∞ (1−  n) .
+" class="math-display"  /></center>
+<!--l. 188--><p class="nopar" >
+</p><!--l. 190--><p class="noindent" >Note that the Taylor series ln(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">n</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">x</span><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">∕n</span>, we will get
+</p>
+   <center class="math-display" >
+<img 
+src="chp316x.png" alt="       α  n           α        ∑∞  xn          α2
+ln((1 − n-) ) = n ln (1 − n-) = n (−   -n-) = − α − 2n-− ⋅⋅⋅.
+                               n=1
+" class="math-display"  /></center>
+<!--l. 193--><p class="nopar" >
+</p><!--l. 195--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">n </span><span 
+class="cmsy-10x-x-109">→∞</span>, the terms on the right, starting from the second one, will be equal to 0. By
+making both sides of the equation the power to <span 
+class="cmmi-10x-x-109">e</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp317x.png" alt="                          α
+lim  Binom0 (n) = lim (1−  -)n = e−α.
+n→∞              n→∞      n
+" class="math-display"  /></center>
+<!--l. 198--><p class="nopar" >
+</p><!--l. 200--><p class="noindent" >This gives us the one value of the full PMF. This is certainly not enough, so we try to ﬁnd the
+other ones. We happen to realise that two consecutive probabilities Binom<sub><span 
+class="cmmi-8">k</span></sub> have a ratio, which
+can be found by the following statement:
+</p>
+   <center class="math-display" >
+<img 
+src="chp318x.png" alt="     Binom    (n)        n−  k α      α        α
+ lim  ------k+1--- =  lim  -----(--)(1 − --)− 1 = -----.
+n→ ∞  Binomk (n)    n→ ∞ k + 1 n      n       k + 1
+" class="math-display"  /></center>
+<!--l. 202--><p class="nopar" >
+</p><!--l. 204--><p class="noindent" >That is all we need to ﬁnd the PMF of a Poisson distribution. We have
+</p>
+   <center class="math-display" >
+<img 
+src="chp319x.png" alt="                                 ∏k    α             αk       e− α
+ lim  Binomk (n ) = lim  Binom0 (n )⋅   (-----) = e− α ⋅------ =  ---αk = πk(α )
+n→ ∞             n→ ∞            j=0 j + 1        1 ⋅2⋅⋅⋅k    k!
+" class="math-display"  /></center>
+<!--l. 206--><p class="nopar" > where <span 
+class="cmmi-10x-x-109">π</span><sub><span 
+class="cmmi-8">k</span></sub>(<span 
+class="cmmi-10x-x-109">α</span>) represents the probability of the event to happen for <span 
+class="cmmi-10x-x-109">k </span>number of times with the
+average number of event occurrence as <span 
+class="cmmi-10x-x-109">α </span>for a Poisson Distribution.
+</p><!--l. 209--><p class="noindent" >Having the PMF will help us to obtain the expectation and variance. For the same random
+variable <span 
+class="cmmi-10x-x-109">X</span>, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp320x.png" alt="       ∑    1- k −k
+E [X ] =    kk!λ e
+       k≥0
+          −λ∑   ---1--- k−1
+     = λe       (k − 1)!λ
+            k≥1
+     = λe −λ ∑    ---1---λk−1
+                  (k − 1)!
+            k−1≥0
+     = λe −λeλ
+     = λ
+" class="math-display"  /></center></td></tr></table>
+<!--l. 218--><p class="nopar" >
+and
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp321x.png" alt="Var(X ) = E[X2]− (E [X ])2
+          ∑
+       =     k2-1λke− k − λ2
+          k≥0   k!
+              ∑
+       =  λe−λ    k---1---λk− 1 − λ2
+              k≥1  (k − 1)!
+               ∑            1          ∑     1
+       =  λe−λ(   (k − 1)-------λk−1 +    ------- λk−1)− λ2
+               k≥1       (k − 1)!      k≥1(k − 1)!
+            −λ  ∑            1    k− 1   λ     2
+       =  λe  (λ   (k − 2)-------λ    + e )− λ
+                k≥2       (k − 2)!
+       =  λe−λ(λeλ + eλ)− λ2
+           2       2
+       =  λ + λ − λ
+       =  λ.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 231--><p class="nopar" >
+</p><!--l. 233--><p class="noindent" >Knowing the PMF can help us ﬁnd the MGF. Since
+</p>
+   <center class="math-display" >
+<img 
+src="chp322x.png" alt="                  ∞
+M   (t) = E[etX ] = ∑  etnP (X =  n),
+  X
+                 n=0
+" class="math-display"  /></center>
+<!--l. 235--><p class="nopar" > we get
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp323x.png" alt="         ∑∞   tne− α n
+MX  (t) =    e -n!-α
+         n=0
+             ∑∞    (λet)n
+       = e−α    etn------
+             n=0     n!
+       = e−αeαet
+             t
+       = eα(e−1)
+" class="math-display"  /></center></td></tr></table>
+<!--l. 244--><p class="nopar" >
+We will sometimes use <span 
+class="cmmi-10x-x-109">λ </span>to replace <span 
+class="cmmi-10x-x-109">α </span>in the above equation.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-100003.4"></a>Normal Distribution</h3>
+<!--l. 249--><p class="noindent" >Earlier on, we have learned about the statement of the PMF of a binomial distribution. The
+PMF contains a combinatoric operation <span 
+class="cmex-10x-x-109">(</span><span 
+class="cmmi-8">n</span>
+   <span 
+class="cmmi-8">k</span><span 
+class="cmex-10x-x-109">)</span>
+  . This is hard to compute when <span 
+class="cmmi-10x-x-109">n </span>gets bigger,
+especially at times when modern computing tools were not available. This leads
+Mathematicians to ﬁnd ways to approximate the statement. The Mathematician who made
+progress on that is de Moivre.
+</p><!--l. 251--><p class="noindent" >At the time of de Moivre, another Mathematician James Stirling came up with a formula that
+approximates factorial. The <span 
+class="cmbx-10x-x-109">Stirling formula</span><a 
+ id="dx1-10001"></a> says that
+</p>
+   <center class="math-display" >
+<img 
+src="chp324x.png" alt="     √ ----n
+n! ≈   2πn(--)n.
+           e
+" class="math-display"  /></center>
+<!--l. 253--><p class="nopar" > This formula was, in fact, ﬁrst thought oﬀ by de Moivre but was completed by Stirling and
+then used by de Moivre in his work.
+</p><!--l. 256--><p class="noindent" >Another related question to the approximation of factorial is that of ﬁnding the probability of
+binomial random variable <span 
+class="cmmi-10x-x-109">X </span>to take values within a certain distance <span 
+class="cmmi-10x-x-109">d </span>from the mean, in
+Mathematical expression it is
+</p>
+   <center class="math-display" >
+<img 
+src="chp325x.png" alt="P(|X − np | ≤ d).
+" class="math-display"  /></center>
+<!--l. 258--><p class="nopar" >
+</p><!--l. 260--><p class="noindent" >I will present de Moivre’s approach of solving these problems below.
+</p><!--l. 262--><p class="noindent" >Let us ﬁrst consider a binomial distribution <span 
+class="cmmi-10x-x-109">b</span>(<span 
+class="cmmi-10x-x-109">n,p</span>) where <span 
+class="cmmi-10x-x-109">n </span>is even and <span 
+class="cmmi-10x-x-109">p </span>is <img 
+src="chp326x.png" alt="12"  class="frac" align="middle" />. The PMF of
+that is <span 
+class="cmmi-10x-x-109">b</span>(<span 
+class="cmmi-10x-x-109">n,</span>1<span 
+class="cmmi-10x-x-109">∕</span>2<span 
+class="cmmi-10x-x-109">,i</span>) = <span 
+class="cmex-10x-x-109">(</span><span 
+class="cmmi-8">n</span>
+   <span 
+class="cmmi-8">i</span><span 
+class="cmex-10x-x-109">)</span>
+  (1<span 
+class="cmmi-10x-x-109">∕</span>2)<sup><span 
+class="cmmi-8">n</span></sup>. We will denote <span 
+class="cmmi-10x-x-109">b</span>(<span 
+class="cmmi-10x-x-109">n,</span>1<span 
+class="cmmi-10x-x-109">∕</span>2<span 
+class="cmmi-10x-x-109">,i</span>) by <span 
+class="cmmi-10x-x-109">b</span>(<span 
+class="cmmi-10x-x-109">i</span>) here.
+</p><!--l. 264--><p class="noindent" >Using Stirling’s formula, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp327x.png" alt="  n    (n )   1 n
+b(2) =   n  ⋅(2)
+         2
+     = ---n!---⋅(1-)n
+       (n2)!(n2)!  2
+          √2-πn(n )n
+     ≈ --√-------e-----⋅(1-)n
+       [( πn (n∕e2)n∕2)]2  2
+       √2-πn( n)n
+     = -------e--⋅(1-)n
+        πn(n∕e2)n   2
+         √n--⋅nn             1
+     = ----------n × 2−n × √----
+       (n∕2)(n∕2)            2π
+       nn+1∕2−1−n-   − n  --1--
+     =    2−n−1   × 2   × √2-π-
+             1     1
+     = 2×  n−2 × √----
+       ∘ ---       2π
+         -2-
+     =   n π.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 276--><p class="nopar" >
+                                                                                
+
+                                                                                
+</p><!--l. 278--><p class="noindent" >Knowing the probability at <span 
+class="cmmi-10x-x-109">n∕</span>2 is not enough. We would also want to know the probability at
+some distance away from the center, which is <span 
+class="cmmi-10x-x-109">n∕</span>2 + <span 
+class="cmmi-10x-x-109">d</span>. It is slightly troublesome to ﬁnd an
+approximation for that directly, but we can ﬁnd the ratio of that probability and the one we
+have computed just now.
+</p><!--l. 280--><p class="noindent" >Before doing the full computation, we notice
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp328x.png" alt="              n    √ ---   n
+             (-)! ≈  πn ⋅(--)n∕2
+              2           2e    n
+         (n-+ d)! ≈ √ πn-+-2dπ-⋅(2-+-d)n∕2+d
+          2                       e
+          n-       √ ---------  n2-−-d-n∕2−d
+         (2 − d)! ≈  πn − 2dπ ⋅(  e  )
+            n-  2       -n-n
+           [(2 )!] ≈ πn ⋅(2e )
+ n-       n-       ∘ --2-2----2--2  −n   n-    n∕2+d  n-    n∕2−d
+(2 + d)!⋅(2 − d)! ≈  π  n − 4d π  ⋅e   ⋅(2 + d)     (2 − d)
+                 = (n∕2 + d)n∕2+d+1∕2 ⋅(n∕2 − d)n∕2−d+1∕2 ⋅ 2πe−n.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 290--><p class="nopar" >
+</p><!--l. 292--><p class="noindent" >So, the ratio is
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp329x.png" alt="Ratio ≈ nn+1 ⋅2−n−1 ⋅(n∕2 + d)− n∕2− d− 1∕2 ⋅(n∕2− d )− n∕2+d− 1∕2
+         n n+1
+      = (--)   ⋅(n∕2 + d)−n∕2− d−1∕2 ⋅2−n ⋅(n∕2− d )− n∕2+d− 1∕2
+         2
+      = (1+  2d)−n∕2−d−1∕2 ⋅(1− 2d)−n∕2+d−1∕2
+             n                  n
+             2d-2d      4d2-−n∕2+d−1∕2
+      = (1−  n )  ⋅(1−  n2 )
+             2d 2d          1    n2∕(4d2)−2d2∕n
+      ≈ (1−  n-)  ⋅[(1 − n2∕(4d2))       ]
+
+      = (1−  2d)2d ⋅e−2d2∕n
+             n
+      ≈ e−2d2∕n.
+" class="math-display"  /></center></td></tr></table>
+<!--l. 303--><p class="nopar" >
+</p><!--l. 305--><p class="noindent" >Thus, we get
+</p>
+   <center class="math-display" >
+<img 
+src="chp330x.png" alt="  n          2        2
+b(--+ d) ≈ √-----⋅e−2d ∕n.
+  2          2nπ
+" class="math-display"  /></center>
+<!--l. 307--><p class="nopar" >
+</p><!--l. 309--><p class="noindent" >Using what we have obtained so far, it is easy to get
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp331x.png" alt="    X-   1-   -c-       ∑        n-
+P (|n  − 2 |≤  √n-) =   √-    √-b(2 + i)
+                     −c n≤i≤c n
+                        ∑       --2---  −2i2∕n
+                  ≈    √-    √- √2n-π ⋅e
+                     −c n≤i≤c n
+                        ∑     --1-- -2--  − 12(√ 2in-)2
+                  =           √ 2π ⋅√ n ⋅e
+                     −2c≤ 2√in≤2c
+                     ∫ 2c   1     2
+                  ≈      √---e− x∕2dx
+                      −2c  2π
+" class="math-display"  /></center></td></tr></table>
+<!--l. 317--><p class="nopar" >
+which we call as the PDF of a normal distribution with mean 0 and variance 1. We get
+the conclusion that the limit of a binomial distribution as <span 
+class="cmmi-10x-x-109">n </span>increases is a <span 
+class="cmbx-10x-x-109">normal</span>
+<span 
+class="cmbx-10x-x-109">distribution</span>.<a 
+ id="dx1-10002"></a>
+</p><!--l. 320--><p class="noindent" >This is only for the special case of <span 
+class="cmmi-10x-x-109">p </span>= 1<span 
+class="cmmi-10x-x-109">∕</span>2, and de Moivre did some more work for the
+cases when that assumption is not there. Later on, Pierre-Simon Laplace worked
+on that problem further and generalised that approximation to any <span 
+class="cmmi-10x-x-109">p</span>. This is the
+ﬁrst time Mathematicians obtain the formula of a normal distribution PDF, as a
+limit case of binomial distribution. This theorem is therefore named after these two
+contributors, as <span 
+class="cmbx-10x-x-109">de Moivre-Laplace central limit theorem</span><a 
+ id="dx1-10003"></a>. The statement is the
+following:
+</p><!--l. 322--><p class="noindent" >For any two constants <span 
+class="cmmi-10x-x-109">a </span>and <span 
+class="cmmi-10x-x-109">b</span>, <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">infty &#x003C; a &#x003C; b &#x003C; </span>+<span 
+class="cmsy-10x-x-109">∞</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp332x.png" alt="                                  ∫ b
+lim P (a &#x003C; ∘Xn--−-np--&#x003C;  b) = √-1--   e−x2∕2dx.
+n→∞          np(1 − p)         2π  a
+" class="math-display"  /></center>
+<!--l. 324--><p class="nopar" >
+</p><!--l. 326--><p class="noindent" >We will be studying more of limits and central limit theorems in the next Chapter when we
+talk about limit theorems.
+</p>
+<div class="center" 
+>
+<!--l. 328--><p class="noindent" >
+                                                                                
+
+                                                                                
+</p><!--l. 328--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 330--><p class="noindent" >De Moivre’s work stops here. If you look up the proper statement of PDF of a normal
+distribution, you will realise that it is close but not identical to the one above. This is because
+de Moivre’s work did not discover this gem of probability fully, which is also why the
+distribution is never named after him.
+</p><!--l. 332--><p class="noindent" >The next big achievement in the study of normal distribution was made from studying the
+error distribution in the 18th century when scientists tried to get rid of the observation
+errors in astronomical data. Observation errors in the data had been hard to deal
+with, and scientists commonly used arithmetic mean to get rid of the error and
+improve the accuracy. Although everyone used arithmetic mean, there was no proof
+of why that method is so eﬀective at that time. Also, since errors have their own
+distribution, is there any correlation between the error distribution and arithmetic
+mean?
+</p><!--l. 334--><p class="noindent" >The ﬁrst two major work on this problem were completed by Thomas Simpson and
+Laplace. They made several contributions but they failed to provide a very good
+solution.
+</p><!--l. 336--><p class="noindent" >And there we have the entrance of Gauss. Gauss’ involvement in Astronomy began by correctly
+predicting the time and place of the occurrence of Ceres in 1801. He did not publish his
+working right afterwards the prediction, probably because he was not too conﬁdent with his
+method at that moment of time. As he formalised it a few years later in 1809, he published it
+and it was a derivation of normal distribution from the distribution of error using least square
+method.<span class="footnote-mark"><a 
+href="chp35.html#fn4x4"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-10004f4"></a>  I
+will brieﬂy present his work below. However, some of the concepts have yet to be properly
+deﬁned and discussed at this time of the notebook, so the readers can come back to this at a
+later time.
+</p><!--l. 338--><p class="noindent" >The assumption Gauss made was that since the arithmetic mean was such a great
+tool, it must be the same as the maximum likelihood estimator, MLE, of the error
+distribution.
+</p><!--l. 340--><p class="noindent" >Let as have the real value of the parameter as <span 
+class="cmmi-10x-x-109">𝜃 </span>and <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,x</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,x</span><sub><span 
+class="cmmi-8">n</span></sub> be <span 
+class="cmmi-10x-x-109">n </span>independent
+measurements, each with an error <span 
+class="cmmi-10x-x-109">e</span><sub><span 
+class="cmmi-8">i</span></sub> = <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">𝜃</span>. Assume the density function of the error <span 
+class="cmmi-10x-x-109">e</span><sub><span 
+class="cmmi-8">i</span></sub> is
+<span 
+class="cmmi-10x-x-109">f</span>(<span 
+class="cmmi-10x-x-109">e</span>), the joint probability of the <span 
+class="cmmi-10x-x-109">n </span>errors is denoted by
+</p>
+                                                                                
+
+                                                                                
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp333x.png" alt="L(𝜃) = L(𝜃;x1,⋅⋅⋅,xn)
+
+    =  f(e1)⋅⋅⋅f (en)
+    =  f(x1 − 𝜃) ⋅⋅⋅f (xn − 𝜃).
+" class="math-display"  /></center></td></tr></table>
+<!--l. 347--><p class="nopar" >
+</p><!--l. 349--><p class="noindent" >To ﬁnd the MLE, let
+</p>
+   <center class="math-display" >
+<img 
+src="chp334x.png" alt="d log L(𝜃)
+--------- = 0.
+   d𝜃
+" class="math-display"  /></center>
+<!--l. 351--><p class="nopar" >
+</p><!--l. 353--><p class="noindent" >We get
+</p>
+   <center class="math-display" >
+<img 
+src="chp335x.png" alt="∑n  f′(xi − 𝜃)
+    ---------=  0.
+i=1 f(xi − 𝜃)
+" class="math-display"  /></center>
+<!--l. 355--><p class="nopar" >
+</p><!--l. 357--><p class="noindent" >If <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) = <img 
+src="chp336x.png" alt="f′(x)
+f(x)"  class="frac" align="middle" />, the above equation becomes
+</p>
+   <center class="math-display" >
+<img 
+src="chp337x.png" alt="∑n
+   g(xi − 𝜃) = 0.
+i=1
+" class="math-display"  /></center>
+<!--l. 359--><p class="nopar" >
+</p><!--l. 361--><p class="noindent" >Based on the assumption, the value of <span 
+class="cmmi-10x-x-109">𝜃 </span>should be the arithmetic mean <span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span>. This means we will
+have
+</p>
+   <center class="math-display" >
+<img 
+src="chp338x.png" alt="∑n
+   g(xi − ¯x) = 0.
+i=1
+" class="math-display"  /></center>
+<!--l. 363--><p class="nopar" >
+</p><!--l. 365--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">n </span>= 2, we have <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span>) + <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span>) = 0. Since <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span> = <span 
+class="cmsy-10x-x-109">−</span>(<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">2</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span>) as <span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span> = (<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub> + <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">2</span></sub>)<span 
+class="cmmi-10x-x-109">∕</span>2,
+we get
+</p>
+   <center class="math-display" >
+<img 
+src="chp339x.png" alt="g(x) = g(− x ).
+" class="math-display"  /></center>
+<!--l. 367--><p class="nopar" >
+</p><!--l. 369--><p class="noindent" >When <span 
+class="cmmi-10x-x-109">n </span>= <span 
+class="cmmi-10x-x-109">m </span>+ 1, <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmr-8">1</span></sub> = <img 
+src="chp340x.png" alt="⋅⋅⋅"  class="@cdots"  /> = <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">m</span></sub> = <span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">x</span>, <span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">m</span><span 
+class="cmr-8">+1</span></sub> = <span 
+class="cmmi-10x-x-109">mx </span>and <span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span> = 0, we get
+<span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">i</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-109">−</span><span class='accentbar'><span 
+class="cmmi-10x-x-109">x</span></span>) = <span 
+class="cmmi-10x-x-109">mg</span>(<span 
+class="cmsy-10x-x-109">−</span><span 
+class="cmmi-10x-x-109">x</span>) + <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">mx</span>) = 0, which implies
+</p>
+   <center class="math-display" >
+<img 
+src="chp341x.png" alt="mg (x) = g(mx ).
+" class="math-display"  /></center>
+<!--l. 371--><p class="nopar" >
+</p><!--l. 373--><p class="noindent" >The only function that satisﬁes the above two properties is that of <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmmi-10x-x-109">cx </span>for some constant
+<span 
+class="cmmi-10x-x-109">c</span>. This gives us
+</p>
+   <center class="math-display" >
+<img 
+src="chp342x.png" alt="         ---
+       ∘  α  − 1α(x−𝜃)2
+f(x) =   2π-e 2
+" class="math-display"  /></center>
+<!--l. 375--><p class="nopar" > where <span 
+class="cmmi-10x-x-109">α </span>is a positive constant.
+</p><!--l. 378--><p class="noindent" >This is very close to the deﬁnition of a normal distribution PDF, which is why the normal
+distribution is sometimes known as Gaussian distribution to recognise of Gauss’ work. Another
+name of normal distribution, although seldom used nowadays, is Laplace distribution as
+Laplace contributed to the work too and expanded it to central limit theorem. Back then,
+French Mathematicians addressed the distribution as Laplace distribution as Laplace is
+French, and German Mathematicians addressed it as Gaussian distribution as Gauss
+is German. Mathematicians from other countries called it, by the neutral name,
+Laplace-Gaussian distribution.
+</p><!--l. 380--><p class="noindent" >The confusing naming was settled by the recommendation of Henri Poincaré and the publicising of Statistician
+Karl Pearson<span class="footnote-mark"><a 
+href="chp36.html#fn5x4"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-10005f5"></a> ,
+which is the reason why we normally call it as “normal distribution”.
+</p>
+<div class="center" 
+>
+<!--l. 382--><p class="noindent" >
+</p><!--l. 382--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 384--><p class="noindent" >The general formula of the PDF of a normal distribution with mean <span 
+class="cmmi-10x-x-109">μ </span>and variance <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>
+is
+</p>
+   <center class="math-display" >
+<img 
+src="chp343x.png" alt="       --1---− (x− μ)2∕2σ2
+f(x) = √2-πσ e
+" class="math-display"  /></center>
+<!--l. 386--><p class="nopar" >
+</p><!--l. 388--><p class="noindent" >The expectation and variance need not to be found since they are required parameters in order
+to deﬁne the normal distribution.
+                                                                                
+
+                                                                                
+</p><!--l. 390--><p class="noindent" >The MGF can be found using the PDF. We will be using the standardised normal distribution
+which is the one with mean 0 and variance 1. The random variable is usually denoted by <span 
+class="cmmi-10x-x-109">Z </span>if
+it is normalised.
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp344x.png" alt="MX  (t) = E[ezt]
+         ∫ ∞
+       =     eztf(z)dz
+         ∫−∞
+           ∞  zt--1--− z2∕2
+       =  −∞ e  √ 2πe     dz
+         ∫ ∞      2   1
+       =     ezt−z ∕2 √---dz
+         ∫−∞          2π
+           ∞  − (z−t)2∕2 t2∕2--1--
+       =  −∞ e        e   √ 2π dz
+          2  ∫ ∞        2   1
+       = et∕2     e−(z− t) ∕2√---dz
+              − ∞           2π
+       = et2∕2
+" class="math-display"  /></center></td></tr></table>
+<!--l. 401--><p class="nopar" >
+as the expression under the integral is the PDF of a normal distribution with mean <span 
+class="cmmi-10x-x-109">t </span>and
+variance 1.
+</p><!--l. 404--><p class="noindent" >For the MGF of a general normal distribution <span 
+class="cmmi-10x-x-109">N</span>(<span 
+class="cmmi-10x-x-109">μ,σ</span><sup><span 
+class="cmr-8">2</span></sup>), we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+                                                                                
+
+                                                                                
+<img 
+src="chp345x.png" alt="MX  (t) = E[ext]
+         ∫ ∞
+       =     extf(x)dz
+         ∫−∞
+           ∞  xt---1--- −(x− μ)2∕(2σ2)
+       =     e  √2-πσ2-e           dx
+          −∞
+" class="math-display"  /></center></td></tr></table>
+<!--l. 411--><p class="nopar" >
+</p><!--l. 413--><p class="noindent" >Deﬁne <span 
+class="cmmi-10x-x-109">z </span>= <img 
+src="chp346x.png" alt="x−σμ-"  class="frac" align="middle" />, which implies <span 
+class="cmmi-10x-x-109">x </span>= <span 
+class="cmmi-10x-x-109">zσ </span>+ <span 
+class="cmmi-10x-x-109">μ</span>.
+</p><!--l. 415--><p class="noindent" >Substituting it back the equation, we get
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp347x.png" alt="            ∫
+M   (t) = eμt  ∞ ezσt−z2∕2 √-1---|dx|dz
+  X          −∞           2π σ2 dz
+            ∫ ∞       2   1
+       = eμt    ezσt−z ∕2 √---dz
+             −∞           2π
+       = eμt+(σ2t2)∕2
+" class="math-display"  /></center></td></tr></table>
+<!--l. 422--><p class="nopar" >
+since <span 
+class="cmmi-10x-x-109">dx∕dz </span>= <span 
+class="cmmi-10x-x-109">σ </span>and by replacing <span 
+class="cmmi-10x-x-109">t </span>with <span 
+class="cmmi-10x-x-109">σt </span>of the ﬁnal line of the MGF derivation of
+standardised normal distribution above.
+</p>
+<div class="center" 
+>
+<!--l. 425--><p class="noindent" >
+</p><!--l. 425--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+                                                                                
+
+                                                                                
+<!--l. 427--><p class="noindent" >An useful property of normal distribution is that when we have multiple independent normal
+random variables, the summation of them become a new normal random variable. Let <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">j</span></sub> be
+independent random variables with distribution <span 
+class="cmmi-10x-x-109">N</span>(<span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup>). Then, <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmr-8">1</span></sub> + <img 
+src="chp348x.png" alt="⋅⋅⋅"  class="@cdots"  /> + <span 
+class="cmmi-10x-x-109">X</span><sub><span 
+class="cmmi-8">n</span></sub> has the
+normal distribution <span 
+class="cmmi-10x-x-109">N</span>(<span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmmi-8">j</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmex-10x-x-109">∑</span>
+  <sub><span 
+class="cmmi-8">j</span><span 
+class="cmr-8">=1</span></sub><sup><span 
+class="cmmi-8">n</span></sup><span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmmi-8">j</span></sub><sup><span 
+class="cmr-8">2</span></sup>).
+</p><!--l. 429--><p class="noindent" >This property can be shown using MGF. When <span 
+class="cmmi-10x-x-109">n </span>= 2, we have
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp349x.png" alt="MX1+X2  (t) = MX1 (t)⋅MX2 (t)
+           = eμ1t+(σ12t2)∕2 ⋅eμ2t+(σ22t2)∕2
+                        2   2 2
+           = e(μ1+μ2)t+ (σ1 +σ2 )t ∕2,
+" class="math-display"  /></center></td></tr></table>
+<!--l. 436--><p class="nopar" >
+which is the moment generating function of <span 
+class="cmmi-10x-x-109">N</span>(<span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmr-8">1</span></sub> + <span 
+class="cmmi-10x-x-109">μ</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmr-8">1</span></sub><sup><span 
+class="cmr-8">2</span></sup> + <span 
+class="cmmi-10x-x-109">σ</span><sub><span 
+class="cmr-8">2</span></sub><sup><span 
+class="cmr-8">2</span></sup>). This process with induction
+can prove the statement above.
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3.5   </span> <a 
+ id="x1-110003.5"></a>Other Distributions</h3>
+<!--l. 441--><p class="noindent" >There are many types of distributions other than the ones we have already mentioned earlier.
+We will be going to cover some of them here and highlight their relationships.
+</p>
+<div class="center" 
+>
+<!--l. 443--><p class="noindent" >
+</p><!--l. 443--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 445--><p class="noindent" >Sometimes, an event will happen after a period of time regardless of when we start the
+                                                                                
+
+                                                                                
+observation. For example, the time until a given radioactive particle decays will be
+independent of when you start with counting the time. This property is known as
+‘memorylessness’<a 
+ id="dx1-11001"></a> or ‘Markov property’ which we will study further in Chapter 6. If we have a
+CDF <span 
+class="cmmi-10x-x-109">F</span>(<span 
+class="cmmi-10x-x-109">X</span>) and its tail distribution <span class='accentbar'><span 
+class="cmmi-10x-x-109">F</span></span>(<span 
+class="cmmi-10x-x-109">X</span>) = 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">F</span>(<span 
+class="cmmi-10x-x-109">X</span>) for random variable <span 
+class="cmmi-10x-x-109">X</span>, it will be
+memoryless if we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp350x.png" alt="P(X  &#x003E; s+ t|X &#x003E; t) = P(X  &#x003E; s)
+" class="math-display"  /></center>
+<!--l. 447--><p class="nopar" > or
+</p>
+   <center class="math-display" >
+<img 
+src="chp351x.png" alt="F¯(s+ t)
+--¯-----=  ¯F(s).
+  F(t)
+" class="math-display"  /></center>
+<!--l. 450--><p class="nopar" >
+</p><!--l. 452--><p class="noindent" >Not a lot of probability distributions have that memoryless property. In fact, there are only
+two such distributions - <span 
+class="cmbx-10x-x-109">exponential distribution</span><a 
+ id="dx1-11002"></a> for the continuous case and <span 
+class="cmbx-10x-x-109">geometric</span>
+<span 
+class="cmbx-10x-x-109">distribution</span><a 
+ id="dx1-11003"></a> for the discrete case.
+</p><!--l. 454--><p class="noindent" >Let us focus on the continuous case here. Notice we have the equation <img 
+src="chp352x.png" alt="¯F(s+t)-
+ ¯F(t)"  class="frac" align="middle" /> = <span class='accentbar'><span 
+class="cmmi-10x-x-109">F</span></span>(<span 
+class="cmmi-10x-x-109">s</span>), we can
+replace <span class='accentbar'><span 
+class="cmmi-10x-x-109">F</span></span>(<span 
+class="cmmi-10x-x-109">X</span>) by <span 
+class="cmmi-10x-x-109">g</span>(<span 
+class="cmmi-10x-x-109">x</span>) and rewrite the equation into
+</p>
+   <center class="math-display" >
+<img 
+src="chp353x.png" alt="g(s + t) = g(s)g(t)
+" class="math-display"  /></center>
+<!--l. 456--><p class="nopar" > after some simple manipulation.
+</p><!--l. 459--><p class="noindent" >Now, the task is to ﬁnd all such <span 
+class="cmmi-10x-x-109">g </span>for the above equality to hold. Note that when <span 
+class="cmmi-10x-x-109">s </span>= <span 
+class="cmmi-10x-x-109">t </span>= 1, we
+have <span 
+class="cmmi-10x-x-109">g</span>(2) = [<span 
+class="cmmi-10x-x-109">g</span>(1)]<sup><span 
+class="cmr-8">2</span></sup>, and when <span 
+class="cmmi-10x-x-109">s </span>= <span 
+class="cmmi-10x-x-109">t </span>= 1<span 
+class="cmmi-10x-x-109">∕</span>2, we have <span 
+class="cmmi-10x-x-109">g</span>(1) = [<span 
+class="cmmi-10x-x-109">g</span>(1<span 
+class="cmmi-10x-x-109">∕</span>2)]<sup><span 
+class="cmr-8">2</span></sup> and <span 
+class="cmmi-10x-x-109">g</span>(1<span 
+class="cmmi-10x-x-109">∕</span>2) = [<span 
+class="cmmi-10x-x-109">g</span>(1)]<sup><span 
+class="cmr-8">1</span><span 
+class="cmmi-8">∕</span><span 
+class="cmr-8">2</span></sup>. By
+extension of these two equalities, we get
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp354x.png" alt="g(a) = [g(1)]a
+
+     = elng(1)a
+     = e−λa
+" class="math-display"  /></center></td></tr></table>
+<!--l. 466--><p class="nopar" >
+where <span 
+class="cmmi-10x-x-109">λ </span>= <span 
+class="cmsy-10x-x-109">−</span>ln<span 
+class="cmmi-10x-x-109">g</span>(1).
+</p><!--l. 469--><p class="noindent" >This is the complementary CDF, and the CDF is <span 
+class="cmmi-10x-x-109">F</span><sub><span 
+class="cmmi-8">X</span></sub>(<span 
+class="cmmi-10x-x-109">x</span>) = 1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">λx</span></sup> for positive <span 
+class="cmmi-10x-x-109">x</span>. By
+diﬀerentiating that, we get PDF <span 
+class="cmmi-10x-x-109">f</span>(<span 
+class="cmmi-10x-x-109">x</span>) = <span 
+class="cmmi-10x-x-109">λe</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">λx</span></sup>.
+</p><!--l. 471--><p class="noindent" >Using the PDF, we can get its MGF. We have
+</p>
+   <center class="math-display" >
+<img 
+src="chp355x.png" alt="                 ∫ ∞
+MX (t) = E [etX ] =   etxλe−λxdx = --λ--.
+                  0               λ − t
+" class="math-display"  /></center>
+<!--l. 473--><p class="nopar" >
+</p><!--l. 475--><p class="noindent" >We can get the expectation and variance of exponential distribution by diﬀerentiating the
+MGF. So,
+</p>
+   <center class="math-display" >
+<img 
+src="chp356x.png" alt="E[X ] = M ′X (0) = 1
+                λ
+" class="math-display"  /></center>
+<!--l. 477--><p class="nopar" > and
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp357x.png" alt="             2        2     ′′         ′   2   -2-   1-2   -1-
+Var(X ) = E[X ]−  E[X] =  M X(0)− (M X (0)) = λ2 − (λ ) = λ2 .
+" class="math-display"  /></center></td></tr></table>
+<!--l. 481--><p class="nopar" >
+</p>
+<div class="center" 
+>
+<!--l. 483--><p class="noindent" >
+</p><!--l. 483--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 485--><p class="noindent" >Another way to get exponential distribution is to use Poisson distribution. Exponential
+distribution describes the time until an unlikely event to happen. An unlikely event’s
+occurrence can be modelled by a Poisson distribution, and we can divide the time into a series
+of discrete time with length 1.
+</p><!--l. 487--><p class="noindent" >First, for a Poisson random variable <span 
+class="cmmi-10x-x-109">X </span>with expectation <span 
+class="cmmi-10x-x-109">λ</span>, we have
+</p>
+   <center class="math-display" >
+<img 
+src="chp358x.png" alt="P (X = 0) = e−λ
+" class="math-display"  /></center>
+<!--l. 489--><p class="nopar" > and if it occurs for <span 
+class="cmmi-10x-x-109">t </span>times non-stop, its probability is<span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">λt</span></sup>. This gives us the probability
+<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">T &#x003E; t</span>) where <span 
+class="cmmi-10x-x-109">T </span>stands for the ﬁrst time the unlikely event occurs. It is a tail distribution,
+the corresponding CDF is
+</p>
+   <center class="math-display" >
+<img 
+src="chp359x.png" alt="FT(t) = 1 − P (T &#x003E; t) = 1 − e−λt
+" class="math-display"  /></center>
+<!--l. 492--><p class="nopar" > and the PDF obtained after diﬀerentiation is
+</p>
+   <center class="math-display" >
+<img 
+src="chp360x.png" alt="          −λt
+fT (t) = λe
+" class="math-display"  /></center>
+                                                                                
+
+                                                                                
+<!--l. 495--><p class="nopar" > which is same as the function we obtained from the other method.
+</p>
+<div class="center" 
+>
+<!--l. 498--><p class="noindent" >
+</p><!--l. 498--><p class="noindent" ><span 
+class="cmsy-10x-x-109">−</span></p></div>
+<!--l. 500--><p class="noindent" >The value of the above derivation is that we can extend it further to obtain the <span 
+class="cmbx-10x-x-109">gamma</span>
+<span 
+class="cmbx-10x-x-109">distribution</span><a 
+ id="dx1-11004"></a>.
+</p><!--l. 502--><p class="noindent" >Instead of the ﬁrst occurrence of an event, let us ﬁnd the <span 
+class="cmmi-10x-x-109">k</span>-th occurrence of that event. With
+each of 0-th to <span 
+class="cmmi-10x-x-109">k </span><span 
+class="cmsy-10x-x-109">− </span>1-th occurrence, the corresponding probability from the Poisson
+distribution will change accordingly. The CDF will then be
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="chp361x.png" alt="FT (t) = P(T ≤ t)
+      = 1− P (T &#x003E; t)
+      = 1− P (0,1,...k − 1 events in [0,t])
+
+           k∑−1 (λt)xe−-λt
+      = 1−        x!
+           x=0
+" class="math-display"  /></center></td></tr></table>
+<!--l. 510--><p class="nopar" >
+and by diﬀerentiating, we get the PDF
+</p>
+   <table 
+class="equation-star"><tr><td>
+                                                                                
+
+                                                                                
+   <center class="math-display" >
+<img 
+src="chp362x.png" alt="              k−1     x− λt
+f (t) = d-(1− ∑   (λt)-e---)
+ T      dt    x=0    x!
+                     k−1
+        d-     − λt  ∑  (λt)xe−λt
+     =  dt(1− e    −        x!   )
+                     x=1
+          −λt  k∑−1 1        x−1     −λt         x  − λt
+     =  λe   −     x!(x⋅(λt)   ⋅ λ⋅e    − λ⋅(λt) ⋅e   )
+               x=1
+                      k∑−1 1
+     =  λe−λt − λ ⋅e−λt   --(x⋅(λt)x−1 − (λt)x)
+                      x=1 x!
+                      k∑−1     x       x−1
+     =  λe−λt + λ ⋅e−λt   ((λt)--− (λt)---)
+                      x=1   x!    (x − 1)!
+                           k− 1
+     =  λe−λt + λ ⋅e−λt((λt)-- − 1)
+                       (k − 1)!
+        λ-⋅e−λt(λt)k−1-
+     =     (k − 1)!
+                     -t--
+     =  ----1----ke− (1∕λ)(t)k− 1
+        Γ (k)(1∕λ)
+" class="math-display"  /></center></td></tr></table>
+<!--l. 523--><p class="nopar" >
+where Γ(<span 
+class="cmmi-10x-x-109">r</span>) is the gamma function with Γ(<span 
+class="cmmi-10x-x-109">r</span>) = <span 
+class="cmex-10x-x-109">∫</span>
+ <sub><span 
+class="cmr-8">0</span></sub><sup><span 
+class="cmsy-8">∞</span></sup><span 
+class="cmmi-10x-x-109">z</span><sup><span 
+class="cmmi-8">r</span><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">1</span></sup><span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">z</span></sup><span 
+class="cmmi-10x-x-109">dz</span>, and the two parameters are
+scale 1<span 
+class="cmmi-10x-x-109">∕λ </span>and shape <span 
+class="cmmi-10x-x-109">k</span>.
+</p><!--l. 526--><p class="noindent" >We will state without working for the following properties: the MGF of it is (1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">t∕λ</span>)<sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">k</span></sup>, the
+expectation is <span 
+class="cmmi-10x-x-109">k∕λ </span>and the variance is <span 
+class="cmmi-10x-x-109">k∕λ</span><sup><span 
+class="cmr-8">2</span></sup>.
+</p><!--l. 528--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3.6   </span> <a 
+ id="x1-120003.6"></a>Summary</h3>
+                                                                                
+
+                                                                                
+<!--l. 530--><p class="indent" >   </p><figure class="float" 
+>
+                                                                                
+
+                                                                                
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+ 
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1" /></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2" /></colgroup><colgroup id="TBL-2-3g"><col 
+id="TBL-2-3" /></colgroup><colgroup id="TBL-2-4g"><col 
+id="TBL-2-4" /></colgroup><colgroup id="TBL-2-5g"><col 
+id="TBL-2-5" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-1"  
+class="td11">           </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-2"  
+class="td11">     PMF / PDF        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-3"  
+class="td11">E[<span 
+class="cmmi-10x-x-109">X</span>]</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-4"  
+class="td11"> Var[<span 
+class="cmmi-10x-x-109">X</span>]  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-1-5"  
+class="td11">    MGF      </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-1"  
+class="td11"> Bernoulli(<span 
+class="cmmi-10x-x-109">p</span>) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-2"  
+class="td11">     <span 
+class="cmmi-10x-x-109">p</span><sup><span 
+class="cmmi-8">x</span></sup>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>)<sup><span 
+class="cmr-8">1</span><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">x</span></sup>         </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-3"  
+class="td11">  <span 
+class="cmmi-10x-x-109">p  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-4"  
+class="td11"> <span 
+class="cmmi-10x-x-109">p</span>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-2-5"  
+class="td11"> (1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>) + <span 
+class="cmmi-10x-x-109">pe</span><sup><span 
+class="cmmi-8">t</span></sup>  </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-1"  
+class="td11">Binomial(<span 
+class="cmmi-10x-x-109">n,p</span>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-2"  
+class="td11">    <img 
+src="chp363x.png" alt="( )
+ nx"  /><span 
+class="cmmi-10x-x-109">p</span><sup><span 
+class="cmmi-8">x</span></sup>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>)<sup><span 
+class="cmmi-8">n</span><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">x</span></sup>       </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-3"  
+class="td11"> <span 
+class="cmmi-10x-x-109">np </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-4"  
+class="td11"><span 
+class="cmmi-10x-x-109">np</span>(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-3-5"  
+class="td11">[(1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">p</span>) + <span 
+class="cmmi-10x-x-109">pe</span><sup><span 
+class="cmmi-8">t</span></sup>]<sup><span 
+class="cmmi-8">n</span></sup></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-1"  
+class="td11">  Poisson(<span 
+class="cmmi-10x-x-109">λ</span>)  </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-2"  
+class="td11">     (<span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">λ</span></sup><span 
+class="cmmi-10x-x-109">λ</span><sup><span 
+class="cmmi-8">x</span></sup>)<span 
+class="cmmi-10x-x-109">∕</span>(<span 
+class="cmmi-10x-x-109">x</span>!)        </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-3"  
+class="td11"> <span 
+class="cmmi-10x-x-109">λ  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-4"  
+class="td11">   <span 
+class="cmmi-10x-x-109">λ    </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-4-5"  
+class="td11">   <span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">λ</span><span 
+class="cmr-8">(</span><span 
+class="cmmi-8">e</span><sup><span 
+class="cmmi-6">t</span></sup><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">1)</span>
+           </sup>       </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-1"  
+class="td11">Normal(<span 
+class="cmmi-10x-x-109">μ,σ</span><sup><span 
+class="cmr-8">2</span></sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-2"  
+class="td11">(1<span 
+class="cmmi-10x-x-109">∕</span>(<img 
+src="chp364x.png" alt="√2-π-"  class="sqrt"  /><span 
+class="cmmi-10x-x-109">σ</span>))(<span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmr-8">(</span><span 
+class="cmmi-8">x</span><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">μ</span><sup><span 
+class="cmr-6">2</span></sup><span 
+class="cmr-8">)</span><span 
+class="cmmi-8">∕</span><span 
+class="cmr-8">(2</span><span 
+class="cmmi-8">σ</span><sup><span 
+class="cmr-6">2</span></sup><span 
+class="cmr-8">)</span>
+                  </sup>)</td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-3"  
+class="td11"> <span 
+class="cmmi-10x-x-109">μ  </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-4"  
+class="td11">   <span 
+class="cmmi-10x-x-109">σ</span><sup><span 
+class="cmr-8">2</span></sup>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-5-5"  
+class="td11">  <span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmmi-8">μt</span><span 
+class="cmr-8">+(</span><span 
+class="cmmi-8">σ</span><sup><span 
+class="cmr-6">2</span></sup><span 
+class="cmmi-8">t</span><sup><span 
+class="cmr-6">2</span></sup><span 
+class="cmr-8">)</span><span 
+class="cmmi-8">∕</span><span 
+class="cmr-8">2</span>
+                 </sup>    </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-1"  
+class="td11">   Exp(<span 
+class="cmmi-10x-x-109">λ</span>)     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-2"  
+class="td11">        <span 
+class="cmmi-10x-x-109">λe</span><sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">λx</span></sup>              </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-3"  
+class="td11"> 1<span 
+class="cmmi-10x-x-109">∕λ </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-4"  
+class="td11">  1<span 
+class="cmmi-10x-x-109">∕λ</span><sup><span 
+class="cmr-8">2</span></sup>    </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-6-5"  
+class="td11">  <span 
+class="cmmi-10x-x-109">λ∕</span>(<span 
+class="cmmi-10x-x-109">λ </span><span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">t</span>)    </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-1"  
+class="td11"> Gamma(<span 
+class="cmmi-10x-x-109">k,𝜃</span>) </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-2"  
+class="td11">   <img 
+src="chp365x.png" alt="---1---
+Γ (k)(𝜃)k"  class="frac" align="middle" /><span 
+class="cmmi-10x-x-109">e</span><sup><span 
+class="cmsy-8">−</span><img 
+src="chp366x.png" alt="-t
+(𝜃)"  class="frac" align="middle" />
+        </sup>(<span 
+class="cmmi-10x-x-109">t</span>)<sup><span 
+class="cmmi-8">k</span><span 
+class="cmsy-8">−</span><span 
+class="cmr-8">1</span></sup>      </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-3"  
+class="td11"> <span 
+class="cmmi-10x-x-109">k𝜃 </span></td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-4"  
+class="td11">  <span 
+class="cmmi-10x-x-109">k𝜃</span><sup><span 
+class="cmr-8">2</span></sup>     </td><td  style="white-space:nowrap; text-align:center;" id="TBL-2-7-5"  
+class="td11">  (1 <span 
+class="cmsy-10x-x-109">− </span><span 
+class="cmmi-10x-x-109">𝜃t</span>)<sup><span 
+class="cmsy-8">−</span><span 
+class="cmmi-8">k</span></sup>    </td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:center;" id="TBL-2-8-1"  
+class="td11">            </td></tr></table></div>
+                                                                                
+
+                                                                                
+   </figure>
+
+
+
+                                                                                
+
+                                                                                
+</p>
+
+<br><br>
+
+<a href="../SPT1.html" style="text-align: left; font-family: 'Times';font-size: large;">Back</a>  
+<a href="../chp4/chp4.html" style="float: right; font-family: 'Times';font-size: large;">Next Chapter</a>
+
+<br><br>
+
+
+
+
+
+
+                </div>
+            </div> 
+
+
+
+            
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+   

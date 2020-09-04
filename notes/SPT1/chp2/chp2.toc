@@ -1,0 +1,12 @@
+\contentsline {chapter}{Preface}{ii}{chapter*.2}% 
+\contentsline {part}{I\hspace {1em}Probability Theory}{1}{part.1}% 
+\contentsline {chapter}{\numberline {1}Fundamentals}{2}{chapter.1}% 
+\contentsline {chapter}{\numberline {2}Random Variables}{3}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Overview}{3}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Functions for Probabilities}{4}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}PMF and PDF}{4}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}CDF}{6}{subsection.2.2.2}% 
+\contentsline {section}{\numberline {2.3}Expectation, Variance, and Moments}{7}{section.2.3}% 
+\contentsline {subsection}{\numberline {2.3.1}Expectation}{7}{subsection.2.3.1}% 
+\contentsline {subsection}{\numberline {2.3.2}Variance and Standard Deviation}{9}{subsection.2.3.2}% 
+\contentsline {subsection}{\numberline {2.3.3}Moment}{10}{subsection.2.3.3}% 

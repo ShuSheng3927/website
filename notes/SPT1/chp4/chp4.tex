@@ -1,0 +1,259 @@
+\documentclass[11pt, a4paper, oneside]{book}
+\usepackage{amsmath,amsthm,amssymb, enumitem, etoolbox, mathtools, centernot, microtype, geometry, tcolorbox,lipsum, makeidx, csquotes, lscape, graphicx, wrapfig, titling}
+\usepackage[colorlinks,linkcolor=black,anchorcolor=black,
+citecolor=green,CJKbookmarks=True]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage[font={it, small}]{caption}
+
+\urlstyle{same}
+
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\emph{Probability Theory and Statistics Notebook I}}
+\cfoot{\thepage}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+
+\newcommand{\var}[1]{\text{Var}(#1)}
+\newcommand{\cov}[1]{\text{Cov}(#1)}
+\newcommand{\E}[1]{\text{E}[#1]}
+
+\newcommand{\poisson}[1]{\text{Poisson}(#1)}
+\newcommand{\gammaf}[1]{\Gamma(#1)}
+\newcommand{\normal}[2]{\text{Normal}(#1, #2)}
+\newcommand{\gammad}[2]{\text{Gamma}(#1, #2)}
+\newcommand{\binomial}[2]{\text{Binom}(#1, #2)}
+\newcommand{\markov}[2]{\text{Markov}(#1, #2)}
+\newcommand{\Exp}[1]{\text{Exp}(#1)}
+
+
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\cprocess{\{N(t), t\ge 0\}}
+\def\lra{\leftrightarrow}
+
+\newcommand{\breaking}{%
+    \begin{center}
+    $-$
+    \end{center}%
+}
+
+\makeindex
+
+\setlength{\parskip}{0.5em}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
+
+
+
+\begin{document}
+\frontmatter 
+
+\title{\huge Probability Theory and Statistics Notebook I}
+\author{\Large{Zhang Ruiyang}}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\mainmatter
+
+\part{Probability Theory} 
+
+\chapter{Fundamentals}
+\chapter{Random Variables}
+\chapter{Common Distributions}
+
+\newpage
+
+
+\chapter{Limit Theorem}
+
+\section{Common Inequalities and Convergence}
+
+\noindent Inequalities and types of convergence are essential for the development of law of large numbers, central limit theorem and many other identities in the study of Probability Theory and Statistics. 
+
+\noindent The importance of inequalities is that they enable us to derive bounds on probabilities when only the mean or both the mean and the variance of the probability distribution are known. Of course, if the actual distribution were known, then the desired probabilities could be computed exactly and we would not need to resort to bounds. However, this kind of case is, in reality, quite rare. Statistical theory is literally brimming with inequalities and identities.
+
+\noindent Convergence is more commonly used in the study of theory of probability. It formalises the idea that a sequence of essentially random or unpredictable events can sometimes be expected to settle down into a behaviour that is essentially unchanging when items far enough into the sequence are studied. 
+
+\breaking
+
+\noindent We will be talking about Markov inequality as well as Chebyshev inequality in this notebook. There are other kinds of useful inequalities, but for the purpose of this notebook, we will mostly use these two. Other kinds of inequalities will be brought up separately when there is such need. 
+
+\noindent We will start with \textbf{Markov inequality}\index{Markov Inequality}, which is named after Russian Mathematician Andrey Markov. Markov's name will appear again in Chapter 6 when we talk about Markov chains.  
+
+\noindent First, we have a nonnegative random variable $X$. Let us define an indicator function $I$. For $a > 0$, let \[
+I = 
+\begin{cases} 
+      1 \text{ if }X \ge a\\
+      0 \text{ otherwise}\\
+\end{cases}
+\]
+and note that, since $X > 0$, \[
+I \le \frac{X}{a}.
+\]
+
+\noindent Taking the expectations of the preceding inequality yields \[
+\E{I} = P(X \ge a) \ge \frac{\E{X}}{a}.
+\]
+
+\noindent This is the Markov inequality. If $X$ is a random variable that takes only nonnegative values, then for any value $a > 0$, \[
+P(X \ge a) \le \frac{\E{X}}{a}. 
+\]
+
+\noindent We can extend it from solely the random variable to monotonically increasing functions. If $\varphi$ is a monotonically increasing nonnegative function for the nonnegative real numbers, $X$ is a random variable, $a \ge 0$ and $\varphi(a) > 0$, then \[
+P(|X| \ge a) \le \frac{\E{\varphi(|X|)}}{\varphi(a)}. 
+\]
+
+\noindent This gives us the extended Markov inequality\index{Markov Inequality!extended}. 
+
+\noindent We can also use higher moments of $X$ as the monotonically increasing nonnegative function. This gives us \[
+P(|X| \ge a) \le \frac{|X|^n}{a^n}. 
+\]
+
+\noindent Another useful corollary of the Markov inequality is the \textbf{Chernoff bound}\index{Chernoff Bound} named after Herman Chernoff. The statement of Markov inequality involves $P(X \ge a)$, and if we raise both $X$ and $a$ to $e^t$, we get $P(e^{tX} \ge e^{ta})$ and the inequality becomes\[
+P(e^{tX} \ge e^{ta}) \le \frac{\E{e^{tX}}}{e^{ta}} = e^{-ta} \E{e^{tX}}
+\]
+which is the statement of Chernoff bound for positive $t$. 
+
+\breaking
+
+\noindent Markov inequality has a special case, and that is known as the \textbf{Chebyshev inequality}\index{Chebysehv Inequality}, named after Russian Mathematician Pafnuty Chebyshev.\footnote{Fun fact, Chebyshev is Markov's advisor at Saint Petersburg State University in Russia.} This is the most famous, and perhaps most useful, probability inequality. Its usefulness comes from its wide applicability. 
+
+\noindent To construct it, let us first have a random variable $X$ with finite mean $\mu$ and variance $\sigma^2$. We notice that $(X - \mu)^2$ is a nonnegative random variable. By applying Markov Inequality with $a = k^2$, we obtain \[
+P((X - \mu)^2 \ge k^2) \le \frac{\E{(X - \mu)^2}}{k^2}.
+\]
+
+\noindent It is not hard to see that $(X - \mu)^2 \ge k^2$ and $|X - \mu| > k$ are two equivalent statements. So the above equation can be rewritten as \[
+P(|X - \mu| > k) \le \frac{\E{(X - \mu)^2}}{k^2} = \frac{\sigma^2}{k^2}.
+\]
+
+\noindent So, if $X$ is a random variable with finite mean $\mu$ and variance $\sigma^2$, then for any value $k > 0$, we get the Chebyshev inequality \[
+P(|X - \mu| \ge k) \le \frac{\sigma^2}{k^2}.
+\]
+
+\noindent Chebyshev inequality does not give very good bounds, but this is based on the fact that minimum conditions are required. We can get tighter bounds if we add in more conditions for different circumstances. Also, many other inequalities are similar in spirit to Chebychev's. 
+
+\breaking
+
+\noindent We will be talking about three kinds of convergence here. They are convergence in distribution, convergence in probability, and almost surely convergence.
+
+\noindent The weakest form of convergence is \textbf{convergence in distribution}\index{Convergence!in distribution}. Other names of it include convergence in law and converge weakly. This is the weakest since all the other types of convergence can imply this statement. This form of convergence essentially means we increasingly expect to see the next outcome in a sequence of random experiments becoming better and better modelled by a given probability distribution. With that, it is not hard to notice the statement.
+
+\noindent A sequence $X_1, X_2 \dots$ of real valued random variables is said to converge in distribution to a random variable $X$ if\[
+\lim_{n\to \infty} F_n(x) = F(x),
+\]
+for every number $x\in \R$ at which $F$ is continuous. Here, $F_n$ and $F$ are CDFs of random variable $X_n$ and $X$ respectively. 
+
+\noindent The next form of convergence is \textbf{convergence in probability}\index{Convergence!in probability}. This basically means the probability of an ``unusual" outcome becomes smaller and smaller as the sequence progresses. The formal statement is below.
+
+\noindent A sequence $X_1, X_2 \dots$ of real valued random variables is said to converge in probability to a random variable $X$ if for all $\varepsilon > 0$, \[
+\lim_{n\to \infty} P(|X_n - X| > \varepsilon) = 0.
+\]
+
+\noindent The last type of convergence we will be talking about here is that of \textbf{convergence almost surely}\index{Convergence!almost surely}. It is sometimes denoted as convergence a.s. in short. This is similar to pointwise convergence in analysis, where the convergence happens for every pair of points. The formal statement of convergence almost surely is the following. 
+
+\noindent A sequence $X_1, X_2 \dots$ of real valued random variables is said to converge almost surely to a random variable $X$ if\[
+P(\lim_{n\to \infty} X_n = X) = 1.
+\]
+
+\noindent We should note that convergence almost surely implies convergence in probability, and convergence in probability implies convergence in distribution. 
+
+\section{Law of Large Number}
+
+\noindent In a more intuitive manner, the law of large number (LLN) describes that when an experiment is repeated for many times, the average of these results will converge to the expectation value of the experiment.
+
+\noindent Consider a sequence of independent and identically distributed (i.i.d.) random variables $X_1, X_2, \dots,$, each with mean $\mu$ and variance $\sigma^2$. The sample mean is $\frac{X_1 + \dots + X_n}{n}$, which gives us\[
+\E{\frac{X_1 + \dots + X_n}{n}} = \frac{n\mu}{n} = \mu
+\]
+and \[
+\var{ \frac{X_1 + \dots + X_n}{n}} = \frac{\sigma^2 n}{n^2} =\frac{\sigma^2}{n}
+\]
+since they are independent. 
+
+\noindent We apply Chebyshev inequality and get \[
+P\Big\{ \Big|  \frac{X_1 + \dots + X_n}{n} - \mu \Big|  \ge \varepsilon \Big\} \le \frac{\sigma^2}{n\varepsilon^2}.
+\]
+
+\noindent This gives us the \textbf{weak law of large number}\index{Law of Large Number!Weak}. Let $X_1, X_2, \dots,$ be a sequence of independent and identically distributed random variables with mean $\mu$. For any $\varepsilon > 0$, we have\[
+\lim_{n \to \infty} P\Big\{\big| \frac{X_1 + \cdots + X_n}{n} - \mu \big| \ge \varepsilon\Big\} = 0
+\]
+or equivalently, \[
+\lim_{n \to \infty} P\Big\{\big| \frac{X_1 + \cdots + X_n}{n} - \mu \big| < \varepsilon\Big\} = 1.
+\]
+
+\noindent The weak law of large numbers was originally proven by Jakob Bernoulli for the special case where the $X_i$ are Bernoulli random variables. His statement and proof of this theorem were presented in his book \emph{Ars Conjectandi}. Note that because Chebyshev’s inequality was not known in Bernoulli’s time, Bernoulli had to resort to a quite ingenious proof to establish the result. The general form of the weak law of large numbers presented just now was proved by the Soviet Mathematician Aleksandr Khinchin.
+
+\noindent We have been dealing with identical and independent random variables earlier on. It is possible to remove the identical assumption while having a similar large number law. 
+
+\noindent Suppose we have a sequence of independent random variables $X_1, X_2, \dots$, each $X_j$ has mean $\mu_j$ and variance $\sigma^2_j$. Moreover, let us suppose there exists a constant $M < \infty$ such that for all $j$, $\sigma^2_j \le M$.
+
+\noindent Let us centralise all the random variables to get $X_j^0 = X_j - \mu_j$ and $S_n^0 =\sum_{j=1}^n X_j - \mu_j$. It is not hard to see that $\E{S_n^0} = 0$ as expectation equals to mean. In addition, due to independence, we have\[
+\E{(S_n^0)^2} = \var{S_n^0} = \sum_{j=1}^n \var{X_j} = \sum_{j=1}^n \sigma^2_j.
+\]
+
+\noindent From the assumptions, we have $\sigma^2_j \le M$. This, along with the above equation, implies $\E{(S_n^0)^2} \le nM$ and then $\E{(\frac{S_n^0}{n})^2} \le \frac{M}{n}$.
+
+\noindent Recall from last section the extended Markov inequality for higher moment. We will apply the inequality for second moment and get\[
+\lim_{n \to \infty} P\Big( \Big\vert \frac{S_n^0}{n} \Big\vert \ge c \Big) \le \lim_{n \to \infty} \frac{\E{(\frac{S_n^0}{n})^2}}{c^2} \le \lim_{n \to \infty} \frac{M}{nc^2} = 0.
+\]
+
+\noindent By changing $S_n^0$ to $\sum_{j=1}^n X_j$ and taking the complement on both sides, we get \[
+\lim_{n \to \infty} P\Big(\Big\vert \frac{X_1 + \cdots + X_n}{n} - \frac{\mu_1 + \cdots + \mu_n}{n} \Big\vert < c\Big) = 1,
+\] 
+which is the \textbf{extended weak law of large number}.\index{Law of Large Number!Extended Weak} 
+
+\noindent There is a stronger version of the weak law, called the \textbf{strong law of large number}\index{Law of Large Number!Strong}. The proof of this law will be omitted in this notebook, and it will be placed in  \emph{Probability Theory and Statistics Notebook II}. The statement of the law is the following. 
+
+\noindent Let $X_1, X_2, \dots,$ be a sequence of i.i.d. random variables with mean $\mu$. We have\[
+P\Big(\lim_{n \to \infty} \frac{X_1 + \cdots + X_n}{n} = \mu\Big) = 1.
+\]
+
+\noindent If we recall from the previous section the different types of convergence, we can notice that the strong law converges almost surely while the weak law converges in probability. The difference is quite subtle, and it cannot be fully explained without the usage of measure theory. Briefly speaking, converge in probability means that the chance for the random variable to not behave like $X$ decreases to limit 0 as $n$ increases to limit $\infty$; converge almost surely means that the chance for the random variable to not behave like $X$ is 0 after a certain value of $n$. Of course, this is only a rough explanation that does not involve measure 0 and other important things. The readers are encouraged to keep this question in mind and come back to it when they are doing measure-theoretic Probability Theory. 
+
+\section{Central Limit Theorem}
+
+\noindent In some situations, when independent random variables are added, their properly normalised sum tends toward a normal distribution even if the original variables themselves are not normally distributed. This is due to \textbf{central limit theorem}.\index{Central Limit Theorem} Readers should already have a brief sense of the power of this theorem from the derivation of normal distribution we included in the previous Chapter. 
+
+\noindent Central limit theorem was first established as a way to approximate normal distribution from binomial distribution by de Moivre and Laplace, in the form of the de Moivre-Laplace central limit theorem we mentioned earlier on in Chapter 3.4. 
+
+\noindent The theorem was generalised in 1901 by the Russian Mathematician Aleksandr Liapounov by introducing its characteristic functions. It was then extended by Markov for the case of independent variables. 
+
+\noindent Central limit theorem was originally called `limit theorem', and it was added the prefix `central' due to the central position it has in the study of Probability Theory by George Pólya. 
+
+\noindent The statement of the theorem will be stated without proof here as it involves more advanced Mathematics than the level of this notebook. It will, like many other more advanced concepts, be included in the next notebook \emph{Probability Theory and Statistics Notebook II}.
+
+\noindent Let $X_1, X_2, \dots$ be a sequence of i.i.d. random variables, each having mean $\mu$ and variance $\sigma^2$. Then the distribution of \[
+\frac{X_1 + \cdots X_n - n\mu}{\sigma \sqrt{n}}
+\]
+tends to the standard normal as $n \to \infty$. That is, for $-\infty < a < \infty$,\[
+\lim_{n \to \infty} P\huge( \frac{X_1 + \cdots X_n - n\mu}{\sigma \sqrt{n}} \le a \huge) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-x^2/2}dx.
+\]
+
+
+
+\backmatter
+
+
+\end{document}

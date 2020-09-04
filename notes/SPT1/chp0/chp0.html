@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Probability Theory and Statistics Notebook I</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" />  
+  <link rel="stylesheet" type="text/css" href="chp0.css" /> 
+  <meta name="src" content="chp0.tex" /> 
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%; font-family: 'Times'">
+                                                                                
+<!--l. 74--><p class="indent" >
+</p>
+
+<!--l. 81--><p class="indent" >
+</p>
+                                                                                
+                                                                      
+   <h2 style="text-align: center"><span>Preface</span><br /></h2>
+
+<!--l. 79--><p class="noindent" >This notebook includes concepts for the topics of Probability Theory and Statistics at
+an early undergraduate level. The note is primarily written to help with my own
+understanding and studying of these topics, but it should be able to help others too. I
+will include my own interpretation in the notebook, and along the way, I will be
+addressing the historical backgrounds of some key ideas to make the Maths even more
+entertaining.
+</p><!--l. 81--><p class="noindent" >I referred to many sources and I do not take much credit from this work. They will not be
+cited separately through the course of the notebook, but I will list the main ones
+below.
+     </p><dl class="enumerate-enumitem"><dt class="enumerate-enumitem">
+   1. </dt><dd 
+class="enumerate-enumitem"><span 
+class="cmti-10x-x-109">Introduction to Probability Theory </span>by <span 
+class="cmti-10x-x-109">Dimitri Bertsekas </span>&#x0026; <span 
+class="cmti-10x-x-109">John Tsitsiklis</span>
+     </dd><dt class="enumerate-enumitem">
+   2. </dt><dd 
+class="enumerate-enumitem"><span 
+class="cmti-10x-x-109">Introduction to Probability Models </span>by <span 
+class="cmti-10x-x-109">Sheldon Ross</span>
+     </dd><dt class="enumerate-enumitem">
+   3. </dt><dd 
+class="enumerate-enumitem"><span 
+class="cmti-10x-x-109">Markov Chain </span>by <span 
+class="cmti-10x-x-109">J. R. Norris</span>
+     </dd><dt class="enumerate-enumitem">
+   4. </dt><dd 
+class="enumerate-enumitem"><span 
+class="cmti-10x-x-109">Statistical Inference </span>by <span 
+class="cmti-10x-x-109">George Casella </span>&#x0026; <span 
+class="cmti-10x-x-109">Roger L. Berger</span>
+     </dd><dt class="enumerate-enumitem">
+   5. </dt><dd 
+class="enumerate-enumitem"><span 
+class="cmti-10x-x-109">The Concise Encyclopedia of Statistics </span>by <span 
+class="cmti-10x-x-109">Yadolah Dodge</span></dd></dl>
+<!--l. 91--><p class="noindent" >Mathematics textbooks are normally written in a the more rigorous
+‘Deﬁnition-Theorem-Corollary-Lemma’ structure. It is easy to follow that same structure here
+but I did not. Although there are a lot of beneﬁts and elegance with that format, I do not
+think it will be a good ﬁt for the purpose of this notebook, as I aim to focus more on the
+explanations and connections between concepts rather than solely stating and proving them.
+The drawback will be that concepts are harder to spot if one is not reading from
+start to end, but there is the Index page at the end to help. It should not be too
+bad.
+                                                                                
+
+                                                                                
+</p><!--l. 93--><p class="noindent" >In terms of the content of the notebook, it mainly aims to cover the material of the ﬁrst two
+years for a degree course of Mathematics and Statistics. In the US system, this should be
+enough for all the undergraduate level Mathematics and Statistics, since Measure Theory is
+usually a graduate course and that is essential to study the Measure-Theoretic Probability
+Theory.
+</p><!--l. 95--><p class="noindent" >For Probability Theory, it normally has three components - probability theory (dealing with
+distributions, expectations, etc.), stochastic process (dealing with stochastic models) and
+stochastic calculus. The ﬁrst two components will be covered here, where the stochastic
+process component is covered to a lesser degree. Normally, stochastic process at this level can
+be a course on its own, normally called ’applied probability’ or just ’stochastic process’. There
+are a lot of real-life applications of stochastic processes, like Renewal Theory and
+Branching Processes. These topics, although very interesting, may not appeal to a wider
+audience and they can be picked up fairly easily for interested readers after knowing
+the more fundamental materials in this notebook. Also, I ﬁnd it very hard, and
+almost impossible, to have a thorough discussion of stochastic calculus without
+more advanced Mathematical tools, which is why I omit any discussion on that
+here.
+</p><!--l. 97--><p class="noindent" >For the Statistics component, it should be enough Statistics material for anyone using
+Statistical tools but not involved in Statistics research. Just like how Probability Theory has
+many other applications, Statistics, too, have those applications, like Social Statistics and
+Biostatistics. These topics will not be covered, to make the notebook more concentrated.
+Another reason is that I am no expert in these topics, and I am not conﬁdent enough to write
+about them yet.
+</p><!--l. 99--><p class="noindent" >Normally, programming languages like R and Python will be studied to help with some
+computations in Statistics and Probability Theory. Although they are extremely useful and are
+the trend in this era of booming computing powers, we will omit these topics. I feel these
+topics should be treated separately, for a programming notebook, instead of being discussed in
+a Maths and Statistics notebook.
+</p><!--l. 101--><p class="noindent" >For readers of this notebook, I do recommend you to use this as a complementary material to
+a standard textbooks. This is due to the fact that this notebook does not include any exercises
+and problem sets to the topics, which are essential for a thorough understanding of any
+concepts. I would even recommend the readers to be inspired by this notebook and
+write their own version, since diﬀerent people have diﬀerent preference and style of
+learning.
+</p><!--l. 103--><p class="noindent" >Since I am no expert in these topics and am learning them myself not too long ago, I am
+sure there are things that I write wrongly or explain poorly. Typos and grammar
+errors are bound to happen too, such things will exist no matter how often one
+reviews the work. In such cases, I hope the readers can contact me to point out these
+issues or discussion alternative ways to discuss the concepts. My email address is:
+<a 
+href=""mailto:ruiyang.zhang.20@ucl.ac.uk"" >ruiyang.zhang.20@ucl.ac.uk</a>.
+</p><!--l. 105--><p class="noindent" >Lastly, I would like to express my most sincere appreciation to those Mathematicians and
+                                                                                
+
+                                                                                
+Statisticians who have made contributions to the ﬁeld. All of us are standing on their
+shoulders, and hopefully in the future, we can join them and oﬀer our shoulders for the future
+generations.
+
+<p style="text-align: right; font-size: large;">Zhang Ruiyang</p>
+
+<br><br>
+
+<a href="../SPT1.html" style="text-align: left; font-family: 'Times';font-size: large;">Back</a>  
+<a href="../chp1/chp1.html" style="float: right; font-family: 'Times';font-size: large;">Next Chapter</a>
+
+<br><br>
+
+
+
+
+
+
+                </div>
+            </div> 
+
+
+
+            
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+
+                               
+                                                                                
+
+
+
+
+
+

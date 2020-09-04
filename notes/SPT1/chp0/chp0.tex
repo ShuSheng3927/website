@@ -1,0 +1,114 @@
+\documentclass[11pt, a4paper, oneside]{book}
+\usepackage{amsmath,amsthm,amssymb, enumitem, etoolbox, mathtools, centernot, microtype, geometry, tcolorbox,lipsum, makeidx, csquotes, lscape, graphicx, wrapfig, titling}
+\usepackage[colorlinks,linkcolor=black,anchorcolor=black,
+citecolor=green,CJKbookmarks=True]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\usepackage[font={it, small}]{caption}
+
+\urlstyle{same}
+
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\emph{Probability Theory and Statistics Notebook I}}
+\cfoot{\thepage}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+
+\newcommand{\var}[1]{\text{Var}(#1)}
+\newcommand{\cov}[1]{\text{Cov}(#1)}
+\newcommand{\E}[1]{\text{E}[#1]}
+
+\newcommand{\poisson}[1]{\text{Poisson}(#1)}
+\newcommand{\gammaf}[1]{\Gamma(#1)}
+\newcommand{\normal}[2]{\text{Normal}(#1, #2)}
+\newcommand{\gammad}[2]{\text{Gamma}(#1, #2)}
+\newcommand{\binomial}[2]{\text{Binom}(#1, #2)}
+\newcommand{\markov}[2]{\text{Markov}(#1, #2)}
+\newcommand{\Exp}[1]{\text{Exp}(#1)}
+
+
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\cprocess{\{N(t), t\ge 0\}}
+\def\lra{\leftrightarrow}
+
+\newcommand{\breaking}{%
+    \begin{center}
+    $-$
+    \end{center}%
+}
+
+\makeindex
+
+\setlength{\parskip}{0.5em}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
+
+
+
+\begin{document}
+\frontmatter 
+
+\title{\huge Probability Theory and Statistics Notebook I}
+\author{\Large{Zhang Ruiyang}}
+\date{}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+This notebook includes concepts for the topics of Probability Theory and Statistics at an early undergraduate level. The note is primarily written to help with my own understanding and studying of these topics, but it should be able to help others too. I will include my own interpretation in the notebook, and along the way, I will be addressing the historical backgrounds of some key ideas to make the Maths even more entertaining. 
+
+\noindent I referred to many sources and I do not take much credit from this work. They will not be cited separately through the course of the notebook, but I will list the main ones below. 
+
+\begin{enumerate}
+\item \emph{Introduction to Probability Theory} by \emph{Dimitri Bertsekas} \& \emph{John Tsitsiklis}
+\item \emph{Introduction to Probability Models} by \emph{Sheldon Ross}
+\item \emph{Markov Chain} by \emph{J. R. Norris}
+\item \emph{Statistical Inference} by \emph{George Casella} \& \emph{Roger L. Berger}
+\item \emph{The Concise Encyclopedia of Statistics} by \emph{Yadolah Dodge}
+\end{enumerate}
+
+\noindent Mathematics textbooks are normally written in a the more rigorous `Definition-Theorem-Corollary-Lemma' structure. It is easy to follow that same structure here but I did not. Although there are a lot of benefits and elegance with that format, I do not think it will be a good fit for the purpose of this notebook, as I aim to focus more on the explanations and connections between concepts rather than solely stating and proving them. The drawback will be that concepts are harder to spot if one is not reading from start to end, but there is the Index page at the end to help. It should not be too bad. 
+
+\noindent In terms of the content of the notebook, it mainly aims to cover the material of the first two years for a degree course of Mathematics and Statistics. In the US system, this should be enough for all the undergraduate level Mathematics and Statistics, since Measure Theory is usually a graduate course and that is essential to study the Measure-Theoretic Probability Theory. 
+
+\noindent For Probability Theory, it normally has three components - probability theory (dealing with distributions, expectations, etc.), stochastic process (dealing with stochastic models) and stochastic calculus. The first two components will be covered here, where the stochastic process component is covered to a lesser degree. Normally, stochastic process at this level can be a course on its own, normally called 'applied probability' or just 'stochastic process'. There are a lot of real-life applications of stochastic processes, like Renewal Theory and Branching Processes. These topics, although very interesting, may not appeal to a wider audience and they can be picked up fairly easily for interested readers after knowing the more fundamental materials in this notebook. Also, I find it very hard, and almost impossible, to have a thorough discussion of stochastic calculus without more advanced Mathematical tools, which is why I omit any discussion on that here. 
+
+\noindent For the Statistics component, it should be enough Statistics material for anyone using Statistical tools but not involved in Statistics research. Just like how Probability Theory has many other applications, Statistics, too, have those applications, like Social Statistics and Biostatistics. These topics will not be covered, to make the notebook more concentrated. Another reason is that I am no expert in these topics, and I am not confident enough to write about them yet. 
+
+\noindent Normally, programming languages like R and Python will be studied to help with some computations in Statistics and Probability Theory. Although they are extremely useful and are the trend in this era of booming computing powers, we will omit these topics. I feel these topics should be treated separately, for a programming notebook, instead of being discussed in a Maths and Statistics notebook. 
+
+\noindent For readers of this notebook, I do recommend you to use this as a complementary material to a standard textbooks. This is due to the fact that this notebook does not include any exercises and problem sets to the topics, which are essential for a thorough understanding of any concepts. I would even recommend the readers to be inspired by this notebook and write their own version, since different people have different preference and style of learning. 
+
+\noindent Since I am no expert in these topics and am learning them myself not too long ago, I am sure there are things that I write wrongly or explain poorly. Typos and grammar errors are bound to happen too, such things will exist no matter how often one reviews the work. In such cases, I hope the readers can contact me to point out these issues or discussion alternative ways to discuss the concepts. My email address is: \href{"mailto:ruiyang.zhang.20@ucl.ac.uk"}{ruiyang.zhang.20@ucl.ac.uk}. 
+
+\noindent Lastly, I would like to express my most sincere appreciation to those Mathematicians and Statisticians who have made contributions to the field. All of us are standing on their shoulders, and hopefully in the future, we can join them and offer our shoulders for the future generations. 
+
+\null\hfill Zhang Ruiyang
+
+\mainmatter
+
+\backmatter
+
+
+\end{document}
