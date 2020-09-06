@@ -94,9 +94,9 @@ In the theory of probability, we will be working `in' a \textbf{probability spac
 
 \noindent The \textbf{sample space}\index{Sample Space} is the set of all possible outcomes of an experiment. For example, the sample space of a single-time coin tossing experiment will be the set $\{ H, T\}$ where $H$ represents the result head and $T$ represents tail. The sample space is sometimes called the universe \index{Universe} as it encapsulates every possible outcomes. 
 
-\noindent The \textbf{event} \index{Event} is a subset of the sample space. We can think of it as a set consisting of possible outcomes of the experiment. Using the previous example, a possible event of the experiment is $\{ H \}$ where the coin lands head. 
+\noindent An \textbf{event}\index{Event}, one element of $\mathcal{F}$, is a subset of the sample space. We can understand events $\mathcal{F}$ as a set consisting of all possible outcomes of the experiment\footnote{Here, all elements of the power set of the sample space are defined as events. This is true when we are working with finite sample space - which is the assumed context of this notebook unless stated otherwise.}. Using the previous example, a possible event of the experiment is $\{ H \}$ where the coin lands head. 
 
-\noindent The \textbf{probability measure} \index{Probability Measure}\footnote{Probability measure is the formal name. The discussion of measure and measurable will not be carried out in this notebook. The study of measure is known as Measure Theory, categorised under Analysis.} is a function that maps an event to a numerical value under certain restrictions. 
+\noindent The \textbf{probability measure}\index{Probability Measure}\footnote{Probability measure is the formal name. The discussion of measure and measurable will not be carried out in this notebook. The study of measure is known as Measure Theory, categorised under Analysis.} is a function that maps an event to a numerical value under certain restrictions. 
 
 \noindent The restrictions are known as the \textbf{probability axioms}\index{Probability Axioms}. They are introduced by Kolmogorov, so sometimes it is also known as the \textbf{Kolmogorov axioms}\footnote{Although the axioms of probability are named after Kolmogorov, that does not imply that he is the one who created the entire field. Instead, the naming exists because Kolmogorov restated the axioms in a rigorous and powerful manner that no one else did before. In addition, we should remember that this is not the only way to construct the theory of probability.}. We will do some minor adjustments and rephrasing so that they are more understandable at this level. A \textbf{probability law} will be the function that satisfies the probability axioms. Now given a probability measure $P$, we have the following axioms:
 
@@ -126,8 +126,9 @@ P(A \cup B) &\le P(A) + P(B) \\
 \breaking
 
 \noindent To give some more examples of a probability space, we look at the discrete cases when the sample space consists of a finite number of possible outcomes. We have, according to the aforementioned axioms, the probability of any event $\{A_1, A_2, \dots, A_n\}$ is the sum of the probabilities of its elements\[
-P(A_1, A_2, \dots, A_n) = P(\{A_1\}) +P(\{A_2\}) + \dots + P(\{A_n\}).
+P(\{A_1, A_2, \dots, A_n\}) = P(\{A_1\}) +P(\{A_2\}) + \dots + P(\{A_n\})
 \]
+where each $A_i$ represents an outcome.
 
 \noindent If the probability of each of the element is uniform, we have \[
 P(A) = \frac{\text{number of elements of }A}{n}
@@ -146,7 +147,7 @@ Conditional probability is an important concept, just like almost everything els
 
 \breaking
 
-\noindent Let us start with defining what conditional probability is. \index{Conditional!Probability}Given two events $A$ and $B$, the \textbf{conditional probability}, denoted by $P(A|B)$, is the probability of event $A$ happening when we know event $B$ has already happened.
+\noindent Let us start with defining what conditional probability is. \index{Conditional!Probability}Given two events $A$ and $B$, the \textbf{conditional probability}, denoted by $P(A|B)$, is the probability of event $A$ happening when we know event $B$ has already happened, or equivalently when $P(B) > 0$.
 
 \noindent In order to compute that probability, we will have the formula \[
 P(A|B) = \frac{P(A \cap B)}{P(B)}.
@@ -203,7 +204,7 @@ P(A|B) = \frac{P(A)P(B|A)}{P(B)}.
 \]
 Here, although we have never mentioned explicitly before, we are interpreting probability measure as ``a proportion of outcomes". It is easy to understand if we think about the discrete uniform case. This way of thinking is known as the \textbf{frequentist}\index{Frequentist} interpretation. 
 
-\noindent The importance of Bayes' rule does not end here. Other than a ``proportion of outcomes", we can also interpret probability measures as a ``degree of belief". A $50\%$ success rate means that we believe with $50\%$ certainty that the result is going successful. The term `belief' is very important as it suggests the view can be very subjective. 
+\noindent The importance of Bayes' rule does not end here. Other than a ``proportion of outcomes", we can also interpret probability measures as a ``degree of belief". A $50\%$ success rate means that we believe with $50\%$ certainty that the result is going successful. The term ``belief'' is very important as it suggests the view can be very subjective. 
 
 \noindent The formula of Bayes' rule can be rearranged into $P(A|B) = P(A) \cdot \frac{P(B|A)}{P(B)}$. Here, $P(A)$, the \emph{prior}, is the initial degree of belief of $A$. The fraction represents an adjustment of our belief using $B$. $P(A|B)$, the \emph{posterior}, is the degree of belief after the adjustment. Our original proposition $A$ is therefore been improved by evidence $B$. The Philosophy of Bayes is that we can never understand how things go exactly, but by having more and more evidence, we can have a better understanding of the truth by updating with each new piece of evidence\footnote{The readers are encouraged to check out 3Blue1Brown's video \href{https://youtu.be/HZGCoVF3YvM}{``Bayes Theorem"} on YouTube for a graphical illustration.}. This is known as the \textbf{Bayesian}\index{Bayesian} interpretation. 
 
@@ -238,12 +239,15 @@ P(B \cap C) &= P(B) P(C) \\
 \end{split}
 \end{equation*}
 
-\noindent In general, for a collection of events $A_1, A_2, \dots A_n$ and $I \subset \{1, 2, \dots, n\}$, we have \[
+\noindent In general, for a collection of independent events $A_1, A_2, \dots A_n$, for any $I \subset \{1, 2, \dots, n\}$, we have \[
 P(\cap_{i \in I}A_i) = \prod_{i \in I}P(A_i).
 \]
 
-\noindent So far, the discussion of independence is restricted to events. Independence can occur between random variables and sample spaces too. We should also remember that the independence of sample spaces, independence of random variables, and independence of events are equivalent. Most of the detailed explanation will not be included as it is beyond the scope of this notebook. They will, however, be in the second notebook \emph{Probability Theory and Statistics Notebook II}.
+\noindent For multiple events, they may not be independent but \textbf{pairwise independence}\index{Independence!pairwise}. Pairwise independence means that for any two events from the list of events are independent of each other. This means, for a collection of events $A_1, A_2, \dots A_n$, they are pairwise independent if $P(A_i \cap A_j) = P(A_i)P(A_j)$ for all $i, j \in \{ 1, 2, \dots, n\}$ and $i \neq j$.  
 
+\noindent It is not hard to see that independence implies pairwise independence. This relationship can be observed if $I$ are all 2-element subsets of $\{1, 2, \dots, n\}$. Pairwise independence, on the other hand, does not imply independence. 
+
+\noindent So far, the discussion of independence is restricted to events. Independence can occur between random variables and sample spaces too. We should also remember that the independence of sample spaces, independence of random variables, and independence of events are equivalent. Most of the detailed explanation will not be included as it is beyond the scope of this notebook. They will, however, be in the second notebook \emph{Probability Theory and Statistics Notebook II}.
 
 \backmatter
 

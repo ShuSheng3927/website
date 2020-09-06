@@ -10,6 +10,7 @@ File: chp12.html
 File: chp13.html
 File: chp14.html
 File: chp15.html
+File: chp16.html
 Css: p.noindent { text-indent: 0em }
 Css: td p.noindent { text-indent: 0em; margin-top:0em; }
 Css: p.nopar { text-indent: 0em; }
@@ -165,22 +166,22 @@ Css: .wrapfig-r .caption td.content, .wrapfig-ri .caption td.content, .wrapfig-i
 Css: .wrapfig-r .caption, .wrapfig-ri .caption, .wrapfig-ir .caption, .wrapfig-ro .caption, .wrapfig-or .caption, .wrapfig-l .caption, .wrapfig-li .caption, .wrapfig-il .caption, .wrapfig-lo .caption, .wrapfig-ol .caption {width:30%; }
 File: chp1.4idx
 --- needs --- chp1.idv[2] ==> chp10x.png ---
---- needs --- chp1.idv[4] ==> chp11x.png ---
---- needs --- chp1.idv[5] ==> chp12x.png ---
---- needs --- chp1.idv[7] ==> chp13x.png ---
---- needs --- chp1.idv[8] ==> chp14x.png ---
---- needs --- chp1.idv[10] ==> chp15x.png ---
---- needs --- chp1.idv[12] ==> chp16x.png ---
---- needs --- chp1.idv[13] ==> chp17x.png ---
---- needs --- chp1.idv[15] ==> chp18x.png ---
---- needs --- chp1.idv[16] ==> chp19x.png ---
---- needs --- chp1.idv[18] ==> chp110x.png ---
---- needs --- chp1.idv[20] ==> chp111x.png ---
---- needs --- chp1.idv[21] ==> chp112x.png ---
---- needs --- chp1.idv[23] ==> chp113x.png ---
---- needs --- chp1.idv[24] ==> chp114x.png ---
---- needs --- chp1.idv[26] ==> chp115x.png ---
---- needs --- chp1.idv[27] ==> chp116x.png ---
+--- needs --- chp1.idv[3] ==> chp11x.png ---
+--- needs --- chp1.idv[4] ==> chp12x.png ---
+--- needs --- chp1.idv[6] ==> chp13x.png ---
+--- needs --- chp1.idv[7] ==> chp14x.png ---
+--- needs --- chp1.idv[9] ==> chp15x.png ---
+--- needs --- chp1.idv[10] ==> chp16x.png ---
+--- needs --- chp1.idv[12] ==> chp17x.png ---
+--- needs --- chp1.idv[13] ==> chp18x.png ---
+--- needs --- chp1.idv[15] ==> chp19x.png ---
+--- needs --- chp1.idv[16] ==> chp110x.png ---
+--- needs --- chp1.idv[18] ==> chp111x.png ---
+--- needs --- chp1.idv[19] ==> chp112x.png ---
+--- needs --- chp1.idv[21] ==> chp113x.png ---
+--- needs --- chp1.idv[23] ==> chp114x.png ---
+--- needs --- chp1.idv[24] ==> chp115x.png ---
+--- needs --- chp1.idv[26] ==> chp116x.png ---
 --- characters ---
 Font("cmr","10","10","100")
 Font("cmr","10","10","109")

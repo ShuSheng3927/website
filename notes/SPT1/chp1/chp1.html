@@ -141,14 +141,21 @@ function myFunction() {
 </p>
                                                                                 
                                                                       
-   <h2 style="text-align: center"><span>Chapter 1 Fundamentals</span><br /></h2>
+   <h2 style="text-align: center"><span>Chapter 2 Random Variables</span><br /></h2>
 
-<br />    <span>1.1 <a 
-href="#x1-50001.1">Brief Background</a></span>
+<br />    <span class="sectionToc" >1.1 <a 
+href="#x1-50001.1" id="QQ2-1-6">Brief Background</a></span>
 <br />    <span class="sectionToc" >1.2 <a 
 href="#x1-60001.2" id="QQ2-1-7">Probability Space</a></span>
 <br />    <span class="sectionToc" >1.3 <a 
 href="#x1-70001.3" id="QQ2-1-8">Conditional Probability and Independence</a></span>
+<br />     <span class="subsectionToc" >1.3.1 <a 
+href="#x1-80001.3.1" id="QQ2-1-9">Conditional Probability</a></span>
+<br />     <span class="subsectionToc" >1.3.2 <a 
+href="#x1-90001.3.2" id="QQ2-1-10">Bayes’ Rule</a></span>
+<br />     <span class="subsectionToc" >1.3.3 <a 
+href="#x1-100001.3.3" id="QQ2-1-11">Independence</a></span>
+
 
    <h3 class="sectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-50001.1"></a>Brief Background</h3>
@@ -199,32 +206,38 @@ represents the result head and <span
 class="cmmi-10x-x-109">T </span>represents tail. The sample space is sometimes called the
 universe <a 
  id="dx1-6003"></a>as it encapsulates every possible outcomes.
-</p><!--l. 97--><p class="noindent" >The <span 
-class="cmbx-10x-x-109">event</span> <a 
- id="dx1-6004"></a>is a subset of the sample space. We can think of it as a set consisting of possible
-outcomes of the experiment. Using the previous example, a possible event of the experiment is
-<span 
-class="cmsy-10x-x-109">{</span><span 
-class="cmmi-10x-x-109">H</span><span 
-class="cmsy-10x-x-109">} </span>where the coin lands head.
+</p><!--l. 97--><p class="noindent" >An <span 
+class="cmbx-10x-x-109">event</span><a 
+ id="dx1-6004"></a>, one element of <span 
+class="cmsy-10x-x-109">ℱ</span>, is a subset of the sample space. We can
+understand events <span 
+class="cmsy-10x-x-109">ℱ </span>as a set consisting of all possible outcomes of the
                                                                                 
 
                                                                                 
+experiment<span class="footnote-mark"><a 
+href="chp12.html#fn1x2"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-6005f1"></a> .
+Using the previous example, a possible event of the experiment is <span 
+class="cmsy-10x-x-109">{</span><span 
+class="cmmi-10x-x-109">H</span><span 
+class="cmsy-10x-x-109">} </span>where the coin lands
+head.
 </p><!--l. 99--><p class="noindent" >The <span 
 class="cmbx-10x-x-109">probability measure</span><a 
- id="dx1-6005"></a><span class="footnote-mark"><a 
-href="chp12.html#fn1x2"><sup class="textsuperscript">1</sup></a></span><a 
- id="x1-6006f1"></a> 
+ id="dx1-6006"></a><span class="footnote-mark"><a 
+href="chp13.html#fn2x2"><sup class="textsuperscript">2</sup></a></span><a 
+ id="x1-6007f2"></a> 
 is a function that maps an event to a numerical value under certain restrictions.
 </p><!--l. 101--><p class="noindent" >The restrictions are known as the <span 
 class="cmbx-10x-x-109">probability axioms</span><a 
- id="dx1-6007"></a>. They are introduced
+ id="dx1-6008"></a>. They are introduced
 by Kolmogorov, so sometimes it is also known as the <span 
 class="cmbx-10x-x-109">Kolmogorov</span>
 <span 
 class="cmbx-10x-x-109">axioms</span><span class="footnote-mark"><a 
-href="chp13.html#fn2x2"><sup class="textsuperscript">2</sup></a></span><a 
- id="x1-6008f2"></a> .
+href="chp14.html#fn3x2"><sup class="textsuperscript">3</sup></a></span><a 
+ id="x1-6009f3"></a> .
 We will do some minor adjustments and rephrasing so that they are more understandable at
 this level. A <span 
 class="cmbx-10x-x-109">probability law </span>will be the function that satisﬁes the probability axioms. Now
@@ -239,8 +252,8 @@ class="cmmi-10x-x-109">A</span>.
 </p><!--l. 105--><p class="noindent" >2. (<span 
 class="cmbx-10x-x-109">Countable Additivity</span>) If the sample space contains countably
 many<span class="footnote-mark"><a 
-href="chp14.html#fn3x2"><sup class="textsuperscript">3</sup></a></span><a 
- id="x1-6009f3"></a> 
+href="chp15.html#fn4x2"><sup class="textsuperscript">4</sup></a></span><a 
+ id="x1-6010f4"></a> 
 disjoint events <span 
 class="cmmi-10x-x-109">A</span><sub><span 
 class="cmr-8">1</span></sub><span 
@@ -249,6 +262,9 @@ class="cmr-8">2</span></sub><span
 class="cmmi-10x-x-109">,</span><span 
 class="cmmi-10x-x-109">…</span><span style="margin-left:0.3em" class="thinspace"></span>, then the probability of their union satisﬁes
 </p>
+                                                                                
+
+                                                                                
    <center class="math-display" >
 <img 
 src="chp10x.png" alt="  ∞⋃       ∑∞
@@ -262,9 +278,6 @@ class="cmr-8">1</span></sub> and <span
 class="cmmi-10x-x-109">A</span><sub><span 
 class="cmr-8">2</span></sub> are null sets, we have
 </p>
-                                                                                
-
-                                                                                
    <center class="math-display" >
 <img 
 src="chp11x.png" alt="P(A1 ∪ A2) = P (A1 )+ P (A2).
@@ -297,11 +310,14 @@ class="equation-star"><tr><td>
 <img 
 src="chp12x.png" alt=" P(A ∪ B ) = P (A)+ P(B )− P (A ∩ B )
     P (B ) = P (A)+ P(Ac ∩ B)
- P(A ∪ B ) ≤ P (A)+ P(B )
 
+ P(A ∪ B ) ≤ P (A)+ P(B )
 (∪iAi )∩ B = ∪i(Ai ∩ B)
 (∩iAi )∪ B = ∩i(Ai ∪ B)
 " class="math-display"  /></center></td></tr></table>
+                                                                                
+
+                                                                                
 <!--l. 124--><p class="nopar" >
 </p>
 <div class="center" 
@@ -309,9 +325,6 @@ src="chp12x.png" alt=" P(A ∪ B ) = P (A)+ P(B )− P (A ∩ B )
 <!--l. 126--><p class="noindent" >
 </p><!--l. 126--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-                                                                                
-
-                                                                                
 <!--l. 128--><p class="noindent" >To give some more examples of a probability space, we look at the discrete cases when the
 sample space consists of a ﬁnite number of possible outcomes. We have, according to the
 aforementioned axioms, the probability of any event <span 
@@ -329,28 +342,34 @@ probabilities of its elements
 </p>
    <center class="math-display" >
 <img 
-src="chp13x.png" alt="P (A1, A2,...,An ) = P ({A1})+ P ({A2}) + ⋅⋅⋅+ P({An }).
+src="chp13x.png" alt="P ({A1,A2,...,An }) = P ({A1}) + P({A2 })+ ⋅⋅⋅+ P ({An})
 " class="math-display"  /></center>
-<!--l. 130--><p class="nopar" >
-</p><!--l. 132--><p class="noindent" >If the probability of each of the element is uniform, we have
+<!--l. 130--><p class="nopar" > where each <span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">i</span></sub> represents an outcome.
+</p><!--l. 133--><p class="noindent" >If the probability of each of the element is uniform, we have
 </p>
    <center class="math-display" >
 <img 
-src="chp14x.png" alt="P (A) = number--of elements-of A
+src="chp14x.png" alt="        number  of elements of A
+P (A) = -----------------------
                    n
 " class="math-display"  /></center>
-<!--l. 134--><p class="nopar" > when there is a total of <span 
+<!--l. 135--><p class="nopar" > when there is a total of <span 
 class="cmmi-10x-x-109">n </span>possible outcomes. This will be the probability in the discrete
 uniform case.
 </p>
 <div class="center" 
 >
-<!--l. 137--><p class="noindent" >
-</p><!--l. 137--><p class="noindent" ><span 
+<!--l. 138--><p class="noindent" >
+</p><!--l. 138--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-<!--l. 139--><p class="noindent" >This section talks about probability space. In Mathematics, a lot of ‘spaces’ are
+<!--l. 140--><p class="noindent" >This section talks about probability space. In Mathematics, a lot of ‘spaces’ are
 deﬁned and used. These deﬁnitions, along with many other, are used mostly for
 expository purposes. This technique allows us to better group objects into more
+                                                                                
+
+                                                                                
 abstract but general categories, since ‘abstractness is the price of generality’. With this,
 we can ﬁnd common properties for each category and apply them to all objects
 under it. This habit, originated from Euclid, allows us to formalise and simplify
@@ -358,17 +377,14 @@ the writing, remove repeated conditions, and more importantly to emphasise the
 signiﬁcance of structure and the ‘big picture’. We will see more of this in the study
 of, for example, Functional Analysis with things like Hilbert Space and Banach
 Space.
-                                                                                
-
-                                                                                
 </p>
    <h3 class="sectionHead"><span class="titlemark">1.3   </span> <a 
  id="x1-70001.3"></a>Conditional Probability and Independence</h3>
-<!--l. 143--><p class="noindent" >
+<!--l. 144--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.3.1   </span> <a 
  id="x1-80001.3.1"></a>Conditional Probability</h4>
-<!--l. 145--><p class="noindent" >Conditional probability is an important concept, just like almost everything else in this
+<!--l. 146--><p class="noindent" >Conditional probability is an important concept, just like almost everything else in this
 notebook. There are two ways to see its importance. One is that we can calculate
 probabilities when it is conditional, meaning some partial information are given. The
 other is that even when we have no partial information, conditional probabilities
@@ -377,30 +393,34 @@ probability.
 </p>
 <div class="center" 
 >
-<!--l. 147--><p class="noindent" >
-</p><!--l. 147--><p class="noindent" ><span 
+<!--l. 148--><p class="noindent" >
+</p><!--l. 148--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-<!--l. 149--><p class="noindent" >Let us start with deﬁning what conditional probability is. <a 
+<!--l. 150--><p class="noindent" >Let us start with deﬁning what conditional probability is. <a 
  id="dx1-8001"></a>Given two events <span 
-class="cmmi-10x-x-109">A </span>and <span 
-class="cmmi-10x-x-109">B</span>, the
+class="cmmi-10x-x-109">A </span>and
 <span 
+class="cmmi-10x-x-109">B</span>, the <span 
 class="cmbx-10x-x-109">conditional probability</span>, denoted by <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span><span 
 class="cmsy-10x-x-109">|</span><span 
-class="cmmi-10x-x-109">B</span>), is the probability of event <span 
-class="cmmi-10x-x-109">A </span>happening when
-we know event <span 
-class="cmmi-10x-x-109">B </span>has already happened.
-</p><!--l. 151--><p class="noindent" >In order to compute that probability, we will have the formula
+class="cmmi-10x-x-109">B</span>), is the probability of event
+<span 
+class="cmmi-10x-x-109">A </span>happening when we know event <span 
+class="cmmi-10x-x-109">B </span>has already happened, or equivalently when
+<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">B</span>) <span 
+class="cmmi-10x-x-109">&#x003E; </span>0.
+</p><!--l. 152--><p class="noindent" >In order to compute that probability, we will have the formula
 </p>
    <center class="math-display" >
 <img 
-src="chp15x.png" alt="P(A |B ) = P-(A-∩-B-).
-            P(B )
+src="chp15x.png" alt="          P-(A-∩-B-)
+P(A |B ) =   P(B )  .
 " class="math-display"  /></center>
-<!--l. 153--><p class="nopar" > This is not too hard to understand. If we think about it in the discrete uniform case, the
+<!--l. 154--><p class="nopar" > This is not too hard to understand. If we think about it in the discrete uniform case, the
 conditional probability of <span 
 class="cmmi-10x-x-109">A </span>given <span 
 class="cmmi-10x-x-109">B </span>is basically the number of elements in both <span 
@@ -414,15 +434,12 @@ class="cmmi-10x-x-109">B</span>. Another way of looking at
 this is by using the Venn Diagram, which will be quite obvious once the diagram is
 drawn.
 </p>
-                                                                                
-
-                                                                                
 <div class="center" 
 >
-<!--l. 156--><p class="noindent" >
-</p><!--l. 156--><p class="noindent" ><span 
+<!--l. 157--><p class="noindent" >
+</p><!--l. 157--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-<!--l. 158--><p class="noindent" >The conditional probability satisﬁes the three axioms of probability and is therefore a
+<!--l. 159--><p class="noindent" >The conditional probability satisﬁes the three axioms of probability and is therefore a
 probability law. We can verify it pretty easily. First, it is obviously nonnegative. Then, we
 notice that
 </p>
@@ -431,7 +448,7 @@ notice that
 src="chp16x.png" alt="          P-(Ω-∩-B-)   P-(B-)
 P(Ω |B ) =   P(B )  =  P (B ) = 1,
 " class="math-display"  /></center>
-<!--l. 160--><p class="nopar" > which gives us the normalisation. We can see that the condition actually <span class="underline">changes the</span> <span class="underline">universe</span>
+<!--l. 161--><p class="nopar" > which gives us the normalisation. We can see that the condition actually <span class="underline">changes the</span> <span class="underline">universe</span>
 from Ω to <span 
 class="cmmi-10x-x-109">B </span>and all conditional probabilities of <span 
 class="cmmi-10x-x-109">B </span>will be concentrated within this event.
@@ -445,23 +462,19 @@ class="cmr-8">2</span></sub>, we have
 class="equation-star"><tr><td>
    <center class="math-display" >
 <img 
-src="chp17x.png" alt="                P ((A  ∪ A  )∩ B )
-P (A1 ∪ A2|B) = -----1----2------
-                      P(B )
+src="chp17x.png" alt="                P-((A1-∪-A2-)∩-B-)
+P (A1 ∪ A2|B) =       P(B )
+
               = P-((A1-∩-B-)∪-(A2-∩-B))
                          P(B )
-                P (A1 ∩B )+ P (A2 ∩ B)
-              = ----------------------
-                         P(B )
-              = P-(A1-∩B-) + P-(A2-∩-B-)
+                P-(A1-∩B-)+-P-(A2-∩-B)
+              =          P(B )
+                P (A  ∩B )   P (A  ∩ B )
+              = ----1----- + ----2-----
                    P(B )       P (B)
-              = P (A  |B )+  P(A |B )
-                    1          2
+              = P (A1 |B )+  P(A2|B )
 " class="math-display"  /></center></td></tr></table>
-<!--l. 170--><p class="nopar" >
-                                                                                
-
-                                                                                
+<!--l. 171--><p class="nopar" >
 where the second equality is valid since <span 
 class="cmmi-10x-x-109">A</span><sub><span 
 class="cmr-8">1</span></sub> <span 
@@ -475,24 +488,24 @@ generalised to countably inﬁnite disjoint events, which shows countable additi
 </p>
 <div class="center" 
 >
-<!--l. 173--><p class="noindent" >
-</p><!--l. 173--><p class="noindent" ><span 
+<!--l. 174--><p class="noindent" >
+</p><!--l. 174--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-<!--l. 175--><p class="noindent" >We can manipulate the formula slightly. By some multiplication, we will have, under the same
+<!--l. 176--><p class="noindent" >We can manipulate the formula slightly. By some multiplication, we will have, under the same
 conditions,
 </p>
    <center class="math-display" >
 <img 
 src="chp18x.png" alt="P(A ∩ B ) = P (B)P (A|B),
 " class="math-display"  /></center>
-<!--l. 177--><p class="nopar" > meaning the probability that both <span 
+<!--l. 178--><p class="nopar" > meaning the probability that both <span 
 class="cmmi-10x-x-109">A </span>and <span 
 class="cmmi-10x-x-109">B </span>occur is equal to the probability that <span 
 class="cmmi-10x-x-109">B </span>occurs
 multiplied by the conditional probability of <span 
 class="cmmi-10x-x-109">A </span>given <span 
 class="cmmi-10x-x-109">B </span>occurred.
-</p><!--l. 180--><p class="noindent" >We can extend the manipulation further. We used two events <span 
+</p><!--l. 181--><p class="noindent" >We can extend the manipulation further. We used two events <span 
 class="cmmi-10x-x-109">A </span>and <span 
 class="cmmi-10x-x-109">B </span>just now. What if we
 use more than two events? Given events <span 
@@ -511,20 +524,18 @@ class="cmbx-10x-x-109">rule</span><a
 </p>
    <center class="math-display" >
 <img 
-src="chp19x.png" alt="P (A1 ∩ A2 ∩ ⋅⋅⋅∩ An) = P (A1 )P(A2 |A1 )P (A3|A1 ∩ A2)⋅⋅⋅P (An|A1 ∩ ⋅⋅⋅∩ An −1).
+src="chp19x.png" alt="P (A  ∩ A  ∩ ⋅⋅⋅∩ A ) = P (A  )P(A  |A  )P (A |A  ∩ A )⋅⋅⋅P (A |A  ∩ ⋅⋅⋅∩ A    ).
+    1    2        n        1     2  1    3  1    2        n  1         n−1
 " class="math-display"  /></center>
-<!--l. 182--><p class="nopar" > This can be proved by applying the deﬁnition of conditional probability <span 
+<!--l. 183--><p class="nopar" > This can be proved by applying the deﬁnition of conditional probability <span 
 class="cmmi-10x-x-109">n </span>times.
 </p>
 <div class="center" 
 >
-<!--l. 185--><p class="noindent" >
-</p><!--l. 185--><p class="noindent" ><span 
+<!--l. 186--><p class="noindent" >
+</p><!--l. 186--><p class="noindent" ><span 
 class="cmsy-10x-x-109">−</span></p></div>
-<!--l. 187--><p class="noindent" >Previously, when we want to ﬁnd the probability of an event, we do it by comparing that event
-                                                                                
-
-                                                                                
+<!--l. 188--><p class="noindent" >Previously, when we want to ﬁnd the probability of an event, we do it by comparing that event
 with the entire sample space. Now, since we know conditional probability allows us
 to switch sample space from one to another, we can use that to come up with a
 diﬀerent way of computing. By dividing the event we want to ﬁnd the probability of
@@ -533,7 +544,7 @@ the event occurring under each pieces of the universe using conditional probabil
 By multiplying the sectional probability of event by the probability of that piece
 of partition and summing all sections up, we will get the total probability of the
 event.
-</p><!--l. 189--><p class="noindent" >This method is called the <span 
+</p><!--l. 190--><p class="noindent" >This method is called the <span 
 class="cmbx-10x-x-109">total probability theorem</span><a 
  id="dx1-8003"></a>, or the law of total probability<a 
  id="dx1-8004"></a>. The
@@ -552,21 +563,25 @@ be
 class="equation-star"><tr><td>
    <center class="math-display" >
 <img 
-src="chp110x.png" alt="P(B ) = P(A1 ∩ B )+ ⋅⋅⋅+ P(An ∩ B )
+src="chp110x.png" alt="P(B ) = P(A  ∩ B )+ ⋅⋅⋅+ P(A  ∩ B )
+            1                n
      =  P(A1)P (B|A1) + ⋅⋅⋅+ P(An )P(B |An ).
 " class="math-display"  /></center></td></tr></table>
-<!--l. 195--><p class="nopar" >
-</p><!--l. 197--><p class="noindent" >
+                                                                                
+
+                                                                                
+<!--l. 196--><p class="nopar" >
+</p><!--l. 198--><p class="noindent" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.3.2   </span> <a 
  id="x1-90001.3.2"></a>Bayes’ Rule</h4>
-<!--l. 199--><p class="noindent" ><span 
+<!--l. 200--><p class="noindent" ><span 
 class="cmbx-10x-x-109">Bayes’ rule</span><a 
  id="dx1-9001"></a>, named after Reverend Thomas Bayes, is the next thing we will be
 looking at in this section. The statement of the rule can be obtained easily by a small
 manipulation of the formula for conditional probability, but it has a deeper meaning
 under.
-</p><!--l. 201--><p class="noindent" >Conditional probability tells us that <span 
+</p><!--l. 202--><p class="noindent" >Conditional probability tells us that <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A </span><span 
 class="cmsy-10x-x-109">∩ </span><span 
@@ -594,9 +609,6 @@ class="cmmi-10x-x-109">P</span>(<span
 class="cmmi-10x-x-109">B</span><span 
 class="cmsy-10x-x-109">|</span><span 
 class="cmmi-10x-x-109">A</span>). Combining the
-                                                                                
-
-                                                                                
 two, we get <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">B</span>)<span 
@@ -619,18 +631,19 @@ rule
    <center class="math-display" >
 <img 
 src="chp111x.png" alt="          P (A)P (B|A)
-P (A|B ) =----P(B-)---.
+P (A|B ) =------------.
+              P(B )
 " class="math-display"  /></center>
-<!--l. 203--><p class="nopar" > Here, although we have never mentioned explicitly before, we are interpreting probability
+<!--l. 204--><p class="nopar" > Here, although we have never mentioned explicitly before, we are interpreting probability
 measure as “a proportion of outcomes”. It is easy to understand if we think about the discrete
 uniform case. This way of thinking is known as the <span 
 class="cmbx-10x-x-109">frequentist</span><a 
  id="dx1-9002"></a> interpretation.
-</p><!--l. 206--><p class="noindent" >The importance of Bayes’ rule does not end here. Other than a “proportion of outcomes”, we
+</p><!--l. 207--><p class="noindent" >The importance of Bayes’ rule does not end here. Other than a “proportion of outcomes”, we
 can also interpret probability measures as a “degree of belief”. A 50% success rate means that
-we believe with 50% certainty that the result is going successful. The term ‘belief’ is very
+we believe with 50% certainty that the result is going successful. The term “belief” is very
 important as it suggests the view can be very subjective.
-</p><!--l. 208--><p class="noindent" >The formula of Bayes’ rule can be rearranged into <span 
+</p><!--l. 209--><p class="noindent" >The formula of Bayes’ rule can be rearranged into <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span><span 
 class="cmsy-10x-x-109">|</span><span 
@@ -638,8 +651,7 @@ class="cmmi-10x-x-109">B</span>) = <span
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span>) <span 
 class="cmsy-10x-x-109">⋅</span><img 
-src="chp112x.png" alt="P(B|A )
--P(B-)-"  class="frac" align="middle" />. Here, <span 
+src="chp112x.png" alt="P(PB(B|A))"  class="frac" align="middle" />. Here, <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span>), the
 <span 
@@ -657,18 +669,21 @@ class="cmmi-10x-x-109">A </span>is therefore been improved by evidence <span
 class="cmmi-10x-x-109">B</span>. The Philosophy of Bayes is that we
 can never understand how things go exactly, but by having more and more evidence, we
 can have a better understanding of the truth by updating with each new piece of
+                                                                                
+
+                                                                                
 evidence<span class="footnote-mark"><a 
-href="chp15.html#fn4x2"><sup class="textsuperscript">4</sup></a></span><a 
- id="x1-9003f4"></a> .
+href="chp16.html#fn5x2"><sup class="textsuperscript">5</sup></a></span><a 
+ id="x1-9003f5"></a> .
 This is known as the <span 
 class="cmbx-10x-x-109">Bayesian</span><a 
  id="dx1-9004"></a> interpretation.
-</p><!--l. 210--><p class="noindent" >Bayes’ rule, or more speciﬁcally the underneath philosophy behind it, is the foundation of
+</p><!--l. 211--><p class="noindent" >Bayes’ rule, or more speciﬁcally the underneath philosophy behind it, is the foundation of
 <span 
 class="cmbx-10x-x-109">Bayesian statistics</span> <a 
  id="dx1-9005"></a>, which is a diﬀerent school of thought in Statistics other than the
 frequentist one. We will elaborate more in Part II of this notebook.
-</p><!--l. 212--><p class="noindent" >Earlier on, we derived the total probability theorem which is often used in conjunction with
+</p><!--l. 213--><p class="noindent" >Earlier on, we derived the total probability theorem which is often used in conjunction with
 Bayes’ rule. Let <span 
 class="cmmi-10x-x-109">A</span><sub><span 
 class="cmr-8">1</span></sub><span 
@@ -681,22 +696,19 @@ class="cmmi-10x-x-109">B</span>, we have
 </p>
    <table 
 class="equation-star"><tr><td>
-                                                                                
-
-                                                                                
    <center class="math-display" >
 <img 
-src="chp113x.png" alt="           P (Ai )P (Ai|B)
-P (Ai|B ) = --------------
-               P (B)
-         = -----------P-(Ai-)P-(Ai|B)------------.
+src="chp113x.png" alt="           P-(Ai-)P-(Ai|B)-
+P (Ai|B ) =     P (B)
+                      P (A  )P (A |B)
+         = ---------------i----i---------------.
            P (A1 )P(B |A1 )+ ⋅⋅⋅+ P (An)P (B|An)
 " class="math-display"  /></center></td></tr></table>
-<!--l. 218--><p class="nopar" >
+<!--l. 219--><p class="nopar" >
 </p>
    <h4 class="subsectionHead"><span class="titlemark">1.3.3   </span> <a 
  id="x1-100001.3.3"></a>Independence</h4>
-<!--l. 222--><p class="noindent" >The second half of this section will be on independence. From the dictionary deﬁnition of the
+<!--l. 223--><p class="noindent" >The second half of this section will be on independence. From the dictionary deﬁnition of the
 term “independence”, we know that it roughly describes a state where objects are isolated and
 do not aﬀect each other. This is similar to what <span 
 class="cmbx-10x-x-109">independence</span><a 
@@ -706,6 +718,9 @@ class="cmmi-10x-x-109">A </span>and <span
 class="cmmi-10x-x-109">B </span>are independent, or <span 
 class="cmmi-10x-x-109">A </span>and <span 
 class="cmmi-10x-x-109">B </span>are independent events, we
+                                                                                
+
+                                                                                
 mean the occurrence of one does not aﬀect the probability of occurrence of the other, denoted
 by the following formula
 </p>
@@ -713,10 +728,10 @@ by the following formula
 <img 
 src="chp114x.png" alt="P(A ∩ B ) = P (A)P (B).
 " class="math-display"  /></center>
-<!--l. 224--><p class="nopar" > The formula says that the probability of both events happening is the same as the probability
+<!--l. 225--><p class="nopar" > The formula says that the probability of both events happening is the same as the probability
 of the ﬁrst event occurring then the second one occurring when the two events are
 independent.
-</p><!--l. 227--><p class="noindent" >Another way to understand independence is by using conditional probability. Conditional
+</p><!--l. 228--><p class="noindent" >Another way to understand independence is by using conditional probability. Conditional
 probability <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span><span 
@@ -734,10 +749,10 @@ class="cmsy-10x-x-109">|</span><span
 class="cmmi-10x-x-109">B</span>) = <span 
 class="cmmi-10x-x-109">P</span>(<span 
 class="cmmi-10x-x-109">A</span>).
-</p><!--l. 229--><p class="noindent" >When objects do not have independence, we will say they are <span 
+</p><!--l. 230--><p class="noindent" >When objects do not have independence, we will say they are <span 
 class="cmbx-10x-x-109">dependent</span><a 
  id="dx1-10002"></a>.
-</p><!--l. 231--><p class="noindent" >Independence does not restrict to two events. A series of events can be independent of each
+</p><!--l. 232--><p class="noindent" >Independence does not restrict to two events. A series of events can be independent of each
 other. However, the conditions will get more complicated when we move from two to
 many events. Given three events <span 
 class="cmmi-10x-x-109">A</span>, <span 
@@ -745,9 +760,6 @@ class="cmmi-10x-x-109">B</span>, and <span
 class="cmmi-10x-x-109">C</span>, they are said to be independent
 if
 </p>
-                                                                                
-
-                                                                                
    <table 
 class="equation-star"><tr><td>
    <center class="math-display" >
@@ -756,10 +768,11 @@ src="chp115x.png" alt="P(A ∩ B ∩ C ) = P (A)P (B )P (C )
 
     P(A ∩ B ) = P (A)P (B )
     P(A ∩ C ) = P (A)P (C )
+
    P (B ∩ C ) = P (B)P (C )
 " class="math-display"  /></center></td></tr></table>
-<!--l. 239--><p class="nopar" >
-</p><!--l. 241--><p class="noindent" >In general, for a collection of events <span 
+<!--l. 240--><p class="nopar" >
+</p><!--l. 242--><p class="noindent" >In general, for a collection of independent events <span 
 class="cmmi-10x-x-109">A</span><sub><span 
 class="cmr-8">1</span></sub><span 
 class="cmmi-10x-x-109">,A</span><sub><span 
@@ -767,23 +780,74 @@ class="cmr-8">2</span></sub><span
 class="cmmi-10x-x-109">,</span><span 
 class="cmmi-10x-x-109">…</span><span 
 class="cmmi-10x-x-109">A</span><sub><span 
-class="cmmi-8">n</span></sub> and <span 
+class="cmmi-8">n</span></sub>, for any <span 
 class="cmmi-10x-x-109">I </span><span 
 class="cmsy-10x-x-109">⊂{</span>1<span 
 class="cmmi-10x-x-109">,</span>2<span 
 class="cmmi-10x-x-109">,</span><span 
 class="cmmi-10x-x-109">…</span><span 
 class="cmmi-10x-x-109">,n</span><span 
-class="cmsy-10x-x-109">}</span>, we have
+class="cmsy-10x-x-109">}</span>, we
+                                                                                
+
+                                                                                
+have
 </p>
    <center class="math-display" >
 <img 
-src="chp116x.png" alt="            ∏
-P (∩i∈IAi ) =   P (Ai).
+src="chp116x.png" alt="P (∩   A  ) = ∏ P (A ).
+    i∈I  i          i
             i∈I
 " class="math-display"  /></center>
-<!--l. 243--><p class="nopar" >
-</p><!--l. 245--><p class="noindent" >So far, the discussion of independence is restricted to events. Independence can occur between
+<!--l. 244--><p class="nopar" >
+</p><!--l. 246--><p class="noindent" >For multiple events, they may not be independent but <span 
+class="cmbx-10x-x-109">pairwise independence</span><a 
+ id="dx1-10003"></a>.
+Pairwise independence means that for any two events from the list of events are
+independent of each other. This means, for a collection of events <span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmr-8">1</span></sub><span 
+class="cmmi-10x-x-109">,A</span><sub><span 
+class="cmr-8">2</span></sub><span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">n</span></sub>, they
+are pairwise independent if <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">i</span></sub> <span 
+class="cmsy-10x-x-109">∩ </span><span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">j</span></sub>) = <span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">i</span></sub>)<span 
+class="cmmi-10x-x-109">P</span>(<span 
+class="cmmi-10x-x-109">A</span><sub><span 
+class="cmmi-8">j</span></sub>) for all <span 
+class="cmmi-10x-x-109">i,j </span><span 
+class="cmsy-10x-x-109">∈{</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,n</span><span 
+class="cmsy-10x-x-109">} </span>and
+<span 
+class="cmmi-10x-x-109">i</span><span 
+class="cmmi-10x-x-109">≠</span><span 
+class="cmmi-10x-x-109">j</span>.
+</p><!--l. 248--><p class="noindent" >It is not hard to see that independence implies pairwise independence. This relationship can
+be observed if <span 
+class="cmmi-10x-x-109">I </span>are all 2-element subsets of <span 
+class="cmsy-10x-x-109">{</span>1<span 
+class="cmmi-10x-x-109">,</span>2<span 
+class="cmmi-10x-x-109">,</span><span 
+class="cmmi-10x-x-109">…</span><span 
+class="cmmi-10x-x-109">,n</span><span 
+class="cmsy-10x-x-109">}</span>. Pairwise independence, on the other
+hand, does not imply independence.
+</p><!--l. 250--><p class="noindent" >So far, the discussion of independence is restricted to events. Independence can occur between
 random variables and sample spaces too. We should also remember that the independence of
 sample spaces, independence of random variables, and independence of events are equivalent.
 Most of the detailed explanation will not be included as it is beyond the scope of this
@@ -807,7 +871,6 @@ class="cmti-10x-x-109">Notebook II</span>.
 
 
 
-
                 </div>
             </div> 
 
@@ -823,11 +886,3 @@ class="cmti-10x-x-109">Notebook II</span>.
 </body>
 
 </html>
-
-
-
-
-                               
-                                                                                
-
-

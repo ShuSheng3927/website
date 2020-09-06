@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=latex 2020.2.7)  4 SEP 2020 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=latex 2020.2.7)  6 SEP 2020 22:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1740,58 +1740,61 @@ On some platforms, the quotation marks ' should be
 ]
 --- file chp13.html ---
 --- file chp14.html ---
+--- file chp15.html ---
 l. 105 Writing chp1.idv[1] (chp10x.png)
-l. 108 Writing chp1.idv[2] (chp11x.png)
  [5
 
 
 
+
 ]
+l. 108 Writing chp1.idv[2] (chp11x.png)
 l. 116 Writing chp1.idv[3] (chp12x.png)
  [6]
 l. 128 Writing chp1.idv[4] (chp13x.png)
-l. 132 Writing chp1.idv[5] (chp14x.png)
+l. 133 Writing chp1.idv[5] (chp14x.png)
  [7]
-l. 151 Writing chp1.idv[6] (chp15x.png)
+l. 152 Writing chp1.idv[6] (chp15x.png)
  [8]
-l. 158 Writing chp1.idv[7] (chp16x.png)
-l. 162 Writing chp1.idv[8] (chp17x.png)
+l. 159 Writing chp1.idv[7] (chp16x.png)
+l. 163 Writing chp1.idv[8] (chp17x.png)
  [9]
-l. 175 Writing chp1.idv[9] (chp18x.png)
-l. 180 Writing chp1.idv[10] (chp19x.png)
+l. 176 Writing chp1.idv[9] (chp18x.png)
+l. 181 Writing chp1.idv[10] (chp19x.png)
  [10]
-l. 190 Writing chp1.idv[11] (chp110x.png)
+l. 191 Writing chp1.idv[11] (chp110x.png)
  [11]
-l. 201 Writing chp1.idv[12] (chp111x.png)
-l. 208 Writing chp1.idv[13] (chp112x.png)
---- file chp15.html ---
-l. 213 Writing chp1.idv[14] (chp113x.png)
- [12
+l. 202 Writing chp1.idv[12] (chp111x.png)
+l. 209 Writing chp1.idv[13] (chp112x.png)
+--- file chp16.html ---
+ [12]
+l. 214 Writing chp1.idv[14] (chp113x.png)
+ [13
 
 ]
-l. 222 Writing chp1.idv[15] (chp114x.png)
- [13]
-l. 232 Writing chp1.idv[16] (chp115x.png)
-l. 241 Writing chp1.idv[17] (chp116x.png)
- [14] [15
+l. 223 Writing chp1.idv[15] (chp114x.png)
+l. 233 Writing chp1.idv[16] (chp115x.png)
+ [14]
+l. 242 Writing chp1.idv[17] (chp116x.png)
+ [15] [16
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
- [16
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 255.
+ [17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 255.
  (./chp1.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 251.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 251.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 255.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 255.
  ) 
 Here is how much of TeX's memory you used:
- 34527 strings out of 492617
- 631374 string characters out of 6129508
- 940249 words of memory out of 5000000
- 37707 multiletter control sequences out of 15000+600000
+ 34540 strings out of 492617
+ 631537 string characters out of 6129508
+ 940329 words of memory out of 5000000
+ 37720 multiletter control sequences out of 15000+600000
  543659 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,22n,76p,1375b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on chp1.dvi (24 pages, 65332 bytes).
+Output written on chp1.dvi (25 pages, 68464 bytes).
