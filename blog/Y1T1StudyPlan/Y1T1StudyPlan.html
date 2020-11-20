@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>第一学年第一学期学习计划</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="BinomialDistribution.css"> 
+  <meta name="src" content="BinomialDistribution.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh;">
+
+                <div style="margin-top:3%;text-align: justify;">  
+
+
+<h1 style="text-align: center; font-family: 'Times'" id="Preface">第一学年第一学期学习计划</h1>  
+
+<br>
+
+<h3 style="text-align: center; font-family: 'Times'" id="Preface">张瑞暘</h3>  
+
+<br><br>
+
+<p style="font-size: large; font-family: 'Times'">UCL的一点好处在于这边的课业压力没有很大，这样可以让我有比较多的时间去自学。刚开学的几个礼拜我没有很好地平衡自己的学习和学校的功课。倒不是说学业压力大，只是我之前没能把控花在两者上的时间。这周是Reading Week，而且我最近的平衡感觉做的不错，所以正好借着这个机会详细说一下。</p>  
+
+<p style="text-align: center;">-</p>
+
+<p style="font-size: large; font-family: 'Times'">一般来说，学习需要一个大的目标，这样才方便我们去安排细节和小一点的目标，同时这个大目标也可以当作一个motivation（动机）。我最初设定的大目标是在这个学年结束之前学到Stat PhD Qualifying Exam的水平。这倒也不是不能实现，毕竟我在大一开学前就已经把初等概率统计和数学分析都学完了，所以再需要学的也就是测度论和高等概率统计了。但是，我前几周在学的时候感觉没有什么动力，而且学习起来的难度也比较大，体验也就不怎么好。</p>  
+
+<p style="font-size: large; font-family: 'Times'">后来我更新了我的目标。之前的几周，我看了一篇写张益唐的文章，一个Richard Borcherds发的Introduction to Diophantine Equations的视频，一部讲Wiles对于费马大定理的证明的过程。对于这些内容有所了解的读者不难发现，这些都是数论的内容。除此之外，我在UCL的Personal Tutor，同时也是我这个学期Analysis Tutorial 的Lecturer，是做解析数论的，而且他今年九月刚和另外一个人一起在Annals上发了一篇文章。这些让我对数论产生了极大的兴趣，尤其是当时看到用几何去找丢番图方程的解的时候我觉得这就是我一直想要的Elegance。当然，也有一部分不那么纯粹的理由 — 如果我做和我的Personal Tutor一样的方向那么可以从他身上获得很多的帮助。毕竟，他是我在现实生活中认识的水平最高的学者了。</p>  
+
+<p style="text-align: center;">-</p>
+
+<p style="font-size: large; font-family: 'Times'">如果要学习这些比较有意思的数论的内容则需要很多前置内容。第一步，我需要学Abstract Algebra和Complex Analysis。第二步，我需要学Commutative Algebra和Galois Theory。学完这些之后就可以开始慢慢学一些数论的内容了。比如，有了Commutative Algebra和Galois Theory之后我就可以学Algebraic Geometry（Miles Reid的Undergraduate Algebraic Geometry)。或者，有了Complex Analysis之后就可以看Analytic Number Theory。还有，有了Commutative Algebra之后就可以看Algebraic Number Theory了。之后，我们也可以看Silverman和Tate的Rational Points on Elliptic Curves，然后再加上别的前置看Silverman后续的两本。</p>  
+
+<p style="font-size: large; font-family: 'Times'">我现在正在看的是Lang的Complex Analysis (GTM103)，Hungerford的Algebra (GTM073)，Apostol的Introduction To Analytic Number Theory和SIlverman和Tate的Rational Points on Elliptic Curves。着重的是前两本，后面两本则是当我不想看前两本的时候看的。</p>  
+
+<p style="font-size: large; font-family: 'Times'">Hungerford的Algebra看完前半部分之后我可以看Reid的Undergraduate Commutative Algebra和它里面的Commutative Algebra一起看。也可以看Stewart的Galois Theory与Algebra里面的Galois一起配合着看。Reid的Undergraduate Commutative Algebra看完之后就可以看他写的Undergraduate Algebraic Geometry了。</p>  
+
+<p style="font-size: large; font-family: 'Times'">Lang的Complex Analysis之后就可以更好地看Apostol的Introduction To Analytic Number Theory了，毕竟后半部分有一些需要复分析的内容。</p>  
+
+<p style="font-size: large; font-family: 'Times'">同时，我还有一本讲超越数的Making Transcendence Transparent也可以在前面的内容看完之后看。</p>  
+
+<p style="text-align: center;">-</p>
+
+<p style="font-size: large; font-family: 'Times'">我也不打算给自己设定一个期限，比如说多久之前看完多少内容之类的。这样也不会让我为了时间而牺牲一部分的质量，显得很着急。反正我现在每天都能看几个小时，就感觉进度还可以。</p>  
+
+<p style="font-size: large; font-family: 'Times'">其实有时候会觉得比较慢，有这么多东西需要学，但是每次两个小时看了之后也就只能看几个章节，十来页左右。如果我要做Exercise的话就可能几个小时才能做10道题，就特别花时间。所有我现在也不是很想做特别多的习题。如果看下来感觉内容不是很清楚的话可能就挑几题做一下，巩固一下。有时候感觉有些概念比较难理解的话就只好告诉自己von Neumann 说的”You don't understand things; you just get used to them.” (笑)</p>  
+
+<p style="text-align: center;">-</p>
+
+<p style="font-size: large; font-family: 'Times'">第一年Term 1的学习计划大致就是这些了。下一次更新可能就是Term 2了，但是也不确定。希望我的学习能顺遂一些。</p>  
+
+<p style="font-size: large; font-family: 'Times'">结尾的地方我就放上一段我自己比较喜欢的话，用以自勉。</p>  
+
+<br>
+
+    <blockquote>
+        <p style="font-size: large; font-family: 'Times'">在衰老到来之时，做一件值得一做的事，正如布鲁诺提倡日心说，贞德捍卫爱一样。我们要在未来的痛苦面前，毫不畏缩，坚持到神志丧失的时刻：正如布鲁诺被拉成面条之前还在坚持日心说，贞德被烤熟之前口诵圣母之名一样。我们做这件事不是为了别的，只是为了证明自己是好样的！</p>     
+        <p style="font-size: large; font-family: 'Times';text-align: right;">— 王小波 《似水流年》</p>
+    </blockquote>
+
+<br><br>
+
+<p style="font-size: large; font-family: 'Times'">2020年11月12日</p> 
+
+<p style="font-size: large; font-family: 'Times'">Bloomsbury, London</p> 
+
+
+
+
+
+
+
+                </div>
+            </div> 
+
+
+         
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+                                                                                 
+
+
