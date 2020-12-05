@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>应用统计学家是如何进行研究的？</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="BinomialDistribution.css"> 
+  <meta name="src" content="BinomialDistribution.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh;">
+
+                <div style="margin-top:3%;text-align: justify;">  
+
+
+<h1 style="text-align: center; font-family: 'Times'" id="Preface">应用统计学家是如何进行研究的？</h1>  
+
+<br>
+
+<h3 style="text-align: center; font-family: 'Times'" id="Preface">张瑞暘</h3>  
+
+<br><br>
+
+<p style="font-size: large; font-family: 'Times'">统计本身就是一门比较应用的学科，而应用统计就更加地和现实中的问题挂钩了。过去的一段时间我去听了一些讲座，也和统计系里的一些做应用统计的讲师教授聊了聊他们是如何进行研究的。我就总结一下其中我觉得比较有趣和重要的点，供读者参考。
+</p>  
+
+<p style="font-size: large; font-family: 'Times'">一般来说，生物统计以及很多的应用统计的研究都不是独立完成的。它们更多地是和不同领域的科研人员一起合作，帮助他们解决课题中的统计学部分。这也就意味着，很多时候是会有人问应用统计学家一些统计学问题，然后他们去解决这些问题。有的问题比较简单，但是有时候也会有一些不常见的问题。这时候他们会回去查文献，看看有没有人解决过类似的问题。要是没有的话，他们就会去尝试着自己解决这些问题，并试着从中找到一些更具有普遍性的方法或结论。很多时候应用统计学的科研都是这样的，所以也就意味着他们很容易能发表很多的论文，毕竟他们在每一篇论文中都是做一个辅助性的工作，不会很花时间，但是都能让自己的名字排在在一系列的作者中。</p>  
+
+<p style="font-size: large; font-family: 'Times'">UCL的医学院和神经科学都不错，学校附近也有很多家医院。这就让研究医疗统计和生物统计的人很容易找到合作机会，所以也就吸引了不少做生物统计的人。这也是为什么UCL统计系有那么多做生物统计的。</p>  
+
+<p style="font-size: large; font-family: 'Times'">科研需要资金，但这些钱在大部分的时间都不是凭空出现的，所以很多时候应用统计学家会和企业合作，或者会去申请研究基金。这种研究就会变得有些被动，很多时候研究的题目是被企业或是基金会的要求和目标所限制的。很多英国国家医疗服务体系(NHS)赞助的项目就必须要和他们认为重要的问题有联系，或者直接是帮他们解决问题。这样研究的好处就是你不需要想题目，只需要想解决的方法就可以了。 </p>  
+
+<p style="font-size: large; font-family: 'Times'">除了这两种之外，在做研究的过程中自然就会遇到很多不同的值得解决的问题，可能是某些之前的工作的延伸。而有的时候，某些解决具体问题的方法可能会启发你去把这些方法做一个更加严谨的推导，然后应用在不同的地方。有的时候，这种工作可能也会产生新的统计学的方法，模型，或者概念。而有些时候，可能某一个工作中发现的方法一开始看似无关紧要，但是过了几年之后突然被别的领域的人引用，有了一些很重要的应用。比如，发现霍克斯过程(Hawkes Process)的艾伦·霍克斯(Alan Hawkes)一开始觉得这个模型没有什么大用，但是十多年之后一个做金融数学的同事突然告诉他很多人在用这个模型。这也就使得他又回去对这个模型进行更多的研究。现在，这个模型在机器学习中也有不少的应用。这个例子转述自霍克斯的一个长期合作者大卫·科乎(David Colquhoun)。当时他来听我做的一个关于随机游走的报告，在报告前和他闲聊的时候他提到了这件事，还借机讽刺了一下人们过于关注应用量的现状。</p>  
+
+<p style="font-size: large; font-family: 'Times'">当然，这些都是比较成熟的研究者的科研方法了。一般刚入门的博士生都是跟着导师做一些导师认为需要解决的，并且那个学生可以解决的问题。在做了一些这种样子的问题之后，博士生才慢慢开始去摸索如何更自主地去做科研工作。
+</p>  
+
+
+
+
+
+<br><br>
+
+
+
+                </div>
+            </div> 
+
+
+         
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+                                                                                 
+
+

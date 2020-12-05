@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>How do Applied Statisticians do Research?</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="BinomialDistribution.css"> 
+  <meta name="src" content="BinomialDistribution.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh;">
+
+                <div style="margin-top:3%;text-align: justify;">  
+
+
+<h1 style="text-align: center; font-family: 'Times'" id="Preface">How do Applied Statisticians do Research?</h1>  
+
+<br>
+
+<h3 style="text-align: center; font-family: 'Times'" id="Preface">Zhang Ruiyang</h3>  
+
+<br><br>
+
+<p style="font-size: large; font-family: 'Times'">Disclaimer: The following was based on second-hand information and my observation on how research are completed in Applied Statistics, so there are chances for them to be inaccurate. </p>  
+
+<p style="text-align: center;">-</p>
+
+<p style="font-size: large; font-family: 'Times'">Statistics is an applied discipline by itself, and applied statistics is even more related to problems of real life. I have been listening to talks for the past weeks, and I have been talking with lecturers and professors of the department who are doing Applied Statistics on how their research are carried out. I will summarise some of the more interesting and important points below. </p>  
+
+<p style="font-size: large; font-family: 'Times'">Normally, research of biostatistics and many other kinds of Applied Statistics are not completed individually. They are mostly collaboration with researchers of other fields, and statisticians will help with the statistics component of the problem. This means, a lot of the times, people will come up to Applied Statisticians and ask them some Statistics questions, then they will try to find solutions to them. Some of them are simple, but on occasions they will get strange questions. Then, they will go back and check the literature to see if there are any other similar questions solved in the past by others. On an even rarer occasion, there is no solution to that question, and they will try to solve them themselves and hope to find something that are more generally applicable. That is how research for Applied Statisticians are carried out. This is also why they tend to have a lot of publications, as they are often serving a more supporting role in a research project and those work will not take too much time while making their names appear on the list of authors. </p>  
+
+<p style="font-size: large; font-family: 'Times'">UCL has a great medical school and neuroscience department, and there are many hospitals around the campus. This makes collaborations really easy for those doing medical statistics and biostatistics, which attracts a lot of researchers of biostatistics. This is also why there are a lot of people doing biostatistics at the UCL Statistical Science department. </p>  
+
+<p style="font-size: large; font-family: 'Times'">Research needs funding, but these money do not come out from nowhere. This means Applied Statisticians will need to apply for research grants and collaborate with firms from time to time. These kind of research will be more passive, as the topic of the research is restricted by the requirements and goals of the firm or the fund. A lot of the projected funded by the NHS have to solve questions that they find useful and important, or solve their problems directly. The good side is you do not need to worry too much about the topic, you only need to find workable solutions. </p>  
+
+<p style="font-size: large; font-family: 'Times'">Apart from the two ways above, you will naturally come across many questions that are worth solving as you do more research. They might be extensions to your previous work. Sometimes, your solution to a specific question may inspire you to develop it further and prove more rigorously, and apply at other scenarios. Sometimes, such work will create new methodologies, models, or concepts in Statistics. Also, you may think that some of your work may seem not very useful at that time, but a couple of years later became heavily used by people from other fields and have significant applications. For example, Alan Hawkes discovered the Hawkes Process thinking it is not very useful and other researchers did not pay much attention at that time. However, around ten years later, a college of him doing Financial Mathematics told him that a lot of people are using that model now. He then went back and studied about that model further. Now, this process has been applied in Machine Learning too. This example was told to me from a long time collaborator of Hawkes, David Colquhoun. He came for my talk on random walk and told me about them when we chatted before the start of the talk.</p>  
+
+<p style="font-size: large; font-family: 'Times'">Of course, these are how research is done for more mature researchers. Most PhDs are only working with their advisors on the questions that the advisor thinks are worth solving and can be solved by the student. After doing such research for a while, the PhD candidates will then slowly try to figure out how to do research more independently. </p>  
+
+
+
+
+
+<br><br>
+
+
+
+                </div>
+            </div> 
+
+
+         
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>
+
+
+
+                                                                                 
+
+
