@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>十二</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <div class="topnav-right">
+        <a>London, Statistics, and the Wondering Years</a>
+    </div>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+            
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <a href="https://shusheng3927.github.io/website/lswy/index.html"><b>English Version</b></a>
+            </div>
+
+            <div class="col-md-9" style="height: 100vh">
+               <h2 style="text-align: center; font-family: 'Times'" id="Title" ><a href="https://shusheng3927.github.io/website/lswy/index.html">本科生活</a></h2>  
+               <h1 style="text-align: center; font-family: 'Times'" id="Preface">十二</h1>            
+
+
+<h4 style="font-size: x-large; font-family: 'Times'" align="center">二零二一年一月二十四日</h4>
+
+<br>
+
+<h3 id="伦敦" style="font-size: x-large; font-family: 'Times'">伦敦 </h3>
+
+<br>
+
+<p style="font-size: large; font-family: 'Times'">略。</p>
+
+<h3 id="统计" style="font-size: x-large; font-family: 'Times'">统计</h3>
+
+<br>
+
+<p style="font-size: large; font-family: 'Times'">这个学期只有四门课，两门数学，两门统计。统计的两门就是上个学期的统计课的延续，没有什么特别大的改变，就是变了老师。数学课的话，我这个学期只有分析和方法，没有代数了。其实我是很想去上代数的，但是我的课表没有，系里面也不允许我去多选课。我上个学期专门去问过了，但是没有什么正面的回复。分析就是对于上个学期的数学分析的延续，讲一些微分积分的定理什么的，再加上一点黎曼积分，不是什么很复杂的东西。方法在学期的上半部分学Python，一种我初中就自学了的编程语言。我高中的时候给一个创业公司做实习写代码也是用这门语言的。下半部分学一些基本的多元微积分，是系主任教的，据说她教的很不错。</p>
+
+<p style="font-size: large; font-family: 'Times'">分析的老师还是一个俄罗斯人，其实准确的说他是苏联人。苏联时期的时候他在一个苏联研究所里工作，在苏联解体之后他就来到了英国。他在第一节课里就说，他的课和他的讲义是一模一样的内容，所以完全可以只看讲义不用去听课。方法的话，至少在上半学期没有什么课，每周就只有一些习题要做罢了，不花时间，很方便。</p>
+
+<p style="font-size: large; font-family: 'Times'">统计的两门课分别是概率统计和实验统计。概率统计就是一些统计学的理论知识，而实验统计主要就是学习R这门编程语言。这个学期教我概率统计的老师是上个学期实验统计的老师，而实验统计这个学期是另外的一名老师。实验统计的新老师似乎科研水平不错，我看他发的期刊都是统计学的顶级期刊。更具体的内容我当然没有办法理解，但是光看那些期刊的名字就还是非常厉害的。他主要做高维统计。尽管我现在对于统计的兴趣不高，但是我还是很愿意去了解统计的东西的，毕竟不能浪费我这个学位能够提供的东西不是吗。我这周去了他的办公室时间，去问了一些问题。除了一些关于课程的东西，我还问了他关于科研中的数据造假和代码造假的问题。我其实对这些问题还是蛮好奇的，毕竟之前有好几次在网上看到对于这些东西的争论。现在既然有内行在，那当然可以去问问。他给我的回答还是很让我满意的。我从中了解到了很多我之前在网上没有看到的内容。我觉得他的课还是可以多花点精力去看和参加的，至少肯定不会是对我时间的浪费。</p>
+
+<p style="font-size: large; font-family: 'Times'">学校的内容差不多就是这些吧。至于我自学的内容的话，我最近把点集拓扑的内容大致看了，对于一些主要的概念都有了解。这些东西足够我去继续我对于拓扑的学习了。我现在在看代数拓扑的入门内容。UCL之前有开过一门拓扑和群论的课，差不多就是代数拓扑入门。虽然当时教这门课的讲师不再在UCL了，但是他把那门课的内容放到了网上，所以我现在还是可以看到的。我觉得听视频和讲课学起来比自己一个人看书学习轻松很多。不知道这是因为他讲的好还是因为事实真的是如此。我不大清楚，主要是因为我学习数学大部分都是自己看教材学的，没怎么去听课。目前就准备看代数拓扑。等我把这门课的内容都看完之后可能会去看看教材，加深一些印象。代数拓扑之后可能就要继续看代数的内容了。如果看完代数的话我的水平就正式达到大二结束的水平了。</p>
+
+<h3 id="彷徨" style="font-size: x-large; font-family: 'Times'">彷徨</h3>
+
+<br>
+
+<p style="font-size: large; font-family: 'Times'">在新加坡念书的那几年，我经常会在假期里回上海。每次回上海都会有一种淡淡的陌生感，感觉和那片土地没有什么太多的联系。随着在新加坡的时间愈久这种感受就愈发强烈。或许是时间把我和故土之间的纽带冲散了，亦或者那纽带本身就只是我的一种臆想，并未真实存在过。我无从考证。</p>
+
+<p style="font-size: large; font-family: 'Times'">对这种陌生感有比较清楚的认识是在几次同学准备来上海旅游前和我的聊天。我发现我对于上海大部分的地方都一无所知，也不知道有什么是值得去的。当然了，旅游景点这些地方本就不是当地人会常去的，但是一无所知也似乎有点极端了。</p>
+
+<p style="font-size: large; font-family: 'Times'">我一开始认为这种陌生感会随着我更多地去那些地方慢慢消散。但事与愿违。那些地方我去了、看了，却没有在我脑海中留下任何深刻的印象。那些地方感觉和世界上的任何一个角落都差不多，和上海两字没有丝毫的关联。我对于那片土地还是有着陌生感。</p>
+
+<p style="font-size: large; font-family: 'Times'">可能，这不是我独有的问题。从小到大生活在上海（或是任何一个同样地方）的人一定不会去质疑自己对于那个地方的认知。但是他们真的知道多少呢？他们对于那个地方的了解会比网上搜索地名后弹出的结果更加地深刻吗？这些问题是我们很少去主动思考的。</p>
+
+<p style="font-size: large; font-family: 'Times'">我在上海的时候，哪怕走在实心的土地上都还是感觉是在漂浮着的。根断了，也可能就从未存在过。一样在漂浮着的可能不止我一个，说不定整座城市的人都在一起漂浮着，如同被撒手放开的氢气球一样逐渐飞离地面。</p>
+
+<p style="font-size: large; font-family: 'Times'">城市化和全球化的巨大的引力抽走了独属于每一片土地的文化和特征。它们也同时具有难以想象的填充力，用连锁品牌和高楼大厦塞满了每一个才被抽成空档的角落。到处都变得差不多了。
+</p>
+
+<p style="font-size: large; font-family: 'Times'">什么东西可以去抓住气球的绳，插下浮萍的根呢？我们似乎无从知晓。</p>
+
+
+<br><br>
+
+
+<a href="../index_cn.html" style="text-align: left; font-family: 'Times';font-size: large;">返回目录</a>  
+<a href="" style="float: right; font-family: 'Times';font-size: large;">下一章</a>
+
+<br>
+<br>
+
+
+            </div> 
+            
+  
+        </div>
+
+
+    </div>
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
