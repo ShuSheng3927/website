@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+  <title>Gradient Descent: Batch, Stochastic, Mini-Batch</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="Gradient_Descent.css" /> 
+  <meta name="src" content="BinomialDistribution.tex" /> 
+</head>
+
+
+
+<style type="text/css">
+  
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+
+.topnav-right {
+  float: right;
+}
+
+.topnav-right a:hover {
+  background-color: #333;
+  color: #f2f2f2;
+}
+
+/* When the screen is less than 700 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 700px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav-right {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 700px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+</style>
+
+<script type="text/javascript">
+  
+/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+</script>
+
+
+<body>
+
+
+
+<div class="topnav" id="myTopnav">
+  <a href="https://shusheng3927.github.io/website/">Home</a>
+    <a href="https://shusheng3927.github.io/website/blog/index.html">Blog</a>
+    <a href="https://shusheng3927.github.io/website/notes/index.html">Notes</a>
+    <a href="#">CV</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+    </a>
+</div>
+
+  
+
+  
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3" style="margin-top:1% ; text-align: center; background-color: #d9d9d9">
+                <div  style="font-family: 'Times', sans-serif; font-size: 32px;"><b>Zhang Ruiyang</b></div>
+                <a href="mailto:ruiyang.zhang.20@ucl.ac.uk">Email</a>
+                &nbsp;
+                <a href="https://github.com/ShuSheng3927">Github</a> 
+                &nbsp;
+                <a right" href="www.linkedin.com/in/ruiyang-zhang-248761129">Linkedin</a>
+                <br>
+                <br>
+                <a href="https://shusheng3927.github.io/website/blog/index.html">Back To Index</a>
+
+            </div>
+
+
+            <div class="col-md-9" style="height: 100vh; margin-top: 1%">
+
+                <div style="margin-top:3%;text-align: justify;">  
+                <h2 class="titleHead">Gradient Descent</h2>
+                <h4 class="titleHead" style="text-align: center">Batch, Stochastic, Mini-Batch</h4>  
+                <div class="author" ><span 
+class="cmr-12">Zhang Ruiyang</span></div>    
+
+                <h4 style="text-align: center"><a href="Gradient_Descent.pdf">[PDF]</a></h4><br>    
+                <!--l. 32--><p class="noindent" >In Statistical Learning, we often want to ﬁnd the (global) minimum point of a function, or ﬁnd the
+parameter to minimize a function. One way to do this is via <span 
+class="cmbx-10">gradient descent</span>. There are three main
+kinds of gradient descent: <span 
+class="cmbx-10">batch</span>, <span 
+class="cmbx-10">stochastic</span>, and <span 
+class="cmbx-10">mini-batch</span>. The last one is a mix of the ﬁrst
+two.
+</p><!--l. 36--><p class="noindent" >If we want to optimize a parameter <span 
+class="cmbx-10">w</span> with regards to a certain loss function <span 
+class="cmsy-10">ℒ</span>(<span 
+class="cmbx-10">w</span>) of it, we will have
+the iteration
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="Gradient_Descent0x.png" alt="w (t+1) = w (t) − η∇ℒ (w (t)),
+" class="math-display"  /></center></td></tr></table>
+<!--l. 39--><p class="nopar" >
+where the <span 
+class="cmmi-10">η </span>is the learning rate, and we always set it to be positive. We will normally terminate the
+iteration when the change in parameter after each parameter is suﬃciently small.
+</p><!--l. 44--><p class="noindent" >It is not hard to realise that if there exist a minimum point of <span 
+class="cmsy-10">ℒ</span>(<span 
+class="cmbx-10">w</span>) that is only local but not global, it
+will have a gradient zero, causing out iteration to terminate. We are, of course, not going to be satisﬁed
+with only a local minimum, so what we could do is to repeat the iteration for many times, each with a
+diﬀerent initial point <span 
+class="cmbx-10">w</span><sup><span 
+class="cmr-7">(0)</span></sup>, so that we will likely to not always be stuck at a local minimum
+point.
+                                                                                
+
+                                                                                
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Batch</h3>
+<!--l. 48--><p class="noindent" >The ﬁrst type of gradient descent is the <span 
+class="cmbx-10">Batch Gradient Descent</span>. This type of gradient
+descent is going to run over all the data points when we are calculating the <span 
+class="cmsy-10">∇ℒ</span>(<span 
+class="cmbx-10">w</span>) at each
+iteration.
+</p><!--l. 52--><p class="noindent" >To better understand this, we will take a common example of loss function, the squared error
+loss
+</p>
+   <table 
+class="equation-star"><tr><td>
+   <center class="math-display" >
+<img 
+src="Gradient_Descent1x.png" alt="       1 D∑
+ℒ(w ) = 2   (yn − wTxn )2
+         n=1
+" class="math-display"  /></center></td></tr></table>
+<!--l. 55--><p class="nopar" >
+where the <img 
+src="Gradient_Descent2x.png" alt="1
+2"  class="frac" align="middle" /> is an added constant for easy computation, <span 
+class="cmmi-10">D </span>for the number of data points, and <span 
+class="cmbx-10">x</span><sub><span 
+class="cmmi-7">n</span></sub> for
+the input of each of the data point. At each iteration, we will be calculating the gradient of that
+function, which is a sum of <span 
+class="cmmi-10">D </span>terms.
+</p><!--l. 60--><p class="noindent" >Just by the description, we can see that this is going to be quite computationally expensive,
+especially when we have a lot of data points. This problem leads us to introduce the following
+method.
+</p><!--l. 62--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Stochastic</h3>
+<!--l. 64--><p class="noindent" >The <span 
+class="cmbx-10">Stochastic Gradient Descent</span>, or simply just SGD, is called stochastic since at each iteration,
+instead of calculating the sum of <span 
+class="cmmi-10">D </span>data points for the loss function, we will just randomly select one of
+them, and use that to update of parameter. This, clearly, is much quicker. Another advantage of SGD is
+that it will less likely to end up on saddle points, since we are only looking at the loss function in one of
+the <span 
+class="cmmi-10">D </span>directions.
+</p><!--l. 66--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Mini-Batch</h3>
+                                                                                
+
+                                                                                
+<!--l. 68--><p class="noindent" >If you do not like the SGD and ﬁnd it not trustworthy enough, you can have a mix of batch and
+stochastic. This is by, instead of just looking at one random data point for each iteration, looking at
+several (but certainly much smaller than <span 
+class="cmmi-10">D</span>) data points at random each time. This will be faster than
+batch, and more trustworthy than SGD.
+</p>
+<div class="center" 
+>
+<!--l. 72--><p class="noindent" >
+</p><!--l. 72--><p class="noindent" ><span 
+class="cmsy-10">−</span></p></div>
+<!--l. 76--><p class="noindent" >We can think about the three methods as variations of SGD, where the diﬀerence between the three is
+the number of data points involved in the calculation of each iteration. 1 for SGD, <span 
+class="cmmi-10">D </span>for batch GD, and
+a number in between 1 and <span 
+class="cmmi-10">D </span>for mini-batch GD.
+</p><!--l. 80--><p class="noindent" >In reality, these methods are not that great as we may potentially expect. If the objective function is
+not globally convex, we will normally end up at a local minimum, but a relatively good local
+minimum.
+</p><!--l. 84--><p class="noindent" >In addition, there is no theoretical support to prove why that is the case, and why we will end up at
+minimum points, either local or global. That is still an active ﬁeld of research and the mystery is not
+completely solved yet.
+</p><br><br><br><br>
+
+
+
+
+                </div>
+            </div> 
+
+
+         
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+
+</html>

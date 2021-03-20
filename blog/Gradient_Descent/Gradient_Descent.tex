@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, enumitem, multicol, color, soul, geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{Gradient Descent: Batch, Stochastic, Mini-Batch}
+\author{Zhang Ruiyang}
+\date{}
+
+\geometry{a4paper}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+\newtheorem*{remark}{Remark}
+
+\setlist[itemize]{leftmargin=*}
+\setlist{nosep}
+
+\def\L{\mathcal{L}}
+
+\newcommand{\breaking}{%
+    \begin{center}
+    $-$
+    \end{center}%
+}
+
+
+\begin{document}
+
+\maketitle
+
+\noindent In Statistical Learning, we often want to find the (global) minimum point of a function, or find the parameter to minimize a function. One way to do this is via \textbf{gradient descent}. There are three main kinds of gradient descent: \textbf{batch}, \textbf{stochastic}, and \textbf{mini-batch}. The last one is a mix of the first two.
+
+\bigskip
+
+\noindent If we want to optimize a parameter $\textbf{w}$ with regards to a certain loss function $\L(\textbf{w})$ of it, we will have the iteration 
+\begin{equation*}
+\textbf{w}^{(t+1)} = \textbf{w}^{(t)} - \eta \nabla \L(\textbf{w}^{(t)}),
+\end{equation*}
+\noindent where the $\eta$ is the learning rate, and we always set it to be positive. We will normally terminate the iteration when the change in parameter after each parameter is sufficiently small.
+
+\bigskip
+
+\noindent It is not hard to realise that if there exist a minimum point of $\L(\textbf{w})$ that is only local but not global, it will have a gradient zero, causing out iteration to terminate. We are, of course, not going to be satisfied with only a local minimum, so what we could do is to repeat the iteration for many times, each with a different initial point $\textbf{w}^{(0)}$, so that we will likely to not always be stuck at a local minimum point. 
+
+\section{Batch}
+
+\noindent The first type of gradient descent is the \textbf{Batch Gradient Descent}. This type of gradient descent is going to run over all the data points when we are calculating the $\nabla \L(\textbf{w})$ at each iteration. 
+
+\bigskip
+
+\noindent To better understand this, we will take a common example of loss function, the squared error loss 
+\begin{equation*}
+\L(\textbf{w}) = \frac{1}{2} \sum_{n=1}^{D} (y_n - \textbf{w}^{T}\textbf{x}_n)^2
+\end{equation*}
+\noindent where the $\frac{1}{2}$ is an added constant for easy computation, $D$ for the number of data points, and $\textbf{x}_n$ for the input of each of the data point. At each iteration, we will be calculating the gradient of that function, which is a sum of $D$ terms.
+
+\bigskip
+
+\noindent Just by the description, we can see that this is going to be quite computationally expensive, especially when we have a lot of data points. This problem leads us to introduce the following method.
+
+\section{Stochastic}
+
+\noindent The \textbf{Stochastic Gradient Descent}, or simply just SGD, is called stochastic since at each iteration, instead of calculating the sum of $D$ data points for the loss function, we will just randomly select one of them, and use that to update of parameter. This, clearly, is much quicker. Another advantage of SGD is that it will less likely to end up on saddle points, since we are only looking at the loss function in one of the $D$ directions. 
+
+\section{Mini-Batch}
+
+\noindent If you do not like the SGD and find it not trustworthy enough, you can have a mix of batch and stochastic. This is by, instead of just looking at one random data point for each iteration, looking at several (but certainly much smaller than $D$) data points at random each time. This will be faster than batch, and more trustworthy than SGD.  
+
+\bigskip
+
+\breaking
+
+\bigskip
+
+\noindent We can think about the three methods as variations of SGD, where the difference between the three is the number of data points involved in the calculation of each iteration. 1 for SGD, $D$ for batch GD, and a number in between 1 and $D$ for mini-batch GD. 
+
+\bigskip
+
+\noindent In reality, these methods are not that great as we may potentially expect. If the objective function is not globally convex, we will normally end up at a local minimum, but a relatively good local minimum. 
+
+\bigskip
+
+\noindent In addition, there is no theoretical support to prove why that is the case, and why we will end up at minimum points, either local or global. That is still an active field of research and the mystery is not completely solved yet. 
+
+\end{document}
