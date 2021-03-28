@@ -97,7 +97,7 @@
         var ld_date = new Date()
 
         var bjMinutes = bj_date.getTimezoneOffset() + 480 
-        var ldMinutes = ld_date.getTimezoneOffset() 
+        var ldMinutes = ld_date.getTimezoneOffset() + 60
         //480 is for adjusting to GMT+8
         bj_date.setMinutes(bj_date.getMinutes() + bjMinutes)
         ld_date.setMinutes(ld_date.getMinutes() + ldMinutes)
