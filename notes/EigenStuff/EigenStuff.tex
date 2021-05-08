@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm, enumitem, multicol, color, soul, geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{Eigen-Stuff}
+\author{Zhang Ruiyang}
+\date{}
+
+\geometry{a4paper}
+
+\setlist[itemize]{leftmargin=*}
+\setlist{nosep}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem*{remark}{Remark}
+
+\newcommand{\var}[1]{\text{Var}(#1)}
+\newcommand{\cov}[1]{\text{Cov}(#1)}
+\newcommand{\E}[1]{\text{E}[#1]}
+\newcommand{\Ethe}[1]{\text{E}_{\theta}[#1]}
+
+\newcommand{\poisson}[1]{\text{Poisson}(#1)}
+\newcommand{\gammaf}[1]{\Gamma(#1)}
+\newcommand{\geom}[1]{\text{Geom}(#1)}
+\newcommand{\nbinom}[2]{\text{NBinom}(#1, #2)}
+\newcommand{\normal}[2]{\text{Normal}(#1, #2)}
+\newcommand{\gammad}[2]{\text{Gamma}(#1, #2)}
+\newcommand{\binomial}[2]{\text{Binom}(#1, #2)}
+\newcommand{\markov}[2]{\text{Markov}(#1, #2)}
+\newcommand{\Exp}[1]{\text{Exp}(#1)}
+\newcommand{\bias}[1]{\text{Bias}(#1)}
+
+\def\R{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+\def\cprocess{\{N(t), t\ge 0\}}
+\def\lra{\leftrightarrow}
+\def\frakF{\mathfrak{F}}
+\def\Pthe{P_{\theta}}
+\def\MSE{\text{MSE}}
+\def\se{\text{se}}
+\def\Bias{\text{Bias}}
+\def\thetastar{\theta_{*}}
+
+\newcommand{\breaking}{%
+    \begin{center}
+    $-$
+    \end{center}%
+}
+
+\begin{document}
+
+\maketitle
+
+\noindent We will be discussing all the eigen stuff - eigenvectors, eigenvalues, eigenspace, and etc.
+
+\breaking
+
+\noindent A square $n \times n$ matrix $A$ can be viewed as a linear transformation of an $n$ dimensional vector space $V$ to itself. A linear transformation is a function, so this square matrix $A$ maps vector $x \in V$ to another vector $x' \in V$. Some of the vectors of the vector space have their direction unchanged under the linear transformation, and their will at most be a change in scale $\lambda$. This, in terms of an equation, is $Ax = \lambda x$ where $x$ is nonzero. We will call such $x$ as \textbf{eigenvector} and its corresponding $\lambda$ as \textbf{eigenvalue}. 
+
+\bigskip
+
+\noindent To find such eigenvectors computationally wise involve some steps. First, we notice that if we have $Ax = \lambda x$, we will have $(A - \lambda I) x = 0$ where this $I$ is the $n \times n$ identity matrix. Since $x$ is nonzero, the matrix $A - \lambda I$ must be \textbf{singular}. Singular means not invertible, and the columns of a singular matrix should be linearly dependent in order for it to be not invertible. Now, we recall that a singular matrix will have determinate 0, so $\det{A - \lambda I} = 0$. Solving this equation should give us the eigenvalues. 
+
+\breaking
+
+\noindent We should note that the eigenvectors are linearly independent, so they could serve as basis of a vector space. Such vector space is called the \textbf{eigenspace}. In most cases, the number of distinct eigenvectors is the same as the dimension of the vector space, so the dimension of the vector space is the same as that of the eigenspace. Then, we can perform a change-of-basis to the matrix and get something very helpful.
+
+\bigskip
+
+\noindent For the $n \times n$ matrix $A$ with eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_n$ and eigenvectors $v_1, v_2, \cdots, v_n$, we will have the eigenmatrix $Q = [ v_1 \quad v_2 \quad \cdots \quad v_n ]$. Then, $AQ = [ \lambda_1 v_1 \quad \lambda_2 v_2 \quad \cdots \quad \lambda_n v_n ]$. Also, if we have $\Lambda$ the diagonal matrix with the eigenvalues $\lambda_1, \lambda_2, \cdots, \lambda_n$ on the diagonal, we would have $Q \Lambda = [ \lambda_1 v_1 \quad \lambda_2 v_2 \quad \cdots \quad \lambda_n v_n ]$. So, we have gotten $AQ = Q\Lambda$, or $A = Q \Lambda Q^{-1}$. This rewrites the original matrix $A$ using eigen stuff, so it is known as the \textbf{eigendecomposition} of the matrix $A$.
+
+\bigskip
+
+\noindent As mentioned earlier, not all matrices can be decomposed like this. Those that can be eigendecomposed will have the same dimension of eigenspace and vector space, and they are known as \textbf{diagonalisable}, since the process of eigendecomposition will turn into a diagonalisation with a small twist of $Q^{-1} A Q = \Lambda$ where $\Lambda$ is a diagonal matrix.
+
+
+
+
+
+
+
+
+\end{document}
